@@ -11,6 +11,7 @@
         "email": "joby@byjoby.com"
     }],
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "HtmlObjectStrings\\": "src/"
@@ -27,7 +28,7 @@
         ]
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.4@dev",
-        "stevegrunwell/phpunit-markup-assertions": "dev-master"
+        "phpunit/phpunit": "^7",
+        "stevegrunwell/phpunit-markup-assertions": "^1.2"
     }
 }
