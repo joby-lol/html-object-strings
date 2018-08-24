@@ -2,7 +2,9 @@
     "name": "byjoby/html-object-strings",
     "description": "Abstraction layer for constructing arbitrary HTML tags in PHP",
     "type": "library",
-    "require": {},
+    "require": {
+      "php": ">-7.1"
+    },
     "license": "MIT",
     "authors": [{
         "name": "Joby Elliott",
