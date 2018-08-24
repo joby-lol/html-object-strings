@@ -2,7 +2,7 @@
 /* HTML Object Strings | https://gitlab.com/byjoby/html-object-strings | MIT License */
 namespace HtmlObjectStrings;
 
-interface HtmlInterface
+interface TagInterface
 {
     public function attr(string $name, $value = null);
     public function data(string $name, $value = null);
