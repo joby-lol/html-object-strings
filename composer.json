@@ -3,7 +3,7 @@
     "description": "Abstraction layer for constructing arbitrary HTML tags in PHP",
     "type": "library",
     "require": {
-      "php": ">-7.1"
+      "php": ">=7.1"
     },
     "license": "MIT",
     "authors": [{
