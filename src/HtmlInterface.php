@@ -2,9 +2,7 @@
 /* HTML Object Strings | https://gitlab.com/byjoby/html-object-strings | MIT License */
 namespace HtmlObjectStrings;
 
-use Flatrr\FlatArrayInterface;
-
-interface HtmlInterface extends FlatArrayInterface
+interface HtmlInterface
 {
     public function attr(string $name, $value = null);
     public function data(string $name, $value = null);

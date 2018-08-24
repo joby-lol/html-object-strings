@@ -63,9 +63,9 @@ class GenericTagTest extends TestCase
         configured into the object
          */
         $h = new GenericTag();
-        $h['tag'] = 'div';
-        $h['selfclosing'] = false;
-        $h['content'] = 'markup content';
+        $h->tag = 'div';
+        $h->selfClosing = false;
+        $h->content = 'markup content';
         $h->attr('id', 'h');
         $h->data('foo', 'bar');
         $h->addClass('class-foo');

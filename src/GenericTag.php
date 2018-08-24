@@ -2,46 +2,45 @@
 /* HTML Object Strings | https://gitlab.com/byjoby/html-object-strings | MIT License */
 namespace HtmlObjectStrings;
 
-use Flatrr\FlatArray;
-
-class GenericTag extends FlatArray implements HtmlInterface
+class GenericTag implements HtmlInterface
 {
     const TAG = 'span';
     const SELFCLOSING = false;
 
-    public function __construct(array $data = null)
+    public $tag = 'span';
+    public $selfClosing = false;
+    public $content = null;
+
+    protected $classes = [];
+    protected $attributes = [];
+
+    public function __construct()
     {
-        parent::__construct($data);
-        $this->merge([
-            'classes' => [],
-            'attributes' => []
-        ]);
         $this->htmlInit();
-    }
-
-    protected function htmlContent()
-    {
-        if (is_array($this['content'])) {
-            $content = implode(PHP_EOL, $this['content']);
-        } else {
-            $content = $this['content'];
-        }
-        return $content;
-    }
-
-    protected function htmlAttributes()
-    {
-        $attr = $this['attributes'];
-        if ($this->classes()) {
-            $attr['class'] = implode(' ', $this->classes());
-        }
-        return $attr;
     }
 
     protected function htmlInit()
     {
-        $this['tag'] = static::TAG;
-        $this['selfclosing'] = static::SELFCLOSING;
+        $this->tag = static::TAG;
+        $this->selfClosing = static::SELFCLOSING;
+    }
+
+    protected function htmlContent()
+    {
+        if (is_array($this->content)) {
+            return implode(PHP_EOL, $this->content);
+        } else {
+            return $this->content;
+        }
+    }
+
+    protected function htmlAttributes()
+    {
+        $attr = $this->attributes;
+        if ($this->classes()) {
+            $attr['class'] = implode(' ', $this->classes());
+        }
+        return $attr;
     }
 
     public function addClass(string $name)
@@ -49,50 +48,42 @@ class GenericTag extends FlatArray implements HtmlInterface
         if (!$name) {
             return;
         }
-        $classes = $this['classes'];
-        $classes[] = $name;
-        $classes = array_unique($classes);
-        sort($classes);
-        unset($this['classes']);
-        $this['classes'] = $classes;
+        $this->classes[] = $name;
+        $this->classes = array_unique($this->classes);
+        sort($this->classes);
     }
 
     public function hasClass(string $name) : bool
     {
-        return in_array($name, $this['classes']);
+        return in_array($name, $this->classes);
     }
 
     public function removeClass(string $name)
     {
-        $classes = array_filter(
-            $this['classes'],
+        $this->classes = array_filter(
+            $this->classes,
             function ($e) use ($name) {
                 return $e != $name;
             }
         );
-        sort($classes);
-        unset($this['classes']);
-        $this['classes'] = $classes;
+        sort($this->classes);
     }
 
     public function classes() : array
     {
-        return $this['classes'];
+        return $this->classes;
     }
 
     public function attr(string $name, $value = null)
     {
         if ($value === false) {
-            unset($this['attributes.'.$name]);
+            unset($this->attributes[$name]);
             return null;
         }
         if ($value !== null) {
-            $this['attributes.'.$name] = $value;
+            $this->attributes[$name] = $value;
         }
-        if (isset($this['attributes.'.$name])) {
-            return $this['attributes.'.$name];
-        }
-        return null;
+        return @$this->attributes[$name];
     }
 
     public function data(string $name, $value = null)
@@ -104,7 +95,7 @@ class GenericTag extends FlatArray implements HtmlInterface
     {
         $out = '';
         //build opening tag
-        $out .= '<'.$this['tag'];
+        $out .= '<'.$this->tag;
         //build attributes
         if ($attr = $this->htmlAttributes()) {
             foreach ($attr as $key => $value) {
@@ -117,14 +108,14 @@ class GenericTag extends FlatArray implements HtmlInterface
             }
         }
         //continue t close opening tag and add content and closing tag if needed
-        if ($this['selfclosing']) {
+        if ($this->selfClosing) {
             $out .= ' />';
         } else {
             $out .= '>';
             //build content
             $out .= $this->htmlContent();
             //build closing tag
-            $out .= '</'.$this['tag'].'>';
+            $out .= '</'.$this->tag.'>';
         }
         return $out;
     }
