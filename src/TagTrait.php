@@ -10,6 +10,15 @@ trait TagTrait
 
     protected $classes = [];
     protected $attributes = [];
+    protected $hidden = false;
+
+    public function hidden($hidden=null)
+    {
+        if ($hidden !== null) {
+            $this->hidden = $hidden;
+        }
+        return $this->hidden;
+    }
 
     protected function htmlContent()
     {
@@ -79,6 +88,11 @@ trait TagTrait
 
     public function string() : string
     {
+        //output empty string if hidden
+        if ($this->hidden()) {
+            return '';
+        }
+        //build output
         $out = '';
         //build opening tag
         $out .= '<'.$this->tag;

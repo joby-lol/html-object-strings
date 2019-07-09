@@ -11,6 +11,7 @@ interface TagInterface
     public function hasClass(string $name) : bool;
     public function removeClass(string $name);
     public function classes() : array;
+    public function hidden($hidden=null);
 
     public function string() : string;
 
