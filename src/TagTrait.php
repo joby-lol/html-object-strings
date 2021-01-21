@@ -99,7 +99,7 @@ trait TagTrait
         //build attributes
         if ($attr = $this->htmlAttributes()) {
             foreach ($attr as $key => $value) {
-                if (!"$value") {
+                if ($value === null) {
                     $out .= " $key";
                 } else {
                     $value = htmlspecialchars($value);
