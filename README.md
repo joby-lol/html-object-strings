@@ -1,5 +1,5 @@
-# html-object-strings
+# byjoby/html-object-strings
 
-[![Build Status](https://travis-ci.org/jobyone/html-object-strings.svg?branch=main)](https://travis-ci.org/jobyone/html-object-strings)
+[![Tests and analysis](https://github.com/jobyone/html-object-strings/actions/workflows/tests.yaml/badge.svg)](https://github.com/jobyone/html-object-strings/actions/workflows/tests.yaml)
 
-An HTML string-building library, used for building HTML strings from simple and easy-to-use objects.
+A library used for building and manipulating HTML tags, fragments, and documents through an object-oriented interface.
