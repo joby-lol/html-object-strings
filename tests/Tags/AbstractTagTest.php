@@ -42,6 +42,9 @@ class AbstractTagTest extends TestCase
         $this->assertEquals('<br a="b" b="c"/>', $tag->__toString());
         unset($tag->attributes()['a']);
         $this->assertEquals('<br b="c"/>', $tag->__toString());
+        $tag->classes()->add('some-class');
+        $tag->styles()['style'] = 'value';
+        $this->assertEquals('<br class="some-class" style="style:value" b="c"/>', $tag->__toString());
     }
 
     /**

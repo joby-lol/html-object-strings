@@ -11,10 +11,8 @@ use Traversable;
 
 /**
  * Holds and sorts a list of CSS classes, including validation and add/remove/contains methods.
- * 
- * @implements IteratorAggregate<int,string|Stringable>
  */
-class Classes implements IteratorAggregate, Countable
+class Classes implements Countable
 {
     /** @var array<int,string|Stringable> */
     protected $classes = [];
@@ -35,11 +33,6 @@ class Classes implements IteratorAggregate, Countable
     public function count(): int
     {
         return count($this->classes);
-    }
-
-    function getIterator(): Traversable
-    {
-        return new ArrayIterator($this->getArray());
     }
 
     /**

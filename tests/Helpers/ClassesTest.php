@@ -37,4 +37,14 @@ class ClassesTest extends TestCase
         $this->expectExceptionMessage('Invalid class name');
         $classes->add('0a');
     }
+
+    /**
+     * @depends clone testConstruction
+     */
+    public function testContains(Classes $classes): void
+    {
+        $this->assertFalse($classes->contains('d'));
+        $classes->add('d');
+        $this->assertTrue($classes->contains('d'));
+    }
 }

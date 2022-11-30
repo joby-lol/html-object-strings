@@ -42,6 +42,16 @@ class AttributesTest extends TestCase
     /**
      * @depends clone testConstruction
      */
+    public function testOffsetExists(Attributes $attributes): void
+    {
+        $this->assertFalse(isset($attributes['a']));
+        $attributes['a'] = 'b';
+        $this->assertTrue(isset($attributes['a']));
+    }
+
+    /**
+     * @depends clone testConstruction
+     */
     public function testInvalidSetEmptyName(Attributes $attributes): void
     {
         $this->expectExceptionMessage('Attribute name must be specified when setting');

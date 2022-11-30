@@ -6,6 +6,7 @@ use ByJoby\HTML\ContainerMutableInterface;
 use ByJoby\HTML\NodeInterface;
 use ByJoby\HTML\Nodes\Text;
 use ByJoby\HTML\Nodes\UnsanitizedText;
+use Exception;
 use Stringable;
 
 trait ContainerMutableTrait
@@ -17,10 +18,7 @@ trait ContainerMutableTrait
         bool $prepend = false,
         bool $skip_sanitize = false
     ): static {
-        if (!($child instanceof NodeInterface)) {
-            if ($skip_sanitize) $child = new UnsanitizedText($child);
-            else $child = new Text($child);
-        }
+        $child = $this->normalizeChild($child, $skip_sanitize);
         if ($this instanceof NodeInterface) {
             $child->detach();
             $child->setParent($this);
@@ -37,7 +35,7 @@ trait ContainerMutableTrait
         $this->children = array_filter(
             $this->children,
             function (NodeInterface $e) use ($child) {
-                if ($child instanceof NodeInterface) return $e !== $child;
+                if (is_object($child)) return $e !== $child;
                 else return $e != $child;
             }
         );
@@ -49,6 +47,12 @@ trait ContainerMutableTrait
         NodeInterface|Stringable|string $before_child,
         bool $skip_sanitize = false
     ): static {
+        $i = $this->indexOfChild($before_child);
+        if ($i === null) {
+            throw new Exception('Reference child not found in this container');
+        }
+        $new_child = $this->normalizeChild($new_child, $skip_sanitize);
+        array_splice($this->children, $i, 0, [$new_child]);
         return $this;
     }
 
@@ -57,6 +61,36 @@ trait ContainerMutableTrait
         NodeInterface|Stringable|string $after_child,
         bool $skip_sanitize = false
     ): static {
+        $i = $this->indexOfChild($after_child);
+        if ($i === null) {
+            throw new Exception('Reference child not found in this container');
+        }
+        $new_child = $this->normalizeChild($new_child, $skip_sanitize);
+        array_splice($this->children, $i + 1, 0, [$new_child]);
         return $this;
+    }
+
+    protected function normalizeChild(NodeInterface|Stringable|string $child, bool $skip_sanitize): NodeInterface
+    {
+        if ($child instanceof NodeInterface) {
+            return $child;
+        } else {
+            if ($skip_sanitize) return new UnsanitizedText($child);
+            else return new Text($child);
+        }
+    }
+
+    protected function indexOfChild(NodeInterface|Stringable|string $child): null|int
+    {
+        if ($child instanceof NodeInterface) {
+            foreach ($this->children() as $i => $v) {
+                if ($v === $child) return $i;
+            }
+        } else {
+            foreach ($this->children() as $i => $v) {
+                if ($v == $child) return $i;
+            }
+        }
+        return null;
     }
 }

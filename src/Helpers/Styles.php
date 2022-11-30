@@ -29,10 +29,9 @@ class Styles implements Countable, ArrayAccess, Stringable
      */
     public function __construct(null|array|Traversable $classes = null)
     {
-        if ($classes) {
-            foreach ($classes as $name => $value) {
-                $this[$name] = $value;
-            }
+        if (!$classes) return;
+        foreach ($classes as $name => $value) {
+            $this[$name] = $value;
         }
     }
 
@@ -43,7 +42,6 @@ class Styles implements Countable, ArrayAccess, Stringable
 
     public function offsetExists(mixed $offset): bool
     {
-        $offset = static::normalizePropertyName($offset);
         if (!$offset) return false;
         return isset($this->styles[$offset]);
     }
@@ -55,7 +53,6 @@ class Styles implements Countable, ArrayAccess, Stringable
 
     public function offsetSet(mixed $offset, mixed $value): void
     {
-        $offset = static::normalizePropertyName($offset);
         if (!$offset) return;
         if ($value) $value = trim($value);
         if (!$value) unset($this->styles[$offset]);
@@ -68,8 +65,6 @@ class Styles implements Countable, ArrayAccess, Stringable
 
     public function offsetUnset(mixed $offset): void
     {
-        $offset = static::normalizePropertyName($offset);
-        if (!$offset) return;
         unset($this->styles[$offset]);
     }
 
@@ -94,24 +89,15 @@ class Styles implements Countable, ArrayAccess, Stringable
         return implode(';', $styles);
     }
 
-    public static function normalizePropertyName(null|string $name): null|string
+    protected static function validate(null|string $property, null|string $value): bool
     {
-        if (!$name) return null;
-        $name = trim(strtolower($name));
-        $name = preg_replace('/[^a-z\-]/', '', $name);
-        return $name;
-    }
-
-    public static function validate(null|string $property, null|string $value): bool
-    {
-        $property = static::normalizePropertyName($property);
         if (!$property) return false;
-        if (!preg_match('/[a-z]/', $property)) return false;
+        elseif (!preg_match('/[a-z]/', $property)) return false;
 
         if ($value) $value = trim($value);
         if (!$value) return false;
-        if (str_contains($value, ';')) return false;
-        if (str_contains($value, ':')) return false;
+        elseif (str_contains($value, ';')) return false;
+        elseif (str_contains($value, ':')) return false;
 
         return true;
     }

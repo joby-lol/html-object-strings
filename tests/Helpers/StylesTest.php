@@ -6,23 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 class StylesTest extends TestCase
 {
-    public function testValidate(): void
-    {
-        $this->assertTrue(Styles::validate('foo', 'bar'));
-        $this->assertFalse(Styles::validate('foo', ''));
-        $this->assertFalse(Styles::validate('foo', ' '));
-        $this->assertFalse(Styles::validate('foo', null));
-        $this->assertTrue(Styles::validate(' -foo', 'bar'));
-        $this->assertTrue(Styles::validate(' foo ', 'bar'));
-        $this->assertFalse(Styles::validate('', 'bar'));
-        $this->assertFalse(Styles::validate('-', 'bar'));
-        $this->assertFalse(Styles::validate(' ', 'bar'));
-        $this->assertFalse(Styles::validate(null, 'bar'));
-    }
-
-    /**
-     * @depends testValidate
-     */
     public function testConstruction(): Styles
     {
         $styles = new Styles();
@@ -41,5 +24,13 @@ class StylesTest extends TestCase
         $this->assertEquals('b', $styles['a']);
         unset($styles['foo']);
         $this->assertNull($styles['foo']);
+        $this->assertTrue(isset($styles['a']));
+        $this->assertFalse(isset($styles['foo']));
+    }
+
+    public function testToString(): void
+    {
+        $styles = new Styles(['a' => 'b', 'b' => 'c']);
+        $this->assertEquals('a:b;b:c', $styles->__toString());
     }
 }
