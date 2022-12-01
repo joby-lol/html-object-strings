@@ -118,7 +118,8 @@ class AbstractContainerTagTest extends TestCase
         $div->addChildBefore('z', 'x');
     }
 
-    public function testAddChildAfter(): void {
+    public function testAddChildAfter(): void
+    {
         $div = $this->getMockForAbstractClass(AbstractContainerTag::class);
         $div->method('tag')->will($this->returnValue('div'));
         // add a string child

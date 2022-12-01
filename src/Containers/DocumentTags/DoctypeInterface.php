@@ -2,8 +2,8 @@
 
 namespace ByJoby\HTML\Containers\DocumentTags;
 
-use PhpParser\Node;
+use ByJoby\HTML\NodeInterface;
 
-interface DoctypeInterface extends Node
+interface DoctypeInterface extends NodeInterface
 {
 }

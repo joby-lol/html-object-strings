@@ -47,15 +47,17 @@ trait NodeTrait
 
     public function detach(): static
     {
-        if (!$this->parent()) return $this;
-        if ($this->parent() instanceof ContainerMutableInterface) {
-            $this->parent()->removeChild($this);
+        $parent = $this->parent() ?? $this->document();
+        if ($parent === null) {
+            return $this;
+        } elseif ($parent instanceof ContainerMutableInterface) {
+            $parent->removeChild($this);
+            $this->setParent(null);
+            $this->setDocument(null);
+            return $this;
         } else {
             throw new Exception('Cannot detach() a Node from a parent that is not a ContainerMutableInterface, use detachCopy() instead');
         }
-        $this->setParent(null);
-        $this->setDocument(null);
-        return $this;
     }
 
     public function detachCopy(): static

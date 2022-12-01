@@ -3,6 +3,7 @@
 namespace ByJoby\HTML\Traits;
 
 use ByJoby\HTML\ContainerMutableInterface;
+use ByJoby\HTML\Containers\DocumentInterface;
 use ByJoby\HTML\NodeInterface;
 use ByJoby\HTML\Nodes\Text;
 use ByJoby\HTML\Nodes\UnsanitizedText;
@@ -18,12 +19,7 @@ trait ContainerMutableTrait
         bool $prepend = false,
         bool $skip_sanitize = false
     ): static {
-        $child = $this->normalizeChild($child, $skip_sanitize);
-        if ($this instanceof NodeInterface) {
-            $child->detach();
-            $child->setParent($this);
-            $child->setDocument($this->document());
-        }
+        $child = $this->prepareChildToAdd($child, $skip_sanitize);
         if ($prepend) array_unshift($this->children, $child);
         else $this->children[] = $child;
         return $this;
@@ -51,7 +47,7 @@ trait ContainerMutableTrait
         if ($i === null) {
             throw new Exception('Reference child not found in this container');
         }
-        $new_child = $this->normalizeChild($new_child, $skip_sanitize);
+        $new_child = $this->prepareChildToAdd($new_child, $skip_sanitize);
         array_splice($this->children, $i, 0, [$new_child]);
         return $this;
     }
@@ -65,19 +61,31 @@ trait ContainerMutableTrait
         if ($i === null) {
             throw new Exception('Reference child not found in this container');
         }
-        $new_child = $this->normalizeChild($new_child, $skip_sanitize);
+        $new_child = $this->prepareChildToAdd($new_child, $skip_sanitize);
         array_splice($this->children, $i + 1, 0, [$new_child]);
         return $this;
     }
 
-    protected function normalizeChild(NodeInterface|Stringable|string $child, bool $skip_sanitize): NodeInterface
+    protected function prepareChildToAdd(NodeInterface|Stringable|string $child, bool $skip_sanitize): NodeInterface
     {
-        if ($child instanceof NodeInterface) {
-            return $child;
-        } else {
-            if ($skip_sanitize) return new UnsanitizedText($child);
-            else return new Text($child);
+        if (!($child instanceof NodeInterface)) {
+            if ($skip_sanitize) $child = new UnsanitizedText($child);
+            else $child = new Text($child);
         }
+        if ($this instanceof NodeInterface) {
+            if ($child->parent() || $child->document()) {
+                $child->detach();
+            }
+            $child->setParent($this);
+            $child->setDocument($this->document());
+        }
+        if ($this instanceof DocumentInterface) {
+            if ($child->parent() || $child->document()) {
+                $child->detach();
+            }
+            $child->setDocument($this);
+        }
+        return $child;
     }
 
     protected function indexOfChild(NodeInterface|Stringable|string $child): null|int
