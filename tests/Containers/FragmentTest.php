@@ -8,6 +8,13 @@ use PHPUnit\Framework\TestCase;
 
 class FragmentTest extends TestCase
 {
+    public function tag(string $name): AbstractContainerTag
+    {
+        $tag = $this->getMockForAbstractClass(AbstractContainerTag::class, [], '', true, true, true, ['tag']);
+        $tag->method('tag')->willReturn($name);
+        return $tag;
+    }
+
     public function testConstruction()
     {
         $empty = new Fragment();
@@ -19,10 +26,8 @@ class FragmentTest extends TestCase
     public function testNestingDocument(): Fragment
     {
         $fragment = new Fragment();
-        $div1 = $this->getMockForAbstractClass(AbstractContainerTag::class);
-        $div1->method('tag')->will($this->returnValue('div'));
-        $div2 = $this->getMockForAbstractClass(AbstractContainerTag::class);
-        $div2->method('tag')->will($this->returnValue('div'));
+        $div1 = $this->tag('div');
+        $div2 = $this->tag('div');
         // adding div1 to fragment sets its fragment
         $fragment->addChild($div1);
         $this->assertEquals($fragment, $div1->document());
@@ -40,8 +45,7 @@ class FragmentTest extends TestCase
         /** @var AbstractContainerTag */
         $div2 = $div1->children()[0];
         // add a span and verify it has the right parent
-        $span = $this->getMockForAbstractClass(AbstractTag::class);
-        $span->method('tag')->will($this->returnValue('span'));
+        $span = $this->tag('span');
         $div2->addChild($span);
         $this->assertEquals($fragment, $span->document());
         // detach and check document/parent of all nodes

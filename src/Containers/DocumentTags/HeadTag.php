@@ -6,6 +6,8 @@ use ByJoby\HTML\Tags\AbstractContainerTag;
 
 class HeadTag extends AbstractContainerTag implements HeadTagInterface
 {
+    const TAG = 'head';
+
     /** @var TitleTagInterface */
     protected $title;
 
@@ -19,10 +21,5 @@ class HeadTag extends AbstractContainerTag implements HeadTagInterface
     public function title(): TitleTagInterface
     {
         return $this->title;
-    }
-
-    public function tag(): string
-    {
-        return 'head';
     }
 }

@@ -2,12 +2,13 @@
 
 namespace ByJoby\HTML\Containers\DocumentTags;
 
-use ByJoby\HTML\Tags\AbstractContainerTag;
 use ByJoby\HTML\Traits\NodeTrait;
 use Exception;
 
 class TitleTag implements TitleTagInterface
 {
+    const TAG = 'title';
+
     use NodeTrait;
 
     /** @var string */

@@ -8,10 +8,17 @@ use PHPUnit\Framework\TestCase;
 
 class AbstractTagTest extends TestCase
 {
+
+    public function tag(string $name): AbstractTag
+    {
+        $tag = $this->getMockForAbstractClass(AbstractTag::class, [], '', true, true, true, ['tag']);
+        $tag->method('tag')->willReturn($name);
+        return $tag;
+    }
+
     public function testBR(): AbstractTag
     {
-        $br = $this->getMockForAbstractClass(AbstractTag::class);
-        $br->method('tag')->will($this->returnValue('br'));
+        $br = $this->tag('br');
         $this->assertEquals('<br/>', $br->__toString());
         $this->assertInstanceOf(Classes::class, $br->classes());
         $this->assertInstanceOf(Attributes::class, $br->attributes());

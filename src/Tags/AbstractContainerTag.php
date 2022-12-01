@@ -2,8 +2,6 @@
 
 namespace ByJoby\HTML\Tags;
 
-use ByJoby\HTML\Helpers\Attributes;
-use ByJoby\HTML\Helpers\Classes;
 use ByJoby\HTML\Traits\ContainerMutableTrait;
 use ByJoby\HTML\Traits\ContainerTagTrait;
 use ByJoby\HTML\Traits\ContainerTrait;
@@ -16,5 +14,10 @@ abstract class AbstractContainerTag implements ContainerTagInterface
     use ContainerTrait, ContainerMutableTrait;
     use ContainerTagTrait {
         ContainerTagTrait::__toString insteadof TagTrait;
+    }
+
+    public function tag(): string
+    {
+        return static::TAG; //@phpstan-ignore-line
     }
 }

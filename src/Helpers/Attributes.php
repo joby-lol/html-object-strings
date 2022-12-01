@@ -47,7 +47,7 @@ class Attributes implements IteratorAggregate, ArrayAccess
     function offsetGet(mixed $offset): mixed
     {
         $offset = static::sanitizeOffset($offset);
-        return $this->array[$offset];
+        return @$this->array[$offset];
     }
 
     function offsetSet(mixed $offset, mixed $value): void

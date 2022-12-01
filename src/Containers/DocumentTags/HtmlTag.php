@@ -6,6 +6,8 @@ use ByJoby\HTML\Tags\AbstractContainerTag;
 
 class HtmlTag extends AbstractContainerTag implements HtmlTagInterface
 {
+    const TAG = 'html';
+
     /** @var HeadTagInterface */
     protected $head;
     /** @var BodyTagInterface */
@@ -24,11 +26,6 @@ class HtmlTag extends AbstractContainerTag implements HtmlTagInterface
             $this->head(),
             $this->body()
         ];
-    }
-
-    public function tag(): string
-    {
-        return 'html';
     }
 
     public function head(): HeadTagInterface

@@ -6,8 +6,5 @@ use ByJoby\HTML\Tags\AbstractContainerTag;
 
 class BodyTag extends AbstractContainerTag implements BodyTagInterface
 {
-    public function tag(): string
-    {
-        return 'body';
-    }
+    const TAG = 'body';
 }
