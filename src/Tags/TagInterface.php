@@ -8,6 +8,12 @@ use ByJoby\HTML\Helpers\Styles;
 use ByJoby\HTML\NodeInterface;
 use Stringable;
 
+/**
+ * Simple tags represent self-closing tags that cannot contain anything else
+ * within them.
+ * 
+ * @package ByJoby\HTML\Tags
+ */
 interface TagInterface extends NodeInterface
 {
     public function tag(): string;

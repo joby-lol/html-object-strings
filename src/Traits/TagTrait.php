@@ -2,12 +2,9 @@
 
 namespace ByJoby\HTML\Traits;
 
-use ArrayIterator;
-use ByJoby\HTML\ContainerInterface;
 use ByJoby\HTML\Helpers\Attributes;
 use ByJoby\HTML\Helpers\Classes;
 use ByJoby\HTML\Helpers\Styles;
-use ByJoby\HTML\NodeInterface;
 use Exception;
 use Stringable;
 

@@ -3,6 +3,7 @@
 namespace ByJoby\HTML\Html5\Tags;
 
 use ByJoby\HTML\ContainerInterface;
+use ByJoby\HTML\Tags\ContentTagInterface;
 use ByJoby\HTML\Tags\TagInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -23,13 +24,13 @@ abstract class TagTestCase extends TestCase
         $this->assertEquals($render_value, call_user_func([$tag, $getFn]));
         $this->assertEquals($render_value, $tag->attributes()[$attribute]);
         // test unsetting via unset
-        call_user_func([$tag,$unsetFn]);
-        $this->assertNull(call_user_func([$tag,$getFn]));
+        call_user_func([$tag, $unsetFn]);
+        $this->assertNull(call_user_func([$tag, $getFn]));
     }
 
     protected function assertTagRendersAttribute(TagInterface $tag, string $attribute, string $value)
     {
-        if ($tag instanceof ContainerInterface) {
+        if ($tag instanceof ContainerInterface || $tag instanceof ContentTagInterface) {
             $this->assertEquals(
                 sprintf('<%s %s="%s"></%s>', $tag->tag(), $attribute, $value, $tag->tag()),
                 $tag->__toString(),

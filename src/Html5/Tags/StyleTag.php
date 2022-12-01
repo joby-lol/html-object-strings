@@ -2,10 +2,43 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
-use ByJoby\HTML\Tags\AbstractTag;
+use ByJoby\HTML\Tags\AbstractContentTag;
 
-// TODO: implement some sort of AbstractContentTag to hold non-HTML content like styles (maybe also make the TitleTag use this)
-class StyleTag extends AbstractTag
+class StyleTag extends AbstractContentTag
 {
     const TAG = 'style';
+
+    public function media(): null|string
+    {
+        return $this->attributes()['media'];
+    }
+
+    public function setMedia(null|string $media): static
+    {
+        $this->attributes()['media'] = $media;
+        return $this;
+    }
+
+    public function unsetMedia(): static
+    {
+        unset($this->attributes()['media']);
+        return $this;
+    }
+
+    public function nonce(): null|string
+    {
+        return $this->attributes()['nonce'];
+    }
+
+    public function setNonce(null|string $nonce): static
+    {
+        $this->attributes()['nonce'] = $nonce;
+        return $this;
+    }
+
+    public function unsetNonce(): static
+    {
+        unset($this->attributes()['nonce']);
+        return $this;
+    }
 }

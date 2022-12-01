@@ -2,7 +2,6 @@
 
 namespace ByJoby\HTML\Traits;
 
-use ByJoby\HTML\ContainerMutableInterface;
 use ByJoby\HTML\Containers\DocumentInterface;
 use ByJoby\HTML\NodeInterface;
 use ByJoby\HTML\Nodes\Text;
