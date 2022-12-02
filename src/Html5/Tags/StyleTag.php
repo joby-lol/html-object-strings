@@ -2,9 +2,10 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
+use ByJoby\HTML\ContentCategories\MetadataContent;
 use ByJoby\HTML\Tags\AbstractContentTag;
 
-class StyleTag extends AbstractContentTag
+class StyleTag extends AbstractContentTag implements MetadataContent
 {
     const TAG = 'style';
 

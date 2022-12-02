@@ -2,9 +2,10 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
+use ByJoby\HTML\ContentCategories\MetadataContent;
 use ByJoby\HTML\Tags\AbstractTag;
 
-class LinkTag extends AbstractTag
+class LinkTag extends AbstractTag implements MetadataContent
 {
     const TAG = 'link';
 
