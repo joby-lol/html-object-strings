@@ -3,21 +3,27 @@
 namespace ByJoby\HTML;
 
 use ByJoby\HTML\Containers\DocumentInterface;
+use ByJoby\HTML\Tags\TagInterface;
 use Stringable;
 
 interface NodeInterface extends Stringable
 {
-    public function parent(): null|NodeInterface;
+    public function parent(): null|ContainerInterface;
 
     public function setParent(
-        null|NodeInterface $parent
+        null|ContainerInterface $parent
     ): static;
 
-    public function document(): null|DocumentInterface;
+    public function parentTag(): null|TagInterface;
 
-    public function setDocument(
-        null|DocumentInterface $parent
-    ): static;
+    public function parentDocument(): null|DocumentInterface;
 
-    public function detach(): static;
+    /**
+     * @template T of NodeInterface
+     * @param class-string<T> $class
+     * @return null|T
+     */
+    public function parentOfType(string $class): mixed;
+
+    public function detachCopy(): static;
 }

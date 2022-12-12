@@ -3,60 +3,47 @@
 namespace ByJoby\HTML\Traits;
 
 use ByJoby\HTML\ContainerInterface;
-use ByJoby\HTML\ContainerMutableInterface;
 use ByJoby\HTML\Containers\DocumentInterface;
 use ByJoby\HTML\NodeInterface;
+use ByJoby\HTML\Tags\TagInterface;
 use DeepCopy\DeepCopy;
-use Exception;
 
 trait NodeTrait
 {
-    /** @var null|NodeInterface */
+    /** @var null|ContainerInterface */
     protected $parent;
-    /** @var null|DocumentInterface */
-    protected $document;
 
     abstract function __toString();
 
-    public function parent(): null|NodeInterface
+    public function parent(): null|ContainerInterface
     {
         return $this->parent;
     }
 
-    public function setParent(null|NodeInterface $parent): static
+    public function setParent(null|ContainerInterface $parent): static
     {
         $this->parent = $parent;
         return $this;
     }
 
-    public function document(): null|DocumentInterface
+    public function parentTag(): null|TagInterface
     {
-        return $this->document;
+        return $this->parentOfType(TagInterface::class); // @phpstan-ignore-line
     }
 
-    public function setDocument(null|DocumentInterface $document): static
+    public function parentDocument(): null|DocumentInterface
     {
-        $this->document = $document;
-        if ($this instanceof ContainerInterface) {
-            foreach ($this->children() as $child) {
-                $child->setDocument($document);
-            }
-        }
-        return $this;
+        return $this->parentOfType(DocumentInterface::class); // @phpstan-ignore-line
     }
 
-    public function detach(): static
+    public function parentOfType(string $class): mixed
     {
-        $parent = $this->parent() ?? $this->document();
-        if ($parent === null) {
-            return $this;
-        } elseif ($parent instanceof ContainerMutableInterface) {
-            $parent->removeChild($this);
-            $this->setParent(null);
-            $this->setDocument(null);
-            return $this;
+        if ($this->parent() instanceof $class) {
+            return $this->parent();
+        } elseif ($this->parent() && $this->parent() instanceof NodeInterface) {
+            return $this->parent()->parentOfType($class);
         } else {
-            throw new Exception('Cannot detach() a Node from a parent that is not a ContainerMutableInterface, use detachCopy() instead');
+            return null;
         }
     }
 
@@ -65,7 +52,6 @@ trait NodeTrait
         static $copier;
         $copier = $copier ?? new DeepCopy();
         return ($copier->copy($this))
-            ->setParent(null)
-            ->setDocument(null);
+            ->setParent(null);
     }
 }

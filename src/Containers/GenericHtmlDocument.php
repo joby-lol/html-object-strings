@@ -2,17 +2,18 @@
 
 namespace ByJoby\HTML\Containers;
 
-use ByJoby\HTML\Containers\DocumentTags\BodyTag;
 use ByJoby\HTML\Containers\DocumentTags\BodyTagInterface;
 use ByJoby\HTML\Containers\DocumentTags\Doctype;
 use ByJoby\HTML\Containers\DocumentTags\DoctypeInterface;
-use ByJoby\HTML\Containers\DocumentTags\HeadTag;
 use ByJoby\HTML\Containers\DocumentTags\HeadTagInterface;
 use ByJoby\HTML\Containers\DocumentTags\HtmlTag;
 use ByJoby\HTML\Containers\DocumentTags\HtmlTagInterface;
+use ByJoby\HTML\Traits\ContainerTrait;
 
 class GenericHtmlDocument implements HtmlDocumentInterface
 {
+    use ContainerTrait;
+
     /** @var DoctypeInterface */
     protected $doctype;
     /** @var HtmlTagInterface */
@@ -20,8 +21,10 @@ class GenericHtmlDocument implements HtmlDocumentInterface
 
     public function __construct()
     {
-        $this->doctype = (new Doctype)->setDocument($this);
-        $this->html = (new HtmlTag)->setDocument($this);
+        $this->doctype = (new Doctype);
+        $this->html = (new HtmlTag);
+        $this->addChild($this->doctype);
+        $this->addChild($this->html);
     }
 
     public function doctype(): DoctypeInterface

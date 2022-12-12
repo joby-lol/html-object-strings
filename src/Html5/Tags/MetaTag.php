@@ -11,12 +11,13 @@ class MetaTag extends AbstractTag implements MetadataContent
 
     public function name(): null|string
     {
-        return $this->attributes()['name'];
+        return $this->attributes()->string('name');
     }
 
     public function setName(null|string $name): static
     {
-        $this->attributes()['name'] = $name;
+        if (!$name) $this->attributes()['name'] = false;
+        else $this->attributes()['name'] = $name;
         return $this;
     }
 
@@ -28,12 +29,13 @@ class MetaTag extends AbstractTag implements MetadataContent
 
     public function content(): null|string
     {
-        return $this->attributes()['content'];
+        return $this->attributes()->string('content');
     }
 
     public function setContent(null|string $content): static
     {
-        $this->attributes()['content'] = $content;
+        if (!$content) $this->attributes()['content'] = false;
+        else $this->attributes()['content'] = $content;
         return $this;
     }
 
@@ -45,12 +47,13 @@ class MetaTag extends AbstractTag implements MetadataContent
 
     public function httpEquiv(): null|string
     {
-        return $this->attributes()['http-equiv'];
+        return $this->attributes()->string('http-equiv');
     }
 
     public function setHttpEquiv(null|string $http_equiv): static
     {
-        $this->attributes()['http-equiv'] = $http_equiv;
+        if (!$http_equiv) $this->attributes()['http-equiv'] = false;
+        else $this->attributes()['http-equiv'] = $http_equiv;
         return $this;
     }
 
@@ -62,12 +65,13 @@ class MetaTag extends AbstractTag implements MetadataContent
 
     public function charset(): null|string
     {
-        return $this->attributes()['charset'];
+        return $this->attributes()->string('charset');
     }
 
     public function setCharset(null|string $charset): static
     {
-        $this->attributes()['charset'] = $charset;
+        if (!$charset) $this->attributes()['charset'] = false;
+        else $this->attributes()['charset'] = $charset;
         return $this;
     }
 

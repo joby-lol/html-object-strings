@@ -12,12 +12,12 @@ use Traversable;
 /**
  * Holds and validates a set of HTML attribute name/value pairs for use in tags.
  * 
- * @implements ArrayAccess<string,null|string|Stringable>
- * @implements IteratorAggregate<string,null|string|Stringable>
+ * @implements ArrayAccess<string,bool|string|Stringable>
+ * @implements IteratorAggregate<string,bool|string|Stringable>
  */
 class Attributes implements IteratorAggregate, ArrayAccess
 {
-    /** @var array<string,null|string|Stringable> */
+    /** @var array<string,bool|string|Stringable> */
     protected $array = [];
     /** @var bool */
     protected $sorted = true;
@@ -25,7 +25,7 @@ class Attributes implements IteratorAggregate, ArrayAccess
     protected $disallowed = [];
 
     /**
-     * @param null|array<string,null|string|Stringable> $array 
+     * @param null|array<string,bool|string|Stringable> $array 
      * @param array<mixed,string> $disallowed
      * @return void 
      */
@@ -59,6 +59,13 @@ class Attributes implements IteratorAggregate, ArrayAccess
         $this->array[$offset] = $value;
     }
 
+    public function string(string $offset): null|string
+    {
+        $value = $this->offsetGet($offset);
+        if (is_string($value)) return $value;
+        else return null;
+    }
+
     function offsetUnset(mixed $offset): void
     {
         $offset = static::sanitizeOffset($offset);
@@ -66,7 +73,7 @@ class Attributes implements IteratorAggregate, ArrayAccess
     }
 
     /**
-     * @return array<string,null|string|Stringable>
+     * @return array<string,bool|string|Stringable>
      */
     function getArray(): array
     {

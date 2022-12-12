@@ -13,8 +13,19 @@ class Text implements TextInterface
     {
     }
 
+    public function value(): string
+    {
+        return $this->value;
+    }
+
+    public function setValue(string|Stringable $value): static
+    {
+        $this->value = $value;
+        return $this;
+    }
+
     public function __toString(): string
     {
-        return htmlentities(strip_tags($this->value));
+        return htmlentities(strip_tags($this->value()));
     }
 }

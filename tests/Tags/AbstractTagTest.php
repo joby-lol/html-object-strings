@@ -19,7 +19,7 @@ class AbstractTagTest extends TestCase
     public function testBR(): AbstractTag
     {
         $br = $this->tag('br');
-        $this->assertEquals('<br/>', $br->__toString());
+        $this->assertEquals('<br>', $br->__toString());
         $this->assertInstanceOf(Classes::class, $br->classes());
         $this->assertInstanceOf(Attributes::class, $br->attributes());
         return $br;
@@ -33,10 +33,10 @@ class AbstractTagTest extends TestCase
         $this->assertNull($tag->id());
         $tag->setID('foo');
         $this->assertEquals('foo', $tag->id());
-        $this->assertEquals('<br id="foo"/>', $tag->__toString());
+        $this->assertEquals('<br id="foo">', $tag->__toString());
         $tag->setID(null);
         $this->assertNull($tag->id());
-        $this->assertEquals('<br/>', $tag->__toString());
+        $this->assertEquals('<br>', $tag->__toString());
     }
 
     /**
@@ -46,12 +46,21 @@ class AbstractTagTest extends TestCase
     {
         $tag->attributes()['b'] = 'c';
         $tag->attributes()['a'] = 'b';
-        $this->assertEquals('<br a="b" b="c"/>', $tag->__toString());
+        $this->assertEquals('<br a="b" b="c">', $tag->__toString());
         unset($tag->attributes()['a']);
-        $this->assertEquals('<br b="c"/>', $tag->__toString());
+        $this->assertEquals('<br b="c">', $tag->__toString());
         $tag->classes()->add('some-class');
         $tag->styles()['style'] = 'value';
-        $this->assertEquals('<br class="some-class" style="style:value" b="c"/>', $tag->__toString());
+        $this->assertEquals('<br class="some-class" style="style:value" b="c">', $tag->__toString());
+    }
+
+    public function testBooleanAttributes(): void
+    {
+        $tag = $this->tag('br');
+        $tag->attributes()['a'] = true;
+        $tag->attributes()['b'] = false;
+        $tag->attributes()['c'] = null;
+        $this->assertEquals('<br a>', $tag->__toString());
     }
 
     /**

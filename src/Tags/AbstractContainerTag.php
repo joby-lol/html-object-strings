@@ -2,7 +2,6 @@
 
 namespace ByJoby\HTML\Tags;
 
-use ByJoby\HTML\Traits\ContainerMutableTrait;
 use ByJoby\HTML\Traits\ContainerTrait;
 use ByJoby\HTML\Traits\TagTrait;
 use ByJoby\HTML\Traits\NodeTrait;
@@ -10,7 +9,7 @@ use ByJoby\HTML\Traits\NodeTrait;
 abstract class AbstractContainerTag extends AbstractTag implements ContainerTagInterface
 {
     use NodeTrait, TagTrait;
-    use ContainerTrait, ContainerMutableTrait;
+    use ContainerTrait;
 
     public function __toString(): string
     {

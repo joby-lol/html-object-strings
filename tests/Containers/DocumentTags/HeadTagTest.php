@@ -12,11 +12,4 @@ class HeadTagTest extends TestCase
         $this->assertInstanceOf(TitleTagInterface::class, $head->title());
         $this->assertEquals($head, $head->title()->parent());
     }
-
-    public function testNoTitleDetach()
-    {
-        $head = new HeadTag;
-        $this->expectExceptionMessage('Not allowed to detach TitleTag');
-        $head->title()->detach();
-    }
 }

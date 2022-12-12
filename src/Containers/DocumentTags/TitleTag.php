@@ -25,11 +25,6 @@ class TitleTag implements TitleTagInterface
         return $this->title;
     }
 
-    public function detach(): static
-    {
-        throw new Exception('Not allowed to detach TitleTag');
-    }
-
     public function __toString(): string
     {
         return '<title>' . $this->title() . '</title>';

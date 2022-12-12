@@ -64,7 +64,7 @@ trait TagTrait
 
     public function __toString(): string
     {
-        return sprintf('<%s/>', implode(' ', $this->openingTagStrings()));
+        return sprintf('<%s>', implode(' ', $this->openingTagStrings()));
     }
 
     /**
@@ -81,8 +81,11 @@ trait TagTrait
             $strings[] = sprintf('style="%s"', $this->styles());
         }
         foreach ($this->attributes() as $name => $value) {
-            if ($value === null) $strings[] = $name;
-            else $strings[] = sprintf('%s="%s"', $name, static::sanitizeAttribute($value));
+            if (is_string($value)) {
+                $strings[] = sprintf('%s="%s"', $name, static::sanitizeAttribute($value));
+            } elseif ($value) {
+                $strings[] = $name;
+            }
         }
         return $strings;
     }

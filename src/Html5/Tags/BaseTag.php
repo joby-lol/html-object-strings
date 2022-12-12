@@ -11,12 +11,13 @@ class BaseTag extends AbstractTag implements MetadataContent
 
     public function href(): null|string
     {
-        return $this->attributes()['href'];
+        return $this->attributes()->string('href');
     }
 
     public function setHref(null|string $href): static
     {
-        $this->attributes()['href'] = $href;
+        if (!$href) $this->attributes()['href'] = false;
+        else $this->attributes()['href'] = $href;
         return $this;
     }
 
@@ -28,12 +29,13 @@ class BaseTag extends AbstractTag implements MetadataContent
 
     public function target(): null|string
     {
-        return $this->attributes()['target'];
+        return $this->attributes()->string('target');
     }
 
     public function setTarget(null|string $target): static
     {
-        $this->attributes()['target'] = $target;
+        if (!$target) $this->attributes()['target'] = false;
+        else $this->attributes()['target'] = $target;
         return $this;
     }
 

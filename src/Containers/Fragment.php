@@ -3,7 +3,6 @@
 namespace ByJoby\HTML\Containers;
 
 use ByJoby\HTML\NodeInterface;
-use ByJoby\HTML\Traits\ContainerMutableTrait;
 use ByJoby\HTML\Traits\ContainerTrait;
 use Stringable;
 use Traversable;
@@ -11,7 +10,6 @@ use Traversable;
 class Fragment implements FragmentInterface
 {
     use ContainerTrait;
-    use ContainerMutableTrait;
 
     /**
      * @param null|array<mixed,string|Stringable|NodeInterface>|Traversable<mixed,string|Stringable|NodeInterface>|null $children

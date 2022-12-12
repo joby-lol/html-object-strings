@@ -11,12 +11,13 @@ class StyleTag extends AbstractContentTag implements MetadataContent
 
     public function media(): null|string
     {
-        return $this->attributes()['media'];
+        return $this->attributes()->string('media');
     }
 
     public function setMedia(null|string $media): static
     {
-        $this->attributes()['media'] = $media;
+        if (!$media) $this->attributes()['media'] = false;
+        else $this->attributes()['media'] = $media;
         return $this;
     }
 
@@ -28,12 +29,13 @@ class StyleTag extends AbstractContentTag implements MetadataContent
 
     public function nonce(): null|string
     {
-        return $this->attributes()['nonce'];
+        return $this->attributes()->string('nonce');
     }
 
     public function setNonce(null|string $nonce): static
     {
-        $this->attributes()['nonce'] = $nonce;
+        if (!$nonce) $this->attributes()['nonce'] = false;
+        else $this->attributes()['nonce'] = $nonce;
         return $this;
     }
 

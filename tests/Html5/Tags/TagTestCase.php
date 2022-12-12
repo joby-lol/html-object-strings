@@ -28,6 +28,23 @@ abstract class TagTestCase extends TestCase
         $this->assertNull(call_user_func([$tag, $getFn]));
     }
 
+    protected function assertBooleanAttributeHelperMethods(string $attribute, string $class): void
+    {
+        /** @var TagInterface */
+        $tag = new $class;
+        $words = explode('-', $attribute);
+        $setFn = 'set' . implode('', array_map('ucfirst', $words));
+        $getFn = array_shift($words) . implode('', array_map('ucfirst', $words));
+        // test setting true
+        call_user_func([$tag, $setFn], true);
+        $this->assertTagRendersBooleanAttribute($tag, $attribute, true);
+        $this->assertTrue(call_user_func([$tag, $getFn]));
+        // test setting false
+        call_user_func([$tag, $setFn], false);
+        $this->assertTagRendersBooleanAttribute($tag, $attribute, false);
+        $this->assertFalse(call_user_func([$tag, $getFn]));
+    }
+
     protected function assertTagRendersAttribute(TagInterface $tag, string $attribute, string $value)
     {
         if ($tag instanceof ContainerInterface || $tag instanceof ContentTagInterface) {
@@ -38,10 +55,43 @@ abstract class TagTestCase extends TestCase
             );
         } else {
             $this->assertEquals(
-                sprintf('<%s %s="%s"/>', $tag->tag(), $attribute, $value),
+                sprintf('<%s %s="%s">', $tag->tag(), $attribute, $value),
                 $tag->__toString(),
                 sprintf('Unexpected rendering of %s value %s is in %s tag', $attribute, $value, $tag->tag())
             );
+        }
+    }
+
+    protected function assertTagRendersBooleanAttribute(TagInterface $tag, string $attribute, bool $value)
+    {
+        if ($tag instanceof ContainerInterface || $tag instanceof ContentTagInterface) {
+            if ($value) {
+                $this->assertEquals(
+                    sprintf('<%s %s></%s>', $tag->tag(), $attribute, $tag->tag()),
+                    $tag->__toString(),
+                    sprintf('Unexpected rendering of %s value %s is in %s tag', $attribute, $value ? 'true' : 'false', $tag->tag())
+                );
+            } else {
+                $this->assertEquals(
+                    sprintf('<%s></%s>', $tag->tag(), $tag->tag()),
+                    $tag->__toString(),
+                    sprintf('Unexpected rendering of %s value %s is in %s tag', $attribute, $value ? 'true' : 'false', $tag->tag())
+                );
+            }
+        } else {
+            if ($value) {
+                $this->assertEquals(
+                    sprintf('<%s %s>', $tag->tag(), $attribute),
+                    $tag->__toString(),
+                    sprintf('Unexpected rendering of %s value %s is in %s tag', $attribute, $value ? 'true' : 'false', $tag->tag())
+                );
+            } else {
+                $this->assertEquals(
+                    sprintf('<%s>', $tag->tag()),
+                    $tag->__toString(),
+                    sprintf('Unexpected rendering of %s value %s is in %s tag', $attribute, $value ? 'true' : 'false', $tag->tag())
+                );
+            }
         }
     }
 }

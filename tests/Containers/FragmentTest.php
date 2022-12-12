@@ -30,40 +30,15 @@ class FragmentTest extends TestCase
         $div2 = $this->tag('div');
         // adding div1 to fragment sets its fragment
         $fragment->addChild($div1);
-        $this->assertEquals($fragment, $div1->document());
+        $this->assertEquals($fragment, $div1->parentDocument());
         // adding div2 to div1 sets its document
         $div1->addChild($div2);
-        $this->assertEquals($fragment, $div2->document());
+        $this->assertEquals($fragment, $div2->parentDocument());
+        // div2's parent tag should be div1
+        $this->assertEquals($div1, $div2->parentTag());
+        // div1 should not have a parent tag
+        $this->assertNull($div1->parentTag());
         return $fragment;
-    }
-
-    /** @depends clone testNestingDocument */
-    public function testDetaching(Fragment $fragment): void
-    {
-        /** @var AbstractContainerTag */
-        $div1 = $fragment->children()[0];
-        /** @var AbstractContainerTag */
-        $div2 = $div1->children()[0];
-        // add a span and verify it has the right parent
-        $span = $this->tag('span');
-        $div2->addChild($span);
-        $this->assertEquals($fragment, $span->document());
-        // detach and check document/parent of all nodes
-        $div1->detach();
-        $this->assertNull($div1->document());
-        $this->assertNull($div1->parent());
-        $this->assertNull($div2->document());
-        $this->assertEquals($div1, $div2->parent());
-        $this->assertNull($span->document());
-        $this->assertEquals($div2, $span->parent());
-        // try detaching again, to verify detaching a detached node does nothing
-        $div1->detach();
-        $this->assertNull($div1->document());
-        $this->assertNull($div1->parent());
-        $this->assertNull($div2->document());
-        $this->assertEquals($div1, $div2->parent());
-        $this->assertNull($span->document());
-        $this->assertEquals($div2, $span->parent());
     }
 
     public function testMovingChild(): void
@@ -83,9 +58,9 @@ class FragmentTest extends TestCase
         $div2->addChild('a');
         // add child before a
         $div2->addChildBefore('b', 'a');
-        $this->assertEquals($fragment, $div2->children()[0]->document());
+        $this->assertEquals($fragment, $div2->children()[0]->parentDocument());
         // add child after a
         $div2->addChildAfter('c', 'a');
-        $this->assertEquals($fragment, $div2->children()[2]->document());
+        $this->assertEquals($fragment, $div2->children()[2]->parentDocument());
     }
 }

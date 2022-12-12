@@ -34,6 +34,15 @@ class AbstractContainerTagTest extends TestCase
         return $div;
     }
 
+    public function testBooleanAttributes(): void
+    {
+        $tag = $this->tag('div');
+        $tag->attributes()['a'] = true;
+        $tag->attributes()['b'] = false;
+        $tag->attributes()['c'] = null;
+        $this->assertEquals('<div a></div>', $tag->__toString());
+    }
+
     /** @depends clone testDIV */
     public function testMoreNesting(AbstractContainerTag $div): AbstractContainerTag
     {
@@ -77,16 +86,6 @@ class AbstractContainerTagTest extends TestCase
         $div->addChild('<strong>unsanitized text</strong>', false, true);
         $this->assertInstanceOf(Text::class, $div->children()[1]);
         $this->assertInstanceOf(UnsanitizedText::class, $div->children()[2]);
-    }
-
-    /** @depends clone testMoreNesting */
-    public function testDetach(AbstractContainerTag $div): void
-    {
-        /** @var AbstractContainerTag */
-        $span = $div->children()[0];
-        $span->detach();
-        $this->assertEquals('<div a="b"></div>', $div->__toString());
-        $this->assertNull($span->parent());
     }
 
     /** @depends clone testMoreNesting */

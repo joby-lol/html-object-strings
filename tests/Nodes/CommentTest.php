@@ -13,4 +13,12 @@ class CommentTest extends TestCase
         $this->assertEquals('<!-- foo-bar -->', new Comment('foo-bar'));
         $this->assertNotEquals('<!-- foo--bar -->', new Comment('foo--bar'));
     }
+
+    public function testModification(): void
+    {
+        $comment = new Comment('foo');
+        $this->assertEquals('foo', $comment->value());
+        $comment->setValue('bar');
+        $this->assertEquals('bar', $comment->value());
+    }
 }

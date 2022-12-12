@@ -22,10 +22,10 @@ class GenericHtmlDocumentTest extends TestCase
         $this->assertTrue($document->body() === $document->html()->body());
         $this->assertTrue($document->head() === $document->html()->head());
         // everything has the correct document
-        $this->assertEquals($document, $document->doctype()->document());
-        $this->assertEquals($document, $document->html()->document());
-        $this->assertEquals($document, $document->body()->document());
-        $this->assertEquals($document, $document->head()->document());
+        $this->assertEquals($document, $document->doctype()->parentDocument());
+        $this->assertEquals($document, $document->html()->parentDocument());
+        $this->assertEquals($document, $document->body()->parentDocument());
+        $this->assertEquals($document, $document->head()->parentDocument());
         // children are doctype and html
         $this->assertEquals([$document->doctype(), $document->html()], $document->children());
         // string version of an empty document
@@ -44,19 +44,5 @@ class GenericHtmlDocumentTest extends TestCase
             ),
             $document->__toString()
         );
-    }
-
-    public function testNoDoctypeDetach(): void
-    {
-        $document = new GenericHtmlDocument;
-        $this->expectExceptionMessage('Cannot detach() a Node from a parent that is not a ContainerMutableInterface, use detachCopy() instead');
-        $document->doctype()->detach();
-    }
-
-    public function testNoHtmlDetach(): void
-    {
-        $document = new GenericHtmlDocument;
-        $this->expectExceptionMessage('Cannot detach() a Node from a parent that is not a ContainerMutableInterface, use detachCopy() instead');
-        $document->html()->detach();
     }
 }

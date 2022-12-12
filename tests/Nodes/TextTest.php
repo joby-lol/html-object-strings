@@ -12,4 +12,12 @@ class TextTest extends TestCase
         $this->assertEquals('foo', new Text('foo'));
         $this->assertEquals('foo', new Text('<strong>foo</strong>'));
     }
+
+    public function testModification(): void
+    {
+        $text = new Text('foo');
+        $this->assertEquals('foo', $text->value());
+        $text->setValue('bar');
+        $this->assertEquals('bar', $text->value());
+    }
 }

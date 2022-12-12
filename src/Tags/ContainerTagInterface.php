@@ -2,7 +2,7 @@
 
 namespace ByJoby\HTML\Tags;
 
-use ByJoby\HTML\ContainerMutableInterface;
+use ByJoby\HTML\ContainerInterface;
 
 /**
  * Container Tags are HTML tags that are capable of holding a collection of
@@ -12,6 +12,6 @@ use ByJoby\HTML\ContainerMutableInterface;
  * 
  * @package ByJoby\HTML\Tags
  */
-interface ContainerTagInterface extends TagInterface, ContainerMutableInterface
+interface ContainerTagInterface extends TagInterface, ContainerInterface
 {
 }

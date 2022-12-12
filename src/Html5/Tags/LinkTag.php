@@ -11,12 +11,13 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function rel(): null|string
     {
-        return $this->attributes()['rel'];
+        return $this->attributes()->string('rel');
     }
 
     public function setRel(null|string $rel): static
     {
-        $this->attributes()['rel'] = $rel;
+        if (!$rel) $this->attributes()['rel'] = false;
+        else $this->attributes()['rel'] = $rel;
         return $this;
     }
 
@@ -28,12 +29,13 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function as(): null|string
     {
-        return $this->attributes()['as'];
+        return $this->attributes()->string('as');
     }
 
     public function setAs(null|string $as): static
     {
-        $this->attributes()['as'] = $as;
+        if (!$as) $this->attributes()['as'] = false;
+        else $this->attributes()['as'] = $as;
         return $this;
     }
 
@@ -45,12 +47,13 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function crossorigin(): null|string
     {
-        return $this->attributes()['crossorigin'];
+        return $this->attributes()->string('crossorigin');
     }
 
     public function setCrossorigin(null|string $crossorigin): static
     {
-        $this->attributes()['crossorigin'] = $crossorigin;
+        if (!$crossorigin) $this->attributes()['crossorigin'] = false;
+        else $this->attributes()['crossorigin'] = $crossorigin;
         return $this;
     }
 
@@ -62,12 +65,13 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function href(): null|string
     {
-        return $this->attributes()['href'];
+        return $this->attributes()->string('href');
     }
 
     public function setHref(null|string $href): static
     {
-        $this->attributes()['href'] = $href;
+        if (!$href) $this->attributes()['href'] = false;
+        else $this->attributes()['href'] = $href;
         return $this;
     }
 
@@ -79,12 +83,13 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function hreflang(): null|string
     {
-        return $this->attributes()['hreflang'];
+        return $this->attributes()->string('hreflang');
     }
 
     public function setHreflang(null|string $hreflang): static
     {
-        $this->attributes()['hreflang'] = $hreflang;
+        if (!$hreflang) $this->attributes()['hreflang'] = false;
+        else $this->attributes()['hreflang'] = $hreflang;
         return $this;
     }
 
@@ -96,12 +101,13 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function imagesizes(): null|string
     {
-        return $this->attributes()['imagesizes'];
+        return $this->attributes()->string('imagesizes');
     }
 
     public function setImagesizes(null|string $imagesizes): static
     {
-        $this->attributes()['imagesizes'] = $imagesizes;
+        if (!$imagesizes) $this->attributes()['imagesizes'] = false;
+        else $this->attributes()['imagesizes'] = $imagesizes;
         return $this;
     }
 
@@ -113,12 +119,13 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function imagesrcset(): null|string
     {
-        return $this->attributes()['imagesrcset'];
+        return $this->attributes()->string('imagesrcset');
     }
 
     public function setImagesrcset(null|string $imagesrcset): static
     {
-        $this->attributes()['imagesrcset'] = $imagesrcset;
+        if (!$imagesrcset) $this->attributes()['imagesrcset'] = false;
+        else $this->attributes()['imagesrcset'] = $imagesrcset;
         return $this;
     }
 
@@ -130,12 +137,13 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function integrity(): null|string
     {
-        return $this->attributes()['integrity'];
+        return $this->attributes()->string('integrity');
     }
 
     public function setIntegrity(null|string $integrity): static
     {
-        $this->attributes()['integrity'] = $integrity;
+        if (!$integrity) $this->attributes()['integrity'] = false;
+        else $this->attributes()['integrity'] = $integrity;
         return $this;
     }
 
@@ -147,12 +155,13 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function media(): null|string
     {
-        return $this->attributes()['media'];
+        return $this->attributes()->string('media');
     }
 
     public function setMedia(null|string $media): static
     {
-        $this->attributes()['media'] = $media;
+        if (!$media) $this->attributes()['media'] = false;
+        else $this->attributes()['media'] = $media;
         return $this;
     }
 
@@ -164,12 +173,13 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function referrerpolicy(): null|string
     {
-        return $this->attributes()['referrerpolicy'];
+        return $this->attributes()->string('referrerpolicy');
     }
 
     public function setReferrerpolicy(null|string $referrerpolicy): static
     {
-        $this->attributes()['referrerpolicy'] = $referrerpolicy;
+        if (!$referrerpolicy) $this->attributes()['referrerpolicy'] = false;
+        else $this->attributes()['referrerpolicy'] = $referrerpolicy;
         return $this;
     }
 
@@ -181,12 +191,13 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function type(): null|string
     {
-        return $this->attributes()['type'];
+        return $this->attributes()->string('type');
     }
 
     public function setType(null|string $type): static
     {
-        $this->attributes()['type'] = $type;
+        if (!$type) $this->attributes()['type'] = false;
+        else $this->attributes()['type'] = $type;
         return $this;
     }
 

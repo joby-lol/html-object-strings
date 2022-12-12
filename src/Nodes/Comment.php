@@ -13,14 +13,25 @@ class Comment implements CommentInterface
     {
     }
 
+    public function value(): string
+    {
+        return $this->value;
+    }
+
+    public function setValue(string|Stringable $value): static
+    {
+        $this->value = $value;
+        return $this;
+    }
+
     public function __toString(): string
     {
         return sprintf(
             '<!-- %s -->',
             str_replace(
                 '--', // regular hyphens
-                '‑‑', // non-breaking hyphens
-                $this->value
+                '‑‑', // non-breaking hyphens, so they can't end the comment
+                $this->value()
             )
         );
     }
