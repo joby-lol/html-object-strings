@@ -19,6 +19,16 @@ trait ContainerTrait
         return $this->children;
     }
 
+    public function contains(
+        NodeInterface|Stringable|string $child
+    ): bool {
+        if ($child instanceof NodeInterface) {
+            return $child->parent() === $this;
+        } else {
+            return $this->indexOfChild($child) !== null;
+        }
+    }
+
     public function addChild(
         NodeInterface|Stringable|string $child,
         bool $prepend = false,

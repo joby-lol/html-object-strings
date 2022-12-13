@@ -8,33 +8,35 @@ use ByJoby\HTML\Containers\DocumentTags\DoctypeInterface;
 use ByJoby\HTML\Containers\DocumentTags\HeadTagInterface;
 use ByJoby\HTML\Containers\DocumentTags\HtmlTag;
 use ByJoby\HTML\Containers\DocumentTags\HtmlTagInterface;
-use ByJoby\HTML\Traits\ContainerTrait;
+use ByJoby\HTML\Traits\GroupedContainerTrait;
 
 class GenericHtmlDocument implements HtmlDocumentInterface
 {
-    use ContainerTrait;
+    use GroupedContainerTrait;
 
-    /** @var DoctypeInterface */
+    /** @var ContainerGroup<DoctypeInterface> */
     protected $doctype;
-    /** @var HtmlTagInterface */
+    /** @var ContainerGroup<HtmlTagInterface> */
     protected $html;
 
     public function __construct()
     {
-        $this->doctype = (new Doctype);
-        $this->html = (new HtmlTag);
-        $this->addChild($this->doctype);
-        $this->addChild($this->html);
+        $this->doctype = ContainerGroup::ofClass(DoctypeInterface::class, 1);
+        $this->html = ContainerGroup::ofClass(HtmlTagInterface::class, 1);
+        $this->addGroup($this->doctype);
+        $this->addGroup($this->html);
+        $this->addChild(new Doctype);
+        $this->addChild(new HtmlTag);
     }
 
     public function doctype(): DoctypeInterface
     {
-        return $this->doctype;
+        return $this->doctype->children()[0];
     }
 
     public function html(): HtmlTagInterface
     {
-        return $this->html;
+        return $this->html->children()[0];
     }
 
     public function head(): HeadTagInterface
@@ -47,18 +49,16 @@ class GenericHtmlDocument implements HtmlDocumentInterface
         return $this->html()->body();
     }
 
-    public function children(): array
-    {
-        return [
-            $this->doctype(),
-            $this->html()
-        ];
-    }
-
     public function __toString(): string
     {
-        return $this->doctype()
-            . PHP_EOL
-            . $this->html();
+        return implode(
+            PHP_EOL,
+            array_filter(
+                $this->groups(),
+                function (ContainerGroup $group) {
+                    return !!$group->children();
+                }
+            )
+        );
     }
 }

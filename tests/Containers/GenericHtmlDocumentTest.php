@@ -19,15 +19,13 @@ class GenericHtmlDocumentTest extends TestCase
         $this->assertInstanceOf(BodyTagInterface::class, $document->body());
         $this->assertInstanceOf(HeadTagInterface::class, $document->head());
         // body and head are being passed properly
-        $this->assertTrue($document->body() === $document->html()->body());
-        $this->assertTrue($document->head() === $document->html()->head());
+        $this->assertEquals($document->body(), $document->html()->body());
+        $this->assertEquals($document->head(), $document->html()->head());
         // everything has the correct document
         $this->assertEquals($document, $document->doctype()->parentDocument());
         $this->assertEquals($document, $document->html()->parentDocument());
         $this->assertEquals($document, $document->body()->parentDocument());
         $this->assertEquals($document, $document->head()->parentDocument());
-        // children are doctype and html
-        $this->assertEquals([$document->doctype(), $document->html()], $document->children());
         // string version of an empty document
         $this->assertEquals(
             implode(

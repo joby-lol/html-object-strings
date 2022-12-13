@@ -3,7 +3,6 @@
 namespace ByJoby\HTML\Containers;
 
 use ByJoby\HTML\Tags\AbstractContainerTag;
-use ByJoby\HTML\Tags\AbstractTag;
 use PHPUnit\Framework\TestCase;
 
 class FragmentTest extends TestCase

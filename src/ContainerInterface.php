@@ -9,6 +9,10 @@ interface ContainerInterface extends Stringable
     /** @return array<int,NodeInterface> */
     public function children(): array;
 
+    public function contains(
+        NodeInterface|Stringable|string $child
+    ): bool;
+
     public function addChild(
         NodeInterface|Stringable|string $child,
         bool $prepend = false,

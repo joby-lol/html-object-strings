@@ -10,6 +10,6 @@ class HeadTagTest extends TestCase
     {
         $head = new HeadTag;
         $this->assertInstanceOf(TitleTagInterface::class, $head->title());
-        $this->assertEquals($head, $head->title()->parent());
+        $this->assertEquals($head, $head->title()->parentTag());
     }
 }
