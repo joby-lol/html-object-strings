@@ -9,7 +9,7 @@ use ByJoby\HTML\Tags\AbstractContentTag;
 
 class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingContent, DisplayNone
 {
-    const TAG = 'noscript';
+    const TAG = 'script';
 
     public function setAsync(bool $async): static
     {

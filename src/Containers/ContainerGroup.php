@@ -29,15 +29,16 @@ class ContainerGroup implements ContainerInterface, NodeInterface
     protected $limit = 0;
 
     /**
+     * @param int $limit 
      * @return ContainerGroup<NodeInterface>
      */
-    public static function catchAll(): ContainerGroup
+    public static function catchAll(int $limit = 0): ContainerGroup
     {
         return new ContainerGroup(
             function () {
                 return true;
             },
-            0
+            $limit
         );
     }
 
@@ -78,32 +79,32 @@ class ContainerGroup implements ContainerInterface, NodeInterface
 
     public function addChild(NodeInterface|Stringable|string $child, bool $prepend = false, bool $skip_sanitize = false): static
     {
-        if ($this->willAccept($child)) {
-            $this->makeRoomForChild($prepend);
+        if ($this->willAccept($child, false)) {
             $this->doAddChild($child, $prepend, $skip_sanitize);
+            $this->enforceChildLimit($prepend);
         }
         return $this;
     }
 
     public function addChildAfter(NodeInterface|Stringable|string $new_child, NodeInterface|Stringable|string $after_child, bool $skip_sanitize = false): static
     {
-        if ($this->willAccept($new_child)) {
-            $this->makeRoomForChild(false);
+        if ($this->willAccept($new_child, false)) {
             $this->doAddChildAfter($new_child, $after_child, $skip_sanitize);
+            $this->enforceChildLimit(false);
         }
         return $this;
     }
 
     public function addChildBefore(NodeInterface|Stringable|string $new_child, NodeInterface|Stringable|string $before_child, bool $skip_sanitize = false): static
     {
-        if ($this->willAccept($new_child)) {
-            $this->makeRoomForChild(true);
+        if ($this->willAccept($new_child, false)) {
             $this->doAddChildBefore($new_child, $before_child, $skip_sanitize);
+            $this->enforceChildLimit(true);
         }
         return $this;
     }
 
-    protected function makeRoomForChild(bool $remove_from_end): void
+    protected function enforceChildLimit(bool $remove_from_end): void
     {
         if ($this->limit > 0) {
             while (count($this->children) > $this->limit) {
