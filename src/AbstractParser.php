@@ -20,13 +20,10 @@ use DOMElement;
 use DOMNode;
 use DOMText;
 
-class Parser
+abstract class AbstractParser
 {
     /** @var array<int,string> */
-    protected $tag_namespaces = [
-        '\\ByJoby\\HTML\\Html5\\Tags\\',
-        '\\ByJoby\\HTML\\Containers\\DocumentTags\\'
-    ];
+    protected $tag_namespaces = [];
 
     /** @var array<string,class-string<TagInterface>> */
     protected $tag_classes = [];
@@ -41,7 +38,7 @@ class Parser
     protected $cdata_class = CData::class;
 
     /** @var class-string<HtmlDocumentInterface> */
-    protected $document_class = GenericHtmlDocument::class;
+    protected $document_class;
 
     /** @var class-string<FragmentInterface> */
     protected $fragment_class = Fragment::class;

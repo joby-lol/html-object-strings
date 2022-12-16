@@ -1,8 +1,10 @@
 <?php
 
-namespace ByJoby\HTML\Containers\DocumentTags;
+namespace ByJoby\HTML\Html5\DocumentTags;
 
 use ByJoby\HTML\Containers\ContainerGroup;
+use ByJoby\HTML\Containers\DocumentTags\HeadTagInterface;
+use ByJoby\HTML\Containers\DocumentTags\TitleTagInterface;
 use ByJoby\HTML\Tags\AbstractGroupedTag;
 use ByJoby\HTML\Traits\GroupedContainerTrait;
 

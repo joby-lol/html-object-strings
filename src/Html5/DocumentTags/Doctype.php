@@ -1,7 +1,8 @@
 <?php
 
-namespace ByJoby\HTML\Containers\DocumentTags;
+namespace ByJoby\HTML\Html5\DocumentTags;
 
+use ByJoby\HTML\Containers\DocumentTags\DoctypeInterface;
 use ByJoby\HTML\Traits\NodeTrait;
 
 class Doctype implements DoctypeInterface

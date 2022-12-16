@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Containers;
+namespace ByJoby\HTML\Html5;
 
 use ByJoby\HTML\Containers\DocumentTags\BodyTagInterface;
 use ByJoby\HTML\Containers\DocumentTags\DoctypeInterface;
@@ -8,11 +8,11 @@ use ByJoby\HTML\Containers\DocumentTags\HeadTagInterface;
 use ByJoby\HTML\Containers\DocumentTags\HtmlTagInterface;
 use PHPUnit\Framework\TestCase;
 
-class GenericHtmlDocumentTest extends TestCase
+class Html5DocumentTest extends TestCase
 {
     public function testConstruction(): void
     {
-        $document = new GenericHtmlDocument;
+        $document = new Html5Document;
         // all the right classes
         $this->assertInstanceOf(DoctypeInterface::class, $document->doctype());
         $this->assertInstanceOf(HtmlTagInterface::class, $document->html());
