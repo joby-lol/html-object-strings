@@ -79,7 +79,7 @@ class ContainerGroup implements ContainerInterface, NodeInterface
 
     public function addChild(NodeInterface|Stringable|string $child, bool $prepend = false, bool $skip_sanitize = false): static
     {
-        if ($this->willAccept($child, false)) {
+        if ($this->willAccept($child)) {
             $this->doAddChild($child, $prepend, $skip_sanitize);
             $this->enforceChildLimit($prepend);
         }
@@ -88,7 +88,7 @@ class ContainerGroup implements ContainerInterface, NodeInterface
 
     public function addChildAfter(NodeInterface|Stringable|string $new_child, NodeInterface|Stringable|string $after_child, bool $skip_sanitize = false): static
     {
-        if ($this->willAccept($new_child, false)) {
+        if ($this->willAccept($new_child)) {
             $this->doAddChildAfter($new_child, $after_child, $skip_sanitize);
             $this->enforceChildLimit(false);
         }
@@ -97,7 +97,7 @@ class ContainerGroup implements ContainerInterface, NodeInterface
 
     public function addChildBefore(NodeInterface|Stringable|string $new_child, NodeInterface|Stringable|string $before_child, bool $skip_sanitize = false): static
     {
-        if ($this->willAccept($new_child, false)) {
+        if ($this->willAccept($new_child)) {
             $this->doAddChildBefore($new_child, $before_child, $skip_sanitize);
             $this->enforceChildLimit(true);
         }
@@ -118,13 +118,8 @@ class ContainerGroup implements ContainerInterface, NodeInterface
         }
     }
 
-    public function willAccept(NodeInterface|Stringable|string $child, bool $check_limit = true): bool
+    public function willAccept(NodeInterface|Stringable|string $child): bool
     {
-        if ($check_limit && $this->limit > 0) {
-            if (count($this->children()) >= $this->limit) {
-                return false;
-            }
-        }
         if ($child instanceof NodeInterface) {
             $child = $child->detachCopy();
         }

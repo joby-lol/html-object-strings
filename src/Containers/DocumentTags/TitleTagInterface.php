@@ -2,10 +2,8 @@
 
 namespace ByJoby\HTML\Containers\DocumentTags;
 
-use ByJoby\HTML\NodeInterface;
+use ByJoby\HTML\Tags\ContentTagInterface;
 
-interface TitleTagInterface extends NodeInterface
+interface TitleTagInterface extends ContentTagInterface
 {
-    public function title(): string;
-    public function setTitle(string $title): static;
 }

@@ -2,31 +2,18 @@
 
 namespace ByJoby\HTML\Containers\DocumentTags;
 
-use ByJoby\HTML\Traits\NodeTrait;
-use Exception;
+use ByJoby\HTML\Tags\AbstractContentTag;
+use Stringable;
 
-class TitleTag implements TitleTagInterface
+class TitleTag extends AbstractContentTag implements TitleTagInterface
 {
     const TAG = 'title';
-
-    use NodeTrait;
-
     /** @var string */
-    protected $title = 'Untitled';
+    protected $content = 'Untitled';
 
-    public function setTitle(string $title): static
+    public function setContent(string|Stringable $content): static
     {
-        $this->title = trim(strip_tags($title));
+        parent::setContent(trim(strip_tags($content)));
         return $this;
-    }
-
-    public function title(): string
-    {
-        return $this->title;
-    }
-
-    public function __toString(): string
-    {
-        return '<title>' . $this->title() . '</title>';
     }
 }

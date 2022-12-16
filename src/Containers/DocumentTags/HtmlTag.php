@@ -20,7 +20,7 @@ class HtmlTag extends AbstractGroupedTag implements HtmlTagInterface
     public function __construct()
     {
         parent::__construct();
-        $this->head = ContainerGroup::ofClass(HeadTagInterface::class);
+        $this->head = ContainerGroup::ofClass(HeadTagInterface::class, 1);
         $this->body = ContainerGroup::ofClass(BodyTagInterface::class, 1);
         $this->addGroup($this->head);
         $this->addGroup($this->body);

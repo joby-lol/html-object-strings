@@ -35,6 +35,14 @@ class Styles implements Countable, ArrayAccess, Stringable
         }
     }
 
+    public function parse(string $css_string): void
+    {
+        foreach (explode(';', $css_string) as $rule) {
+            $rule = explode(':', trim($rule));
+            if (count($rule) == 2) $this[$rule[0]] = $rule[1];
+        }
+    }
+
     public function count(): int
     {
         return count($this->styles);

@@ -30,6 +30,14 @@ class Classes implements Countable
         }
     }
 
+    public function parse(string $class_string): void
+    {
+        foreach (explode(' ', $class_string) as $class) {
+            $class = trim($class);
+            if ($class) $this->add($class);
+        }
+    }
+
     public function count(): int
     {
         return count($this->classes);

@@ -9,9 +9,9 @@ class TitleTagTest extends TestCase
     public function testGetAndSet()
     {
         $title = new TitleTag;
-        $this->assertEquals('Untitled', $title->title());
-        $title->setTitle('<strong>Titled</strong>');
-        $this->assertEquals('Titled', $title->title());
-        $this->assertEquals('<title>Titled</title>', $title->__toString());
+        $this->assertEquals('Untitled', $title->content());
+        $title->setContent('<strong>Titled</strong>');
+        $this->assertEquals('Titled', $title->content());
+        $this->assertEquals('<title>' . PHP_EOL . 'Titled' . PHP_EOL . '</title>', $title->__toString());
     }
 }
