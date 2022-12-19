@@ -103,11 +103,11 @@ trait ContainerTrait
     protected function indexOfChild(NodeInterface|Stringable|string $child): null|int
     {
         if ($child instanceof NodeInterface) {
-            foreach ($this->children() as $i => $v) {
+            foreach ($this->children as $i => $v) {
                 if ($v === $child) return $i;
             }
         } else {
-            foreach ($this->children() as $i => $v) {
+            foreach ($this->children as $i => $v) {
                 if ($v == $child) return $i;
             }
         }

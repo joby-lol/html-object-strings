@@ -2,7 +2,7 @@
 
 namespace ByJoby\HTML\Html5;
 
-use ByJoby\HTML\Html5\Tags\DivTag;
+use ByJoby\HTML\Html5\TextContentTags\DivTag;
 use ByJoby\HTML\Nodes\TextInterface;
 use PHPUnit\Framework\TestCase;
 

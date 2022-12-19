@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Tags;
+namespace ByJoby\HTML\Html5\TextContentTags;
 
 use ByJoby\HTML\ContentCategories\SectioningContent;
 use ByJoby\HTML\DisplayTypes\DisplayBlock;

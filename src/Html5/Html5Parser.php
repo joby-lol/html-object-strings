@@ -10,6 +10,7 @@ class Html5Parser extends AbstractParser
     /** @var array<int,string> */
     protected $tag_namespaces = [
         '\\ByJoby\\HTML\\Html5\\Tags\\',
+        '\\ByJoby\\HTML\\Html5\\TextContentTags\\',
         '\\ByJoby\\HTML\\Html5\\ContentSectioningTags\\',
         '\\ByJoby\\HTML\\Html5\\DocumentTags\\',
     ];

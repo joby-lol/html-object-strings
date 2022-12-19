@@ -26,7 +26,7 @@ trait GroupedContainerTrait
     public function groups(): array
     {
         return array_filter(
-            $this->children(),
+            $this->children,
             function (NodeInterface $node) {
                 return $node instanceof ContainerGroup;
             }
@@ -101,5 +101,17 @@ trait GroupedContainerTrait
             }
         }
         return $this;
+    }
+
+    public function children(): array
+    {
+        /** @var array<int,NodeInterface> */
+        $children = [];
+        foreach ($this->groups() as $group) {
+            foreach ($group->children() as $child) {
+                $children[] = $child;
+            }
+        }
+        return $children;
     }
 }
