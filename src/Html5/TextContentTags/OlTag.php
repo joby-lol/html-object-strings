@@ -28,7 +28,7 @@ class OlTag extends AbstractContainerTag implements FlowContent, DisplayBlock
 
     public function start(): null|int
     {
-        if (isset($this->attributes['start'])) {
+        if ($this->attributes()['start']) {
             return intval($this->attributes()->string('start'));
         } else {
             return null;
@@ -37,8 +37,11 @@ class OlTag extends AbstractContainerTag implements FlowContent, DisplayBlock
 
     public function setStart(null|int $start): static
     {
-        if (!$start) $this->attributes()['start'] = false;
-        else $this->attributes()['start'] = strval($start);
+        if (!$start) {
+            $this->attributes()['start'] = false;
+        } else {
+            $this->attributes()['start'] = strval($start);
+        }
         return $this;
     }
 

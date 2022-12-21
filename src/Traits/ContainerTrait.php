@@ -35,8 +35,11 @@ trait ContainerTrait
         bool $skip_sanitize = false
     ): static {
         $child = $this->prepareChildToAdd($child, $skip_sanitize);
-        if ($prepend) array_unshift($this->children, $child);
-        else $this->children[] = $child;
+        if ($prepend) {
+            array_unshift($this->children, $child);
+        } else {
+            $this->children[] = $child;
+        }
         return $this;
     }
 
@@ -46,8 +49,11 @@ trait ContainerTrait
         $this->children = array_filter(
             $this->children,
             function (NodeInterface $e) use ($child) {
-                if (is_object($child)) $keep = $e !== $child;
-                else $keep = $e != $child;
+                if (is_object($child)) {
+                    $keep = $e !== $child;
+                } else {
+                    $keep = $e != $child;
+                }
                 if (!$keep) {
                     $e->setParent(null);
                 }
@@ -89,8 +95,11 @@ trait ContainerTrait
     {
         // turn strings into nodes
         if (!($child instanceof NodeInterface)) {
-            if ($skip_sanitize) $child = new UnsanitizedText($child);
-            else $child = new Text($child);
+            if ($skip_sanitize) {
+                $child = new UnsanitizedText($child);
+            } else {
+                $child = new Text($child);
+            }
         }
         // remove from parent, move it here, and return
         if ($parent = $child->parent()) {
@@ -104,11 +113,15 @@ trait ContainerTrait
     {
         if ($child instanceof NodeInterface) {
             foreach ($this->children as $i => $v) {
-                if ($v === $child) return $i;
+                if ($v === $child) {
+                    return $i;
+                }
             }
         } else {
             foreach ($this->children as $i => $v) {
-                if ($v == $child) return $i;
+                if ($v == $child) {
+                    return $i;
+                }
             }
         }
         return null;

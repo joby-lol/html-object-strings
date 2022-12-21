@@ -40,8 +40,11 @@ class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingC
 
     public function setCrossorigin(null|string $crossorigin): static
     {
-        if (!$crossorigin) $this->attributes()['crossorigin'] = false;
-        else $this->attributes()['crossorigin'] = $crossorigin;
+        if (!$crossorigin) {
+            $this->attributes()['crossorigin'] = false;
+        } else {
+            $this->attributes()['crossorigin'] = $crossorigin;
+        }
         return $this;
     }
 
@@ -58,8 +61,11 @@ class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingC
 
     public function setIntegrity(null|string $integrity): static
     {
-        if (!$integrity) $this->attributes()['integrity'] = false;
-        else $this->attributes()['integrity'] = $integrity;
+        if (!$integrity) {
+            $this->attributes()['integrity'] = false;
+        } else {
+            $this->attributes()['integrity'] = $integrity;
+        }
         return $this;
     }
 
@@ -87,8 +93,11 @@ class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingC
 
     public function setNonce(null|string $nonce): static
     {
-        if (!$nonce) $this->attributes()['nonce'] = false;
-        else $this->attributes()['nonce'] = $nonce;
+        if (!$nonce) {
+            $this->attributes()['nonce'] = false;
+        } else {
+            $this->attributes()['nonce'] = $nonce;
+        }
         return $this;
     }
 
@@ -105,8 +114,11 @@ class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingC
 
     public function setReferrerpolicy(null|string $referrerpolicy): static
     {
-        if (!$referrerpolicy) $this->attributes()['referrerpolicy'] = false;
-        else $this->attributes()['referrerpolicy'] = $referrerpolicy;
+        if (!$referrerpolicy) {
+            $this->attributes()['referrerpolicy'] = false;
+        } else {
+            $this->attributes()['referrerpolicy'] = $referrerpolicy;
+        }
         return $this;
     }
 
@@ -123,8 +135,11 @@ class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingC
 
     public function setSrc(null|string $src): static
     {
-        if (!$src) $this->attributes()['src'] = false;
-        else $this->attributes()['src'] = $src;
+        if (!$src) {
+            $this->attributes()['src'] = false;
+        } else {
+            $this->attributes()['src'] = $src;
+        }
         return $this;
     }
 
@@ -141,8 +156,11 @@ class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingC
 
     public function setType(null|string $type): static
     {
-        if (!$type) $this->attributes()['type'] = false;
-        else $this->attributes()['type'] = $type;
+        if (!$type) {
+            $this->attributes()['type'] = false;
+        } else {
+            $this->attributes()['type'] = $type;
+        }
         return $this;
     }
 

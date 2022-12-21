@@ -27,8 +27,8 @@ class Html5Document implements HtmlDocumentInterface
         $this->html = ContainerGroup::ofClass(HtmlTagInterface::class, 1);
         $this->addGroup($this->doctype);
         $this->addGroup($this->html);
-        $this->addChild(new Doctype);
-        $this->addChild(new HtmlTag);
+        $this->addChild(new Doctype());
+        $this->addChild(new HtmlTag());
     }
 
     public function doctype(): DoctypeInterface

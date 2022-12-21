@@ -24,7 +24,9 @@ class Classes implements Countable
      */
     public function __construct(null|array|Traversable $array = null, bool $no_exception = true)
     {
-        if (!$array) return;
+        if (!$array) {
+            return;
+        }
         foreach ($array as $class) {
             $this->add($class, $no_exception);
         }
@@ -34,7 +36,9 @@ class Classes implements Countable
     {
         foreach (explode(' ', $class_string) as $class) {
             $class = trim($class);
-            if ($class) $this->add($class);
+            if ($class) {
+                $this->add($class);
+            }
         }
     }
 
@@ -46,7 +50,7 @@ class Classes implements Countable
     /**
      * @return array<int,string|Stringable>
      */
-    function getArray(): array
+    public function getArray(): array
     {
         if (!$this->sorted) {
             sort($this->classes);
@@ -60,8 +64,11 @@ class Classes implements Countable
         try {
             $class = static::sanitizeClassName($class, true);
         } catch (\Throwable $th) {
-            if ($no_exception) return $this;
-            else throw $th;
+            if ($no_exception) {
+                return $this;
+            } else {
+                throw $th;
+            }
         }
         if (!in_array($class, $this->classes)) {
             $this->classes[] = $class;
@@ -91,7 +98,9 @@ class Classes implements Countable
     protected static function sanitizeClassName(string $class, bool $validate = false): string
     {
         $class = trim($class);
-        if ($validate && !preg_match('/^[_\-a-z][_\-a-z0-9]*$/i', $class)) throw new Exception('Invalid class name');
+        if ($validate && !preg_match('/^[_\-a-z][_\-a-z0-9]*$/i', $class)) {
+            throw new Exception('Invalid class name');
+        }
         return $class;
     }
 }

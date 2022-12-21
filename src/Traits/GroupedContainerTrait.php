@@ -21,7 +21,7 @@ trait GroupedContainerTrait
     }
 
     /**
-     * @return array<int,ContainerGroup<NodeInterface>> 
+     * @return array<int,ContainerGroup<NodeInterface>>
      */
     public function groups(): array
     {
@@ -36,7 +36,9 @@ trait GroupedContainerTrait
     public function willAccept(NodeInterface|Stringable|string $child): bool
     {
         foreach ($this->groups() as $group) {
-            if ($group->willAccept($child)) return true;
+            if ($group->willAccept($child)) {
+                return true;
+            }
         }
         return false;
     }

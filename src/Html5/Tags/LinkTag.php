@@ -16,8 +16,11 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function setRel(null|string $rel): static
     {
-        if (!$rel) $this->attributes()['rel'] = false;
-        else $this->attributes()['rel'] = $rel;
+        if (!$rel) {
+            $this->attributes()['rel'] = false;
+        } else {
+            $this->attributes()['rel'] = $rel;
+        }
         return $this;
     }
 
@@ -34,8 +37,11 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function setAs(null|string $as): static
     {
-        if (!$as) $this->attributes()['as'] = false;
-        else $this->attributes()['as'] = $as;
+        if (!$as) {
+            $this->attributes()['as'] = false;
+        } else {
+            $this->attributes()['as'] = $as;
+        }
         return $this;
     }
 
@@ -52,8 +58,11 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function setCrossorigin(null|string $crossorigin): static
     {
-        if (!$crossorigin) $this->attributes()['crossorigin'] = false;
-        else $this->attributes()['crossorigin'] = $crossorigin;
+        if (!$crossorigin) {
+            $this->attributes()['crossorigin'] = false;
+        } else {
+            $this->attributes()['crossorigin'] = $crossorigin;
+        }
         return $this;
     }
 
@@ -70,8 +79,11 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function setHref(null|string $href): static
     {
-        if (!$href) $this->attributes()['href'] = false;
-        else $this->attributes()['href'] = $href;
+        if (!$href) {
+            $this->attributes()['href'] = false;
+        } else {
+            $this->attributes()['href'] = $href;
+        }
         return $this;
     }
 
@@ -88,8 +100,11 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function setHreflang(null|string $hreflang): static
     {
-        if (!$hreflang) $this->attributes()['hreflang'] = false;
-        else $this->attributes()['hreflang'] = $hreflang;
+        if (!$hreflang) {
+            $this->attributes()['hreflang'] = false;
+        } else {
+            $this->attributes()['hreflang'] = $hreflang;
+        }
         return $this;
     }
 
@@ -106,8 +121,11 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function setImagesizes(null|string $imagesizes): static
     {
-        if (!$imagesizes) $this->attributes()['imagesizes'] = false;
-        else $this->attributes()['imagesizes'] = $imagesizes;
+        if (!$imagesizes) {
+            $this->attributes()['imagesizes'] = false;
+        } else {
+            $this->attributes()['imagesizes'] = $imagesizes;
+        }
         return $this;
     }
 
@@ -124,8 +142,11 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function setImagesrcset(null|string $imagesrcset): static
     {
-        if (!$imagesrcset) $this->attributes()['imagesrcset'] = false;
-        else $this->attributes()['imagesrcset'] = $imagesrcset;
+        if (!$imagesrcset) {
+            $this->attributes()['imagesrcset'] = false;
+        } else {
+            $this->attributes()['imagesrcset'] = $imagesrcset;
+        }
         return $this;
     }
 
@@ -142,8 +163,11 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function setIntegrity(null|string $integrity): static
     {
-        if (!$integrity) $this->attributes()['integrity'] = false;
-        else $this->attributes()['integrity'] = $integrity;
+        if (!$integrity) {
+            $this->attributes()['integrity'] = false;
+        } else {
+            $this->attributes()['integrity'] = $integrity;
+        }
         return $this;
     }
 
@@ -160,8 +184,11 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function setMedia(null|string $media): static
     {
-        if (!$media) $this->attributes()['media'] = false;
-        else $this->attributes()['media'] = $media;
+        if (!$media) {
+            $this->attributes()['media'] = false;
+        } else {
+            $this->attributes()['media'] = $media;
+        }
         return $this;
     }
 
@@ -178,8 +205,11 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function setReferrerpolicy(null|string $referrerpolicy): static
     {
-        if (!$referrerpolicy) $this->attributes()['referrerpolicy'] = false;
-        else $this->attributes()['referrerpolicy'] = $referrerpolicy;
+        if (!$referrerpolicy) {
+            $this->attributes()['referrerpolicy'] = false;
+        } else {
+            $this->attributes()['referrerpolicy'] = $referrerpolicy;
+        }
         return $this;
     }
 
@@ -196,8 +226,11 @@ class LinkTag extends AbstractTag implements MetadataContent
 
     public function setType(null|string $type): static
     {
-        if (!$type) $this->attributes()['type'] = false;
-        else $this->attributes()['type'] = $type;
+        if (!$type) {
+            $this->attributes()['type'] = false;
+        } else {
+            $this->attributes()['type'] = $type;
+        }
         return $this;
     }
 

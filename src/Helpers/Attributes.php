@@ -11,7 +11,7 @@ use Traversable;
 
 /**
  * Holds and validates a set of HTML attribute name/value pairs for use in tags.
- * 
+ *
  * @implements ArrayAccess<string,bool|string|Stringable>
  * @implements IteratorAggregate<string,bool|string|Stringable>
  */
@@ -25,48 +25,59 @@ class Attributes implements IteratorAggregate, ArrayAccess
     protected $disallowed = [];
 
     /**
-     * @param null|array<string,bool|string|Stringable> $array 
+     * @param null|array<string,bool|string|Stringable> $array
      * @param array<mixed,string> $disallowed
-     * @return void 
+     * @return void
      */
     public function __construct(null|array $array = null, $disallowed = [])
     {
         $this->disallowed = $disallowed;
-        if (!$array) return;
+        if (!$array) {
+            return;
+        }
         foreach ($array as $key => $value) {
             $this[$key] = $value;
         }
     }
 
-    function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         $offset = static::sanitizeOffset($offset);
         return isset($this->array[$offset]);
     }
 
-    function offsetGet(mixed $offset): mixed
+    public function offsetGet(mixed $offset): mixed
     {
         $offset = static::sanitizeOffset($offset);
         return @$this->array[$offset];
     }
 
-    function offsetSet(mixed $offset, mixed $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
-        if (!$offset || !trim($offset)) throw new Exception('Attribute name must be specified when setting');
+        if (!$offset || !trim($offset)) {
+            throw new Exception('Attribute name must be specified when setting');
+        }
         $offset = static::sanitizeOffset($offset);
-        if (in_array($offset, $this->disallowed)) throw new Exception('Setting attribute is disallowed');
-        if (!isset($this->array[$offset])) $this->sorted = false;
+        if (in_array($offset, $this->disallowed)) {
+            throw new Exception('Setting attribute is disallowed');
+        }
+        if (!isset($this->array[$offset])) {
+            $this->sorted = false;
+        }
         $this->array[$offset] = $value;
     }
 
     public function string(string $offset): null|string
     {
         $value = $this->offsetGet($offset);
-        if (is_string($value)) return $value;
-        else return null;
+        if (is_string($value)) {
+            return $value;
+        } else {
+            return null;
+        }
     }
 
-    function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset): void
     {
         $offset = static::sanitizeOffset($offset);
         unset($this->array[$offset]);
@@ -75,7 +86,7 @@ class Attributes implements IteratorAggregate, ArrayAccess
     /**
      * @return array<string,bool|string|Stringable>
      */
-    function getArray(): array
+    public function getArray(): array
     {
         if (!$this->sorted) {
             ksort($this->array);
@@ -84,7 +95,7 @@ class Attributes implements IteratorAggregate, ArrayAccess
         return $this->array;
     }
 
-    function getIterator(): Traversable
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->getArray());
     }
@@ -93,7 +104,9 @@ class Attributes implements IteratorAggregate, ArrayAccess
     {
         $offset = trim($offset);
         $offset = strtolower($offset);
-        if (preg_match('/[\t\n\f \/>"\'=]/', $offset)) throw new Exception('Invalid character in attribute name');
+        if (preg_match('/[\t\n\f \/>"\'=]/', $offset)) {
+            throw new Exception('Invalid character in attribute name');
+        }
         return $offset;
     }
 }

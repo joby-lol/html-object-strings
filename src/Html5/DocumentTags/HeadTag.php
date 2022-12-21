@@ -10,9 +10,9 @@ use ByJoby\HTML\Traits\GroupedContainerTrait;
 
 class HeadTag extends AbstractGroupedTag implements HeadTagInterface
 {
-    const TAG = 'head';
-
     use GroupedContainerTrait;
+
+    const TAG = 'head';
 
     /** @var ContainerGroup<TitleTagInterface> */
     protected $title;
@@ -22,7 +22,7 @@ class HeadTag extends AbstractGroupedTag implements HeadTagInterface
         parent::__construct();
         $this->title = ContainerGroup::ofClass(TitleTagInterface::class, 1);
         $this->addGroup($this->title);
-        $this->addChild(new TitleTag);
+        $this->addChild(new TitleTag());
         $this->addGroup(ContainerGroup::ofTag('meta'));
         $this->addGroup(ContainerGroup::ofTag('base', 1));
         $this->addGroup(ContainerGroup::ofTag('style'));

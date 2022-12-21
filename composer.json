@@ -3,14 +3,16 @@
     "description": "Abstraction layer for constructing arbitrary HTML tags and documents in PHP",
     "type": "library",
     "require": {
-      "php": ">=8.1",
+        "php": ">=8.1",
         "myclabs/deep-copy": "^1"
     },
     "license": "MIT",
-    "authors": [{
-        "name": "Joby Elliott",
-        "email": "joby@byjoby.com"
-    }],
+    "authors": [
+        {
+            "name": "Joby Elliott",
+            "email": "joby@byjoby.com"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
@@ -25,10 +27,12 @@
     },
     "scripts": {
         "test": "phpunit",
-        "stan": "phpstan"
+        "stan": "phpstan",
+        "sniff": "phpcs"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.9",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^3.7"
     }
 }

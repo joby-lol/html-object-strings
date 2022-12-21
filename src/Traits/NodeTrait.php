@@ -13,7 +13,7 @@ trait NodeTrait
     /** @var null|ContainerInterface */
     protected $parent;
 
-    abstract function __toString();
+    abstract public function __toString();
 
     public function parent(): null|ContainerInterface
     {

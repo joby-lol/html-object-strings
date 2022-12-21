@@ -29,7 +29,7 @@ class ContainerGroup implements ContainerInterface, NodeInterface
     protected $limit = 0;
 
     /**
-     * @param int $limit 
+     * @param int $limit
      * @return ContainerGroup<NodeInterface>
      */
     public static function catchAll(int $limit = 0): ContainerGroup
@@ -44,8 +44,8 @@ class ContainerGroup implements ContainerInterface, NodeInterface
 
     /**
      * @template C of T
-     * @param class-string<C> $class 
-     * @param int $limit 
+     * @param class-string<C> $class
+     * @param int $limit
      * @return ContainerGroup<C>
      */
     public static function ofClass(string $class, int $limit = 0): ContainerGroup
@@ -60,7 +60,7 @@ class ContainerGroup implements ContainerInterface, NodeInterface
 
     /**
      * @param string $tag
-     * @param int $limit 
+     * @param int $limit
      * @return ContainerGroup<TagInterface>
      */
     public static function ofTag(string $tag, int $limit = 0): ContainerGroup

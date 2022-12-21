@@ -28,7 +28,7 @@ class AbstractTagTest extends TestCase
     /**
      * @depends clone testBR
      */
-    public function testID(AbstractTag $tag): void
+    public function testID(AbstractTag $tag): AbstractTag
     {
         $this->assertNull($tag->id());
         $tag->setID('foo');
@@ -37,6 +37,16 @@ class AbstractTagTest extends TestCase
         $tag->setID(null);
         $this->assertNull($tag->id());
         $this->assertEquals('<br>', $tag->__toString());
+        return $tag;
+    }
+
+    /**
+     * @depends clone testID
+     */
+    public function testIDValidation(AbstractTag $tag): void
+    {
+        $this->expectExceptionMessage('Invalid tag ID');
+        $tag->setID('0abc');
     }
 
     /**

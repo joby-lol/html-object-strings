@@ -9,7 +9,7 @@ use ByJoby\HTML\ContainerInterface;
  * child tags. They can all have tags added and removed from them as well.
  * Container Tags always render as a full opening and closing tag, even when
  * they are empty.
- * 
+ *
  * @package ByJoby\HTML\Tags
  */
 interface ContainerTagInterface extends TagInterface, ContainerInterface

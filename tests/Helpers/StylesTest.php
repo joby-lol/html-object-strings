@@ -33,4 +33,29 @@ class StylesTest extends TestCase
         $styles = new Styles(['a' => 'b', 'b' => 'c']);
         $this->assertEquals('a:b;b:c', $styles->__toString());
     }
+
+    /**
+     * @depends clone testConstruction
+     */
+    public function testInvalidInputs(Styles $styles): void
+    {
+        // null assignments don't work
+        $styles[] = 'b';
+        $this->assertEquals(['foo' => 'bar'], $styles->getArray());
+        // empty attribute doesn't work
+        $styles[''] = 'b';
+        $this->assertEquals(['foo' => 'bar'], $styles->getArray());
+        // attributes that trim to nothing don't work
+        $styles[' '] = 'b';
+        $this->assertEquals(['foo' => 'bar'], $styles->getArray());
+        // empty values don't work
+        $styles['quux'] = '';
+        $this->assertEquals(['foo' => 'bar'], $styles->getArray());
+        // values containing ; don't work
+        $styles['quux'] = 'x;y';
+        $this->assertEquals(['foo' => 'bar'], $styles->getArray());
+        // values containing : don't work
+        $styles['quux'] = 'x:y';
+        $this->assertEquals(['foo' => 'bar'], $styles->getArray());
+    }
 }

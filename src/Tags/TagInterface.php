@@ -11,7 +11,7 @@ use Stringable;
 /**
  * Simple tags represent self-closing tags that cannot contain anything else
  * within them.
- * 
+ *
  * @package ByJoby\HTML\Tags
  */
 interface TagInterface extends NodeInterface

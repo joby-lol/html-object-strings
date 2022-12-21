@@ -19,7 +19,7 @@ trait TagTrait
     /** @var Styles */
     protected $styles;
 
-    abstract function tag(): string;
+    abstract public function tag(): string;
 
     public function __construct()
     {
@@ -35,15 +35,20 @@ trait TagTrait
 
     public function setID(null|string|Stringable $id): static
     {
-        if ($id) $this->id = static::sanitizeID($id);
-        else $this->id = null;
+        if ($id) {
+            $this->id = static::sanitizeID($id);
+        } else {
+            $this->id = null;
+        }
         return $this;
     }
 
     protected static function sanitizeID(string|Stringable $id): string
     {
         $id = trim($id);
-        if (!preg_match('/^[_\-a-z][_\-a-z0-9]*$/i', $id)) throw new Exception('Invalid ID name');
+        if (!preg_match('/^[_\-a-z][_\-a-z0-9]*$/i', $id)) {
+            throw new Exception('Invalid tag ID');
+        }
         return $id;
     }
 
@@ -73,7 +78,9 @@ trait TagTrait
     protected function openingTagStrings(): array
     {
         $strings = [$this->tag()];
-        if ($this->id) $strings[] = sprintf('id="%s"', $this->id);
+        if ($this->id) {
+            $strings[] = sprintf('id="%s"', $this->id);
+        }
         if ($this->classes()->count()) {
             $strings[] = sprintf('class="%s"', implode(' ', $this->classes()->getArray()));
         }

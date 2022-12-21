@@ -4,7 +4,6 @@ namespace ByJoby\HTML;
 
 use ByJoby\HTML\Containers\Fragment;
 use ByJoby\HTML\Containers\FragmentInterface;
-use ByJoby\HTML\Containers\GenericHtmlDocument;
 use ByJoby\HTML\Containers\HtmlDocumentInterface;
 use ByJoby\HTML\Nodes\CData;
 use ByJoby\HTML\Nodes\CDataInterface;
@@ -109,8 +108,10 @@ abstract class AbstractParser
     {
         // build object
         $class = $this->tagClass($node->tagName);
-        if (!$class) return null;
-        $tag = new $class;
+        if (!$class) {
+            return null;
+        }
+        $tag = new $class();
         // tool for settin gup content tags
         if ($tag instanceof ContentTagInterface) {
             $tag->setContent($node->textContent);
@@ -124,12 +125,11 @@ abstract class AbstractParser
 
     protected function processAttributes(DOMElement $node, TagInterface $tag): void
     {
-        if (!$node->attributes) return;
         /** @var array<string,string|bool> */
         $attributes = [];
         // absorb attributes
         /** @var DOMNode $attribute */
-        foreach ($node->attributes as $attribute) {
+        foreach ($node->attributes ?? [] as $attribute) {
             if ($attribute->nodeValue) {
                 $attributes[$attribute->nodeName] = $attribute->nodeValue;
             } else {
@@ -148,10 +148,9 @@ abstract class AbstractParser
                 // make an effort to set ID
                 try {
                     $tag->attributes()["$k"] = $v;
-                }
-                // it is correct to ignore attributes that are unsettable
-                catch (\Throwable $th) { // @codeCoverageIgnore
+                } catch (\Throwable $th) { // @codeCoverageIgnore
                     // does nothing
+                    // it is correct to ignore attributes that are unsettable
                 }
             }
         }

@@ -16,8 +16,11 @@ class MetaTag extends AbstractTag implements MetadataContent
 
     public function setName(null|string $name): static
     {
-        if (!$name) $this->attributes()['name'] = false;
-        else $this->attributes()['name'] = $name;
+        if (!$name) {
+            $this->attributes()['name'] = false;
+        } else {
+            $this->attributes()['name'] = $name;
+        }
         return $this;
     }
 
@@ -34,8 +37,11 @@ class MetaTag extends AbstractTag implements MetadataContent
 
     public function setContent(null|string $content): static
     {
-        if (!$content) $this->attributes()['content'] = false;
-        else $this->attributes()['content'] = $content;
+        if (!$content) {
+            $this->attributes()['content'] = false;
+        } else {
+            $this->attributes()['content'] = $content;
+        }
         return $this;
     }
 
@@ -52,8 +58,11 @@ class MetaTag extends AbstractTag implements MetadataContent
 
     public function setHttpEquiv(null|string $http_equiv): static
     {
-        if (!$http_equiv) $this->attributes()['http-equiv'] = false;
-        else $this->attributes()['http-equiv'] = $http_equiv;
+        if (!$http_equiv) {
+            $this->attributes()['http-equiv'] = false;
+        } else {
+            $this->attributes()['http-equiv'] = $http_equiv;
+        }
         return $this;
     }
 
@@ -70,8 +79,11 @@ class MetaTag extends AbstractTag implements MetadataContent
 
     public function setCharset(null|string $charset): static
     {
-        if (!$charset) $this->attributes()['charset'] = false;
-        else $this->attributes()['charset'] = $charset;
+        if (!$charset) {
+            $this->attributes()['charset'] = false;
+        } else {
+            $this->attributes()['charset'] = $charset;
+        }
         return $this;
     }
 

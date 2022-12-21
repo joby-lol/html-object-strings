@@ -26,6 +26,10 @@ abstract class TagTestCase extends TestCase
         // test unsetting via unset
         call_user_func([$tag, $unsetFn]);
         $this->assertNull(call_user_func([$tag, $getFn]));
+        // test setting and unsetting via null value
+        call_user_func([$tag, $setFn], $test_value);
+        call_user_func([$tag, $setFn], null);
+        $this->assertNull(call_user_func([$tag, $getFn]));
     }
 
     protected function assertBooleanAttributeHelperMethods(string $attribute, string $class): void

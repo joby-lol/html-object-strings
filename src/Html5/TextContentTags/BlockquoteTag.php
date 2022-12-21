@@ -18,8 +18,11 @@ class BlockquoteTag extends AbstractContainerTag implements FlowContent, Section
 
     public function setCite(null|string $cite): static
     {
-        if (!$cite) $this->attributes()['cite'] = false;
-        else $this->attributes()['cite'] = $cite;
+        if (!$cite) {
+            $this->attributes()['cite'] = false;
+        } else {
+            $this->attributes()['cite'] = $cite;
+        }
         return $this;
     }
 

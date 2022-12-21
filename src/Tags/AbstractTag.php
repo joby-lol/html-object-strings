@@ -7,7 +7,8 @@ use ByJoby\HTML\Traits\NodeTrait;
 
 abstract class AbstractTag implements TagInterface
 {
-    use NodeTrait, TagTrait;
+    use NodeTrait;
+    use TagTrait;
 
     public function tag(): string
     {

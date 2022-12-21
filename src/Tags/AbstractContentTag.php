@@ -25,14 +25,17 @@ abstract class AbstractContentTag extends AbstractTag implements ContentTagInter
         $openingTag = sprintf('<%s>', implode(' ', $this->openingTagStrings()));
         $closingTag = sprintf('</%s>', $this->tag());
         $content = $this->content();
-        if (!$content) return $openingTag . $closingTag;
-        else return implode(
-            PHP_EOL,
-            [
+        if (!$content) {
+            return $openingTag . $closingTag;
+        } else {
+            return implode(
+                PHP_EOL,
+                [
                 $openingTag,
                 $content,
                 $closingTag
-            ]
-        );
+                ]
+            );
+        }
     }
 }

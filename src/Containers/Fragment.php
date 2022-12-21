@@ -16,7 +16,9 @@ class Fragment implements FragmentInterface
      */
     public function __construct(null|array|Traversable $children = null)
     {
-        if (!$children) return;
+        if (!$children) {
+            return;
+        }
         foreach ($children as $child) {
             $this->addChild($child);
         }

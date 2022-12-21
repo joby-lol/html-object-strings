@@ -19,14 +19,17 @@ abstract class AbstractGroupedTag extends AbstractTag implements ContainerTagInt
                 return !!$group->children();
             }
         );
-        if (!$groups) return $openingTag . $closingTag;
-        else return implode(
-            PHP_EOL,
-            [
+        if (!$groups) {
+            return $openingTag . $closingTag;
+        } else {
+            return implode(
+                PHP_EOL,
+                [
                 $openingTag,
                 implode(PHP_EOL, $groups),
                 $closingTag
-            ]
-        );
+                ]
+            );
+        }
     }
 }

@@ -11,9 +11,9 @@ use ByJoby\HTML\Traits\GroupedContainerTrait;
 
 class HtmlTag extends AbstractGroupedTag implements HtmlTagInterface
 {
-    const TAG = 'html';
-
     use GroupedContainerTrait;
+
+    const TAG = 'html';
 
     /** @var ContainerGroup<HeadTagInterface> */
     protected $head;
@@ -27,8 +27,8 @@ class HtmlTag extends AbstractGroupedTag implements HtmlTagInterface
         $this->body = ContainerGroup::ofClass(BodyTagInterface::class, 1);
         $this->addGroup($this->head);
         $this->addGroup($this->body);
-        $this->addChild(new HeadTag);
-        $this->addChild(new BodyTag);
+        $this->addChild(new HeadTag());
+        $this->addChild(new BodyTag());
     }
 
     public function head(): HeadTagInterface

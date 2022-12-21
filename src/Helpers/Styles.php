@@ -8,13 +8,13 @@ use Stringable;
 use Traversable;
 
 /**
- * A key difference in strategy between this class and Attributes or Classes is 
+ * A key difference in strategy between this class and Attributes or Classes is
  * that it does not make significant validation attempts. CSS is an evolving
  * language, and it would be a fool's errand to try and thoroughly validate it.
- * 
+ *
  * To that end, this class is very accepting of not-obviously-malformed property
  * names and values.
- * 
+ *
  * @implements ArrayAccess<string,null|string|Stringable>
  */
 class Styles implements Countable, ArrayAccess, Stringable
@@ -29,7 +29,9 @@ class Styles implements Countable, ArrayAccess, Stringable
      */
     public function __construct(null|array|Traversable $classes = null)
     {
-        if (!$classes) return;
+        if (!$classes) {
+            return;
+        }
         foreach ($classes as $name => $value) {
             $this[$name] = $value;
         }
@@ -39,7 +41,9 @@ class Styles implements Countable, ArrayAccess, Stringable
     {
         foreach (explode(';', $css_string) as $rule) {
             $rule = explode(':', trim($rule));
-            if (count($rule) == 2) $this[$rule[0]] = $rule[1];
+            if (count($rule) == 2) {
+                $this[$rule[0]] = $rule[1];
+            }
         }
     }
 
@@ -50,8 +54,7 @@ class Styles implements Countable, ArrayAccess, Stringable
 
     public function offsetExists(mixed $offset): bool
     {
-        if (!$offset) return false;
-        return isset($this->styles[$offset]);
+        return @isset($this->styles[$offset]);
     }
 
     public function offsetGet(mixed $offset): mixed
@@ -61,13 +64,16 @@ class Styles implements Countable, ArrayAccess, Stringable
 
     public function offsetSet(mixed $offset, mixed $value): void
     {
-        if (!$offset) return;
-        if ($value) $value = trim($value);
-        if (!$value) unset($this->styles[$offset]);
-        else {
-            if (!static::validate($offset, $value)) return;
-            if (!isset($this->styles[$offset])) $this->sorted = false;
-            $this->styles[$offset] = $value;
+        if (!$value) {
+            unset($this->styles[$offset]);
+        } else {
+            if (!static::validate($offset, $value)) {
+                return;
+            }
+            if (!isset($this->styles[$offset])) {
+                $this->sorted = false;
+            }
+            $this->styles[$offset] = trim($value);
         }
     }
 
@@ -97,15 +103,19 @@ class Styles implements Countable, ArrayAccess, Stringable
         return implode(';', $styles);
     }
 
-    protected static function validate(null|string $property, null|string $value): bool
+    protected static function validate(null|string $property, string $value): bool
     {
-        if (!$property) return false;
-        elseif (!preg_match('/[a-z]/', $property)) return false;
+        if (!$property) {
+            return false;
+        } elseif (!preg_match('/[a-z]/', $property)) {
+            return false;
+        }
 
-        if ($value) $value = trim($value);
-        if (!$value) return false;
-        elseif (str_contains($value, ';')) return false;
-        elseif (str_contains($value, ':')) return false;
+        if (str_contains($value, ';')) {
+            return false;
+        } elseif (str_contains($value, ':')) {
+            return false;
+        }
 
         return true;
     }
