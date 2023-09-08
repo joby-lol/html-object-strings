@@ -89,10 +89,10 @@ trait TagTrait
             $strings[] = sprintf('style="%s"', $this->styles());
         }
         foreach ($this->attributes() as $name => $value) {
-            if ($value == BooleanAttribute::false) {
+            if ($value === BooleanAttribute::false) {
                 // skip over false boolean attributes
                 continue;
-            }elseif ($value == BooleanAttribute::true) {
+            }elseif ($value === BooleanAttribute::true) {
                 // true boolean attributes render as null
                 $strings[] = $name;
             }elseif (is_string($value) || is_numeric($value) || $value instanceof Stringable) {
