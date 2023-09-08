@@ -1,7 +1,7 @@
-name: Tests and analysis
+name: PHPStan
 on: push
 jobs:
-  test-and-analyze:
+  phpstan:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,6 +14,3 @@ jobs:
           level: max
           memory_limit: 1G
           args: --memory-limit 1G
-      - uses: php-actions/phpunit@v3
-        with:
-          version: 9
