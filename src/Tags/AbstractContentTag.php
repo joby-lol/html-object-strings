@@ -8,6 +8,8 @@ abstract class AbstractContentTag extends AbstractTag implements ContentTagInter
 {
     /** @var string|Stringable */
     protected $content = '';
+    /** @var bool */
+    protected $inline = false;
 
     public function content(): string|Stringable
     {
@@ -27,15 +29,10 @@ abstract class AbstractContentTag extends AbstractTag implements ContentTagInter
         $content = $this->content();
         if (!$content) {
             return $openingTag . $closingTag;
+        } elseif ($this->inline) {
+            return $openingTag . $content . $closingTag;
         } else {
-            return implode(
-                PHP_EOL,
-                [
-                $openingTag,
-                $content,
-                $closingTag
-                ]
-            );
+            return $openingTag . PHP_EOL . $content . PHP_EOL . $closingTag;
         }
     }
 }

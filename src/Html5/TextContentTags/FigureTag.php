@@ -9,6 +9,12 @@ use ByJoby\HTML\NodeInterface;
 use ByJoby\HTML\Tags\AbstractGroupedTag;
 use ByJoby\HTML\Tags\TagInterface;
 
+/**
+ * 
+ * 
+ * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
+ * 
+ */
 class FigureTag extends AbstractGroupedTag implements FlowContent, DisplayBlock
 {
     const TAG = 'figure';

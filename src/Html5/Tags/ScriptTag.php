@@ -7,6 +7,12 @@ use ByJoby\HTML\ContentCategories\PhrasingContent;
 use ByJoby\HTML\DisplayTypes\DisplayNone;
 use ByJoby\HTML\Tags\AbstractContentTag;
 
+/**
+ * 
+ * 
+ * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
+ * 
+ */
 class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingContent, DisplayNone
 {
     const TAG = 'script';
@@ -35,7 +41,7 @@ class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingC
 
     public function crossorigin(): null|string
     {
-        return $this->attributes()->string('crossorigin');
+        return $this->attributes()->asString('crossorigin');
     }
 
     public function setCrossorigin(null|string $crossorigin): static
@@ -56,7 +62,7 @@ class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingC
 
     public function integrity(): null|string
     {
-        return $this->attributes()->string('integrity');
+        return $this->attributes()->asString('integrity');
     }
 
     public function setIntegrity(null|string $integrity): static
@@ -88,7 +94,7 @@ class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingC
 
     public function nonce(): null|string
     {
-        return $this->attributes()->string('nonce');
+        return $this->attributes()->asString('nonce');
     }
 
     public function setNonce(null|string $nonce): static
@@ -109,7 +115,7 @@ class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingC
 
     public function referrerpolicy(): null|string
     {
-        return $this->attributes()->string('referrerpolicy');
+        return $this->attributes()->asString('referrerpolicy');
     }
 
     public function setReferrerpolicy(null|string $referrerpolicy): static
@@ -130,7 +136,7 @@ class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingC
 
     public function src(): null|string
     {
-        return $this->attributes()->string('src');
+        return $this->attributes()->asString('src');
     }
 
     public function setSrc(null|string $src): static
@@ -151,7 +157,7 @@ class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingC
 
     public function type(): null|string
     {
-        return $this->attributes()->string('type');
+        return $this->attributes()->asString('type');
     }
 
     public function setType(null|string $type): static

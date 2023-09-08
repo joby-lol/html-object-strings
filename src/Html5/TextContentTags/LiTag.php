@@ -4,9 +4,53 @@ namespace ByJoby\HTML\Html5\TextContentTags;
 
 use ByJoby\HTML\ContentCategories\FlowContent;
 use ByJoby\HTML\DisplayTypes\DisplayBlock;
+use ByJoby\HTML\Html5\Enums\Type_list;
 use ByJoby\HTML\Tags\AbstractContainerTag;
 
+/**
+ * 
+ * 
+ * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
+ * 
+ */
 class LiTag extends AbstractContainerTag implements FlowContent, DisplayBlock
 {
     const TAG = 'li';
+
+    /**
+     * Gets the numbering type to be used if placed in an <OL> tag.
+     *
+     * @return null|Type_list
+     */
+    public function type(): null|Type_list
+    {
+        return $this->attributes()->asEnum('type', Type_list::class);
+    }
+
+    /**
+     * Sets the numbering type to be used if placed in an <OL> tag.
+     *
+     * @param null|Type_list $type
+     * @return static
+     */
+    public function setType(null|Type_list $type): static
+    {
+        if (!$type) {
+            $this->attributes()['type'] = false;
+        } else {
+            $this->attributes()['type'] = $type->value;
+        }
+        return $this;
+    }
+
+    /**
+     * Unsets the numbering type to be used if placed in an <OL> tag.
+     *
+     * @return static
+     */
+    public function unsetType(): static
+    {
+        unset($this->attributes()['type']);
+        return $this;
+    }
 }

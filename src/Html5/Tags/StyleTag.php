@@ -5,13 +5,19 @@ namespace ByJoby\HTML\Html5\Tags;
 use ByJoby\HTML\ContentCategories\MetadataContent;
 use ByJoby\HTML\Tags\AbstractContentTag;
 
+/**
+ * 
+ * 
+ * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
+ * 
+ */
 class StyleTag extends AbstractContentTag implements MetadataContent
 {
     const TAG = 'style';
 
     public function media(): null|string
     {
-        return $this->attributes()->string('media');
+        return $this->attributes()->asString('media');
     }
 
     public function setMedia(null|string $media): static
@@ -32,7 +38,7 @@ class StyleTag extends AbstractContentTag implements MetadataContent
 
     public function nonce(): null|string
     {
-        return $this->attributes()->string('nonce');
+        return $this->attributes()->asString('nonce');
     }
 
     public function setNonce(null|string $nonce): static

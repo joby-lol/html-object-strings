@@ -34,7 +34,7 @@ class Html5DocumentTest extends TestCase
                     '<!DOCTYPE html>',
                     '<html>',
                     '<head>',
-                    '<title>', 'Untitled', '</title>',
+                    '<title>Untitled</title>',
                     '</head>',
                     '<body></body>',
                     '</html>'

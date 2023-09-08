@@ -5,6 +5,9 @@ namespace ByJoby\HTML\Html5;
 use ByJoby\HTML\AbstractParser;
 use ByJoby\HTML\Containers\HtmlDocumentInterface;
 
+/**
+ * A Parser configured to parse and render HTML5.
+ */
 class Html5Parser extends AbstractParser
 {
     /** @var array<int,string> */

@@ -19,12 +19,34 @@ use DOMElement;
 use DOMNode;
 use DOMText;
 
+/**
+ * Extensions of this class to create new parsers are primarily meant to be
+ * controlled by adjusting the default properties below
+ */
 abstract class AbstractParser
 {
-    /** @var array<int,string> */
+    /** 
+     * A list of namespaces in which to match tags. To match in this way the
+     * tag classes must implement TagInterface and be named following the
+     * convention of the tag name in CamelCase followed by "Tag" i.e. a class
+     * implementing a tag <my-tag> would need to be named MyTagTag.
+     * 
+     * They are searched in order and the first match is used.
+     * 
+     * @var array<int,string>
+     */
     protected $tag_namespaces = [];
 
-    /** @var array<string,class-string<TagInterface>> */
+    /** 
+     * A list of defined tag classes, matching a tag string (in lower case) to
+     * a fully-qualified TagInterface-implementing class. This array is also
+     * used at runtime to cache the pairings found and verified from 
+     * $tag_namespaces.
+     * 
+     * They are searched in order and the first match is used.
+     * 
+     * @var array<string,class-string<TagInterface>>
+     */
     protected $tag_classes = [];
 
     /** @var class-string<CommentInterface> */
@@ -97,11 +119,13 @@ abstract class AbstractParser
         } elseif ($node instanceof DOMComment) {
             return new ($this->comment_class)($node->textContent);
         } elseif ($node instanceof DOMText) {
-            return new ($this->text_class)($node->textContent);
+            $content = trim($node->textContent);
+            if ($content) {
+                return new ($this->text_class)($content);
+            }
         }
-        // This line shouldn't be reached, but if it is it's philosophically
-        // consistent to simply ignore unknown node types
-        return null; // @codeCoverageIgnore
+        // It's philosophically consistent to simply ignore unknown node types
+        return null;
     }
 
     protected function convertNodeToTag(DOMElement $node): null|NodeInterface
@@ -112,7 +136,7 @@ abstract class AbstractParser
             return null;
         }
         $tag = new $class();
-        // tool for settin gup content tags
+        // tool for setting up content tags
         if ($tag instanceof ContentTagInterface) {
             $tag->setContent($node->textContent);
         }

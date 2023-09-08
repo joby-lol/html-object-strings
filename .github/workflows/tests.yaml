@@ -10,6 +10,8 @@ jobs:
           dev: yes
       - uses: php-actions/phpstan@v3
         with:
+          path: src
+          level: max
           memory_limit: 1G
           args: --memory-limit 1G
       - uses: php-actions/phpunit@v3

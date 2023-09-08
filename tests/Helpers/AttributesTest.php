@@ -4,6 +4,12 @@ namespace ByJoby\HTML\Helpers;
 
 use PHPUnit\Framework\TestCase;
 
+// TODO test setEnumArray
+// TODO test asEnumArray
+// TODO test asNumber
+// TODO test asInt
+// TODO test asFloat
+
 class AttributesTest extends TestCase
 {
     public function testConstruction(): Attributes

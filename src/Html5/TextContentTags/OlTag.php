@@ -4,37 +4,70 @@ namespace ByJoby\HTML\Html5\TextContentTags;
 
 use ByJoby\HTML\ContentCategories\FlowContent;
 use ByJoby\HTML\DisplayTypes\DisplayBlock;
+use ByJoby\HTML\Html5\Enums\Type_list;
 use ByJoby\HTML\Tags\AbstractContainerTag;
 
+/**
+ * The <ol> HTML element represents an ordered list of items — typically
+ * rendered as a numbered list.
+ *
+ * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol
+ */
 class OlTag extends AbstractContainerTag implements FlowContent, DisplayBlock
 {
     const TAG = 'ol';
-    const TYPE_LETTER_LOWER = 'a';
-    const TYPE_LETTER_UPPER = 'A';
-    const TYPE_ROMAN_LOWER = 'i';
-    const TYPE_ROMAN_UPPER = 'I';
-    const TYPE_NUMBER = '1';
 
+    /**
+     * This Boolean attribute specifies that the list's items are in reverse
+     * order. Items will be numbered from high to low.
+     *
+     * @param boolean $reversed
+     * @return static
+     */
     public function setReversed(bool $reversed): static
     {
         $this->attributes()['reversed'] = $reversed;
         return $this;
     }
 
+    /**
+     * This Boolean attribute specifies that the list's items are in reverse
+     * order. Items will be numbered from high to low.
+     *
+     * @return boolean
+     */
     public function reversed(): bool
     {
         return !!$this->attributes()['reversed'];
     }
 
+    /**
+     * An integer to start counting from for the list items. Always an Arabic
+     * numeral (1, 2, 3, etc.), even when the numbering type is letters or Roman
+     * numerals. For example, to start numbering elements from the letter "d" or
+     * the Roman numeral "iv," use start="4".
+     *
+     * @return null|integer
+     */
     public function start(): null|int
     {
         if ($this->attributes()['start']) {
-            return intval($this->attributes()->string('start'));
+            return intval($this->attributes()->asString('start'));
         } else {
             return null;
         }
     }
 
+    /**
+     * An integer to start counting from for the list items. Always an Arabic
+     * numeral (1, 2, 3, etc.), even when the numbering type is letters or Roman
+     * numerals. For example, to start numbering elements from the letter "d" or
+     * the Roman numeral "iv," use start="4".
+     *
+     * @param null|integer $start
+     * @return static
+     */
     public function setStart(null|int $start): static
     {
         if (!$start) {
@@ -45,30 +78,60 @@ class OlTag extends AbstractContainerTag implements FlowContent, DisplayBlock
         return $this;
     }
 
+    /**
+     * An integer to start counting from for the list items. Always an Arabic
+     * numeral (1, 2, 3, etc.), even when the numbering type is letters or Roman
+     * numerals. For example, to start numbering elements from the letter "d" or
+     * the Roman numeral "iv," use start="4".
+     *
+     * @return static
+     */
     public function unsetStart(): static
     {
         unset($this->attributes()['start']);
         return $this;
     }
 
-    public function type(): null|string
+    /**
+     * Gets the numbering type.
+     *
+     * The specified type is used for the entire list unless a different type
+     * attribute is used on an enclosed <li> element.
+     *
+     * @return null|Type_list
+     */
+    public function type(): null|Type_list
     {
-        return $this->attributes()->string('type');
+        return $this->attributes()->asEnum('type', Type_list::class);
     }
 
-    public function setType(null|string $type): static
+    /**
+     * Sets the numbering type.
+     *
+     * The specified type is used for the entire list unless a different type
+     * attribute is used on an enclosed <li> element.
+     *
+     * @param null|Type_list $type
+     * @return static
+     */
+    public function setType(null|Type_list $type): static
     {
-        if (!in_array($type, ['a', 'A', 'i', 'I', '1'])) {
-            $type = null;
-        }
         if (!$type) {
             $this->attributes()['type'] = false;
         } else {
-            $this->attributes()['type'] = $type;
+            $this->attributes()['type'] = $type->value;
         }
         return $this;
     }
 
+    /**
+     * Unsets the numbering type.
+     *
+     * The specified type is used for the entire list unless a different type
+     * attribute is used on an enclosed <li> element.
+     *
+     * @return static
+     */
     public function unsetType(): static
     {
         unset($this->attributes()['type']);

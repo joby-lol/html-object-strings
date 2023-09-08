@@ -14,9 +14,14 @@ abstract class AbstractGroupedTag extends AbstractTag implements ContainerTagInt
         $openingTag = sprintf('<%s>', implode(' ', $this->openingTagStrings()));
         $closingTag = sprintf('</%s>', $this->tag());
         $groups = array_filter(
-            $this->groups(),
-            function (ContainerGroup $group) {
-                return !!$group->children();
+            array_map(
+                function (ContainerGroup $group) {
+                    return trim($group);
+                },
+                $this->groups()
+            ),
+            function (string $group) {
+                return !!$group;
             }
         );
         if (!$groups) {
@@ -25,9 +30,9 @@ abstract class AbstractGroupedTag extends AbstractTag implements ContainerTagInt
             return implode(
                 PHP_EOL,
                 [
-                $openingTag,
-                implode(PHP_EOL, $groups),
-                $closingTag
+                    $openingTag,
+                    implode(PHP_EOL, $groups),
+                    $closingTag
                 ]
             );
         }

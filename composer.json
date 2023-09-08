@@ -27,12 +27,11 @@
     },
     "scripts": {
         "test": "phpunit",
-        "stan": "phpstan",
-        "sniff": "phpcs"
+        "stan": "phpstan"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.9",
         "phpunit/phpunit": "^9.5",
-        "squizlabs/php_codesniffer": "^3.7"
+        "mustangostang/spyc": "^0.6.3"
     }
 }

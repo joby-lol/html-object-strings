@@ -1,0 +1,15 @@
+class: ByJoby\HTML\Html5\Html5Document
+children:
+  - class: ByJoby\HTML\Html5\DocumentTags\Doctype
+  - class: ByJoby\HTML\Html5\DocumentTags\HtmlTag
+    children:
+      - class: ByJoby\HTML\Html5\DocumentTags\HeadTag
+        children:
+          - class: ByJoby\HTML\Html5\DocumentTags\TitleTag
+          - class: ByJoby\HTML\Html5\Tags\MetaTag
+          - class: ByJoby\HTML\Html5\Tags\MetaTag
+          - class: ByJoby\HTML\Html5\Tags\MetaTag
+      - class: ByJoby\HTML\Html5\DocumentTags\BodyTag
+        children:
+          - class: ByJoby\HTML\Html5\ContentSectioningTags\H1Tag
+          - class: ByJoby\HTML\Html5\TextContentTags\PTag

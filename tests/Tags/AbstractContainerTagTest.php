@@ -19,19 +19,29 @@ class AbstractContainerTagTest extends TestCase
     {
         $div = $this->tag('div');
         $this->assertEquals('<div></div>', $div->__toString());
+        // add one child
         $span = $this->tag('span');
         $div->addChild($span);
         $div->attributes()['a'] = 'b';
         $this->assertEquals(
-            implode(PHP_EOL, [
-                '<div a="b">',
-                '<span></span>',
-                '</div>',
-            ]),
+            '<div a="b"><span></span></div>',
             $div->__toString()
         );
         $this->assertEquals($div, $span->parent());
         return $div;
+    }
+
+    /** @depends clone testDIV */
+    public function testSecondChild(AbstractContainerTag $div): void
+    {
+        // add a second child to test line breaks
+        $span = $this->tag('span');
+        $div->addChild($span);
+        $div->attributes()['a'] = 'b';
+        $this->assertEquals(
+            '<div a="b">' . PHP_EOL . '<span></span>' . PHP_EOL . '<span></span>' . PHP_EOL . '</div>',
+            $div->__toString()
+        );
     }
 
     public function testBooleanAttributes(): void
@@ -51,13 +61,7 @@ class AbstractContainerTagTest extends TestCase
         $span2 = $this->tag('span');
         $span1->addChild($span2);
         $this->assertEquals(
-            implode(PHP_EOL, [
-                '<div a="b">',
-                '<span>',
-                '<span></span>',
-                '</span>',
-                '</div>',
-            ]),
+            '<div a="b"><span><span></span></span></div>',
             $div->__toString()
         );
         return $div;

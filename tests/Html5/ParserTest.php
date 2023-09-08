@@ -56,6 +56,27 @@ class Html5ParserTest extends TestCase
         $parser = new Html5Parser();
         $document = $parser->parseDocument('<html><head><title>Title</title></head><body><div>foo</div></body></html>');
         $this->assertEquals('Title', $document->html()->head()->title()->content());
-        $this->assertEquals('<div>' . PHP_EOL . 'foo' . PHP_EOL . '</div>', $document->body()->children()[0]->__toString());
+        $this->assertEquals('<div>foo</div>', $document->body()->children()[0]->__toString());
+    }
+
+    public function testDocumentsFromFiles()
+    {
+        $parser = new Html5Parser();
+        foreach (glob(__DIR__ . '/parser_documents/*.html') as $file) {
+            $document = $parser->parseDocument(file_get_contents($file));
+            file_put_contents(__DIR__ . '/parser_documents/re-rendered/' . basename($file), $document);
+            $structure = spyc_load_file(preg_replace('/\.html$/', '.yaml', $file));
+            $this->assertNodeMatchesStructure($document, $structure);
+        }
+    }
+
+    protected function assertNodeMatchesStructure($node, $structure)
+    {
+        $this->assertInstanceOf($structure['class'], $node, sprintf("Node %s is not of type %s: \"%s\"", get_class($node), $structure['class'], $node));
+        if (is_array(@$structure['children'])) {
+            foreach (array_map(null, $node->children(), $structure['children']) as list($child_node, $child_structure)) {
+                $this->assertNodeMatchesStructure($child_node, $child_structure);
+            }
+        }
     }
 }

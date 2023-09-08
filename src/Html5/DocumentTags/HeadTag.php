@@ -8,6 +8,13 @@ use ByJoby\HTML\Containers\DocumentTags\TitleTagInterface;
 use ByJoby\HTML\Tags\AbstractGroupedTag;
 use ByJoby\HTML\Traits\GroupedContainerTrait;
 
+/**
+ * The <head> HTML element contains machine-readable information (metadata)
+ * about the document, like its title, scripts, and style sheets.
+ *
+ * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head
+ */
 class HeadTag extends AbstractGroupedTag implements HeadTagInterface
 {
     use GroupedContainerTrait;

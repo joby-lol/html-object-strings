@@ -9,6 +9,14 @@ use ByJoby\HTML\Containers\DocumentTags\HtmlTagInterface;
 use ByJoby\HTML\Tags\AbstractGroupedTag;
 use ByJoby\HTML\Traits\GroupedContainerTrait;
 
+/**
+ * The <html> HTML element represents the root (top-level element) of an HTML
+ * document, so it is also referred to as the root element. All other elements
+ * must be descendants of this element.
+ *
+ * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html
+ */
 class HtmlTag extends AbstractGroupedTag implements HtmlTagInterface
 {
     use GroupedContainerTrait;

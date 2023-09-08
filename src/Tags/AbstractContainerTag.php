@@ -16,15 +16,18 @@ abstract class AbstractContainerTag extends AbstractTag implements ContainerTagI
     {
         $openingTag = sprintf('<%s>', implode(' ', $this->openingTagStrings()));
         $closingTag = sprintf('</%s>', $this->tag());
-        if (!$this->children()) {
+        $children = $this->children();
+        if (!$children) {
             return $openingTag . $closingTag;
+        } elseif (count($children) == 1) {
+            return $openingTag . $children[0] . $closingTag;
         } else {
             return implode(
                 PHP_EOL,
                 [
-                $openingTag,
-                implode(PHP_EOL, $this->children()),
-                $closingTag
+                    $openingTag,
+                    implode(PHP_EOL, $this->children()),
+                    $closingTag
                 ]
             );
         }
