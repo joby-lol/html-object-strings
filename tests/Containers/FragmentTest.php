@@ -9,7 +9,14 @@ class FragmentTest extends TestCase
 {
     public function tag(string $name): AbstractContainerTag
     {
-        $tag = $this->getMockForAbstractClass(AbstractContainerTag::class, [], '', true, true, true, ['tag']);
+        $tag = $this->getMockForAbstractClass(
+            AbstractContainerTag::class,
+            [], 'Mock_Tag_' . $name,
+            true,
+            true,
+            true,
+            ['tag']
+        );
         $tag->method('tag')->willReturn($name);
         return $tag;
     }

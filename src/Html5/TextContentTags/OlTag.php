@@ -4,6 +4,7 @@ namespace ByJoby\HTML\Html5\TextContentTags;
 
 use ByJoby\HTML\ContentCategories\FlowContent;
 use ByJoby\HTML\DisplayTypes\DisplayBlock;
+use ByJoby\HTML\Html5\Enums\BooleanAttribute;
 use ByJoby\HTML\Html5\Enums\Type_list;
 use ByJoby\HTML\Tags\AbstractContainerTag;
 
@@ -27,7 +28,8 @@ class OlTag extends AbstractContainerTag implements FlowContent, DisplayBlock
      */
     public function setReversed(bool $reversed): static
     {
-        $this->attributes()['reversed'] = $reversed;
+        if ($reversed) $this->attributes()['reversed'] = BooleanAttribute::true;
+        else unset($this->attributes()['reversed']);
         return $this;
     }
 
@@ -39,7 +41,7 @@ class OlTag extends AbstractContainerTag implements FlowContent, DisplayBlock
      */
     public function reversed(): bool
     {
-        return !!$this->attributes()['reversed'];
+        return $this->attributes()['reversed'] === BooleanAttribute::true;
     }
 
     /**
@@ -52,11 +54,7 @@ class OlTag extends AbstractContainerTag implements FlowContent, DisplayBlock
      */
     public function start(): null|int
     {
-        if ($this->attributes()['start']) {
-            return intval($this->attributes()->asString('start'));
-        } else {
-            return null;
-        }
+        return $this->attributes()->asInt('start');
     }
 
     /**
@@ -70,11 +68,8 @@ class OlTag extends AbstractContainerTag implements FlowContent, DisplayBlock
      */
     public function setStart(null|int $start): static
     {
-        if (!$start) {
-            $this->attributes()['start'] = false;
-        } else {
-            $this->attributes()['start'] = strval($start);
-        }
+        if (is_null($start)) $this->unsetStart();
+        else $this->attributes()['start'] = $start;
         return $this;
     }
 
@@ -116,11 +111,8 @@ class OlTag extends AbstractContainerTag implements FlowContent, DisplayBlock
      */
     public function setType(null|Type_list $type): static
     {
-        if (!$type) {
-            $this->attributes()['type'] = false;
-        } else {
-            $this->attributes()['type'] = $type->value;
-        }
+        if ($type) $this->attributes()['type'] = $type->value;
+        else $this->unsetType();
         return $this;
     }
 

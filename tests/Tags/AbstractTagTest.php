@@ -4,6 +4,7 @@ namespace ByJoby\HTML\Tags;
 
 use ByJoby\HTML\Helpers\Attributes;
 use ByJoby\HTML\Helpers\Classes;
+use ByJoby\HTML\Html5\Enums\BooleanAttribute;
 use PHPUnit\Framework\TestCase;
 
 class AbstractTagTest extends TestCase
@@ -67,10 +68,10 @@ class AbstractTagTest extends TestCase
     public function testBooleanAttributes(): void
     {
         $tag = $this->tag('br');
-        $tag->attributes()['a'] = true;
-        $tag->attributes()['b'] = false;
-        $tag->attributes()['c'] = null;
-        $this->assertEquals('<br a>', $tag->__toString());
+        $tag->attributes()['a'] = BooleanAttribute::true;
+        $tag->attributes()['b'] = BooleanAttribute::false;
+        $tag->attributes()['c'] = "";
+        $this->assertEquals('<br a c="">', $tag->__toString());
     }
 
     /**

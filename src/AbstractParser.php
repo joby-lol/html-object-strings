@@ -5,6 +5,7 @@ namespace ByJoby\HTML;
 use ByJoby\HTML\Containers\Fragment;
 use ByJoby\HTML\Containers\FragmentInterface;
 use ByJoby\HTML\Containers\HtmlDocumentInterface;
+use ByJoby\HTML\Html5\Enums\BooleanAttribute;
 use ByJoby\HTML\Nodes\CData;
 use ByJoby\HTML\Nodes\CDataInterface;
 use ByJoby\HTML\Nodes\Comment;
@@ -66,33 +67,34 @@ abstract class AbstractParser
 
     public function parseFragment(string $html): FragmentInterface
     {
-        $fragment = new ($this->fragment_class);
+        $fragment = new($this->fragment_class);
         $dom = new DOMDocument();
         $dom->loadHTML(
             '<div>' . $html . '</div>', // wrap in DIV otherwise it will wrap root-level text in P tags
             LIBXML_BIGLINES
-                | LIBXML_COMPACT
-                | LIBXML_HTML_NOIMPLIED
-                | LIBXML_HTML_NODEFDTD
-                | LIBXML_PARSEHUGE
-                | LIBXML_NOERROR
+            | LIBXML_COMPACT
+            | LIBXML_HTML_NOIMPLIED
+            | LIBXML_HTML_NODEFDTD
+            | LIBXML_PARSEHUGE
+            | LIBXML_NOERROR
         );
-        $this->walkDom($dom->childNodes[0], $fragment);
+        // @phpstan-ignore-next-line we actually do know there's an item zero
+        $this->walkDom($dom->childNodes->item(0), $fragment);
         return $fragment;
     }
 
     public function parseDocument(string $html): HtmlDocumentInterface
     {
         /** @var HtmlDocumentInterface */
-        $document = new ($this->document_class);
+        $document = new($this->document_class);
         $dom = new DOMDocument();
         $dom->loadHTML(
             $html,
             LIBXML_BIGLINES
-                | LIBXML_COMPACT
-                | LIBXML_HTML_NODEFDTD
-                | LIBXML_PARSEHUGE
-                | LIBXML_NOERROR
+            | LIBXML_COMPACT
+            | LIBXML_HTML_NODEFDTD
+            | LIBXML_PARSEHUGE
+            | LIBXML_NOERROR
         );
         $this->walkDom($dom, $document);
         return $document;
@@ -117,11 +119,11 @@ abstract class AbstractParser
         if ($node instanceof DOMElement) {
             return $this->convertNodeToTag($node);
         } elseif ($node instanceof DOMComment) {
-            return new ($this->comment_class)($node->textContent);
+            return new($this->comment_class)($node->textContent);
         } elseif ($node instanceof DOMText) {
             $content = trim($node->textContent);
             if ($content) {
-                return new ($this->text_class)($content);
+                return new($this->text_class)($content);
             }
         }
         // It's philosophically consistent to simply ignore unknown node types
@@ -149,18 +151,17 @@ abstract class AbstractParser
 
     protected function processAttributes(DOMElement $node, TagInterface $tag): void
     {
-        /** @var array<string,string|bool> */
         $attributes = [];
-        // absorb attributes
+        // absorb attributes from DOMNode
         /** @var DOMNode $attribute */
         foreach ($node->attributes ?? [] as $attribute) {
             if ($attribute->nodeValue) {
                 $attributes[$attribute->nodeName] = $attribute->nodeValue;
             } else {
-                $attributes[$attribute->nodeName] = true;
+                $attributes[$attribute->nodeName] = BooleanAttribute::true;
             }
         }
-        // set attributes
+        // set attributes internally
         foreach ($attributes as $k => $v) {
             if ($k == 'id' && is_string($v)) {
                 $tag->setID($v);

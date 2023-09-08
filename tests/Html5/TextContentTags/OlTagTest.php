@@ -11,7 +11,7 @@ class OlTagTest extends BaseTagTest
     {
         $this->assertBooleanAttributeHelperMethods('reversed', OlTag::class);
         $this->assertAttributeHelperMethods('start', OlTag::class, 1, '1');
-        $this->assertAttributeHelperMethods('start', OlTag::class, 0, null);
+        $this->assertAttributeHelperMethods('start', OlTag::class, 0, '0');
         $this->assertAttributeHelperMethods('type', OlTag::class, Type_list::letterLower, 'a');
         $this->assertAttributeHelperMethods('type', OlTag::class, Type_list::letterUpper, 'A');
         $this->assertAttributeHelperMethods('type', OlTag::class, Type_list::romanLower, 'i');

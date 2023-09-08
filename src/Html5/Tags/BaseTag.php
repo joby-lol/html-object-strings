@@ -26,9 +26,9 @@ class BaseTag extends AbstractTag implements MetadataContent
      * Absolute and relative URLs are allowed. data: and javascript: URLs are
      * not allowed. 
      *
-     * @return null|string
+     * @return null|string|Stringable
      */
-    public function href(): null|string
+    public function href(): null|string|Stringable
     {
         return $this->attributes()->asString('href');
     }
@@ -38,16 +38,13 @@ class BaseTag extends AbstractTag implements MetadataContent
      * Absolute and relative URLs are allowed. data: and javascript: URLs are
      * not allowed. 
      *
-     * @param null|string $href
+     * @param null|string|Stringable $href
      * @return static
      */
-    public function setHref(null|string $href): static
+    public function setHref(null|string|Stringable $href): static
     {
-        if (!$href) {
-            $this->attributes()['href'] = false;
-        } else {
-            $this->attributes()['href'] = $href;
-        }
+        if ($href) $this->attributes()['href'] = $href;
+        else $this->unsetHref();
         return $this;
     }
 
@@ -88,7 +85,7 @@ class BaseTag extends AbstractTag implements MetadataContent
     public function setTarget(null|string|Stringable|BrowsingContext $target): static
     {
         if (!$target) {
-            $this->attributes()['target'] = false;
+            $this->unsetTarget();
         } elseif ($target instanceof BrowsingContext) {
             $this->attributes()['target'] = $target->value;
         } else {

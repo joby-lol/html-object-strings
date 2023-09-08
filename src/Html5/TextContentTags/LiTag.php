@@ -8,10 +8,14 @@ use ByJoby\HTML\Html5\Enums\Type_list;
 use ByJoby\HTML\Tags\AbstractContainerTag;
 
 /**
- * 
- * 
+ * The <li> HTML element is used to represent an item in a list. It must be
+ * contained in a parent element: an ordered list (<ol>), an unordered list
+ * (<ul>), or a menu (<menu>). In menus and unordered lists, list items are
+ * usually displayed using bullet points. In ordered lists, they are usually
+ * displayed with an ascending counter on the left, such as a number or letter.
+ *
  * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
- * 
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li
  */
 class LiTag extends AbstractContainerTag implements FlowContent, DisplayBlock
 {
@@ -35,11 +39,8 @@ class LiTag extends AbstractContainerTag implements FlowContent, DisplayBlock
      */
     public function setType(null|Type_list $type): static
     {
-        if (!$type) {
-            $this->attributes()['type'] = false;
-        } else {
-            $this->attributes()['type'] = $type->value;
-        }
+        if ($type) $this->attributes()['type'] = $type->value;
+        else $this->unsetType();
         return $this;
     }
 

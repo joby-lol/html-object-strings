@@ -8,14 +8,14 @@ use ByJoby\HTML\Nodes\TextInterface;
 
 class FigureTagTest extends BaseTagTest
 {
-    public function testCaptionOrder()
+    public function testCaptionOrder(): void
     {
         $figure = new FigureTag();
         $figure->addChild(new FigcaptionTag);
         $figure->addChild('Some content');
         $this->assertInstanceOf(TextInterface::class, $figure->children()[0]);
         $this->assertInstanceOf(FigcaptionTag::class, $figure->children()[1]);
-        $figure->reverseCaptionOrder();
+        $figure->flipCaptionOrder();
         $this->assertInstanceOf(TextInterface::class, $figure->children()[1]);
         $this->assertInstanceOf(FigcaptionTag::class, $figure->children()[0]);
     }

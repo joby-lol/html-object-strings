@@ -5,6 +5,7 @@ namespace ByJoby\HTML\Traits;
 use ByJoby\HTML\Helpers\Attributes;
 use ByJoby\HTML\Helpers\Classes;
 use ByJoby\HTML\Helpers\Styles;
+use ByJoby\HTML\Html5\Enums\BooleanAttribute;
 use Exception;
 use Stringable;
 
@@ -88,10 +89,14 @@ trait TagTrait
             $strings[] = sprintf('style="%s"', $this->styles());
         }
         foreach ($this->attributes() as $name => $value) {
-            if (is_string($value)) {
-                $strings[] = sprintf('%s="%s"', $name, static::sanitizeAttribute($value));
-            } elseif ($value) {
+            if ($value == BooleanAttribute::false) {
+                // skip over false boolean attributes
+                continue;
+            }elseif ($value == BooleanAttribute::true) {
+                // true boolean attributes render as null
                 $strings[] = $name;
+            }elseif (is_string($value) || is_numeric($value) || $value instanceof Stringable) {
+                $strings[] = sprintf('%s="%s"', $name, static::sanitizeAttribute(strval($value)));
             }
         }
         return $strings;

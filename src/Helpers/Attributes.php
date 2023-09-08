@@ -5,6 +5,7 @@ namespace ByJoby\HTML\Helpers;
 use ArrayAccess;
 use ArrayIterator;
 use BackedEnum;
+use ByJoby\HTML\Html5\Enums\BooleanAttribute;
 use Exception;
 use IteratorAggregate;
 use Stringable;
@@ -13,12 +14,12 @@ use Traversable;
 /**
  * Holds and validates a set of HTML attribute name/value pairs for use in tags.
  *
- * @implements ArrayAccess<string,bool|string|number|Stringable>
- * @implements IteratorAggregate<string,bool|string|number|Stringable>
+ * @implements ArrayAccess<string,string|number|Stringable|BooleanAttribute>
+ * @implements IteratorAggregate<string,string|number|Stringable|BooleanAttribute>
  */
 class Attributes implements IteratorAggregate, ArrayAccess
 {
-    /** @var array<string,bool|string|number|Stringable> */
+    /** @var array<string,string|number|Stringable|BooleanAttribute> */
     protected $array = [];
     /** @var bool */
     protected $sorted = true;
@@ -26,7 +27,7 @@ class Attributes implements IteratorAggregate, ArrayAccess
     protected $disallowed = [];
 
     /**
-     * @param null|array<string,bool|string|number|Stringable> $array
+     * @param null|array<string,string|number|Stringable|BooleanAttribute|BooleanAttribute> $array
      * @param array<mixed,string> $disallowed
      * @return void
      */
@@ -69,16 +70,18 @@ class Attributes implements IteratorAggregate, ArrayAccess
     }
 
     /**
-     * Set a value as a stringable enum array, automatically converting from a single enum or normal array of enums.
+     * Set a value as an array of enums, which will be internally saved as a
+     * string separated by $separator. An array of Enum values can also be
+     * retrieved using asEnumArray().
      *
      * @template T of BackedEnum
      * @param string $offset
-     * @param null|BackedEnum|StringableEnumArray<T>|array<string|int,T> $value
+     * @param null|BackedEnum|array<string|int,T> $value
      * @param class-string<T> $enum_class
      * @param string $separator
      * @return static
      */
-    public function setEnumArray(string $offset, null|BackedEnum|StringableEnumArray|array $value, string $enum_class, string $separator): static
+    public function setEnumArray(string $offset, null|BackedEnum|array $value, string $enum_class, string $separator): static
     {
         if (is_null($value)) {
             $value = [];
@@ -94,7 +97,9 @@ class Attributes implements IteratorAggregate, ArrayAccess
     }
 
     /**
-     * Returns a given offset's value as an array of enums.
+     * Returns a given offset's value as an array of enums. Note that this
+     * method always returns an array, it will simply be empty for empty
+     * attributes, unset attributes, or attributes with no valid values in them.
      *
      * @template T of BackedEnum
      * @param string $offset
@@ -104,12 +109,31 @@ class Attributes implements IteratorAggregate, ArrayAccess
      */
     public function asEnumArray(string $offset, string $enum_class, string $separator): array
     {
-        $value = strval($this->offsetGet($offset));
+        $value = $this->offsetGet($offset);
+        // short circuit if value is a boolean attribute
+        if ($value instanceof BooleanAttribute) {
+            return [];
+        }
+        // process as string
+        $value = strval($value);
         $value = explode($separator, $value);
-        $value = array_map(
-            $enum_class::tryFrom(...),
-            $value
-        );
+        if (!$enum_class::cases()) {
+            // short-circuit if there are no cases in the enum
+            return [];
+        } elseif (is_string($enum_class::cases()[0]->value)) {
+            // look at string values only
+            $value = array_map(
+                fn(string|int $e) => $enum_class::tryFrom(strval($e)),
+                $value
+            );
+        } else {
+            // look at int values only
+            $value = array_map(
+                fn(string|int $e) => $enum_class::tryFrom(intval($e)),
+                $value
+            );
+        }
+        // filter and return
         $value = array_filter(
             $value,
             fn($e) => !empty($e)
@@ -126,6 +150,9 @@ class Attributes implements IteratorAggregate, ArrayAccess
     public function asString(string $offset): null|string|Stringable
     {
         $value = $this->offsetGet($offset);
+        if (is_numeric($value)) {
+            $value = strval($value);
+        }
         if ($value instanceof Stringable || is_string($value)) {
             return $value;
         } else {
@@ -142,8 +169,8 @@ class Attributes implements IteratorAggregate, ArrayAccess
     public function asInt(string $offset): null|int
     {
         $value = $this->asNumber($offset);
-        if (is_int($value)) {
-            return $value;
+        if (is_numeric($value)) {
+            return intval($value);
         } else {
             return null;
         }
@@ -216,7 +243,7 @@ class Attributes implements IteratorAggregate, ArrayAccess
     }
 
     /**
-     * @return array<string,bool|string|number|Stringable>
+     * @return array<string,string|number|Stringable|BooleanAttribute>
      */
     public function getArray(): array
     {

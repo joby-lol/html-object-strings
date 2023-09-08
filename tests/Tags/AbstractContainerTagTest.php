@@ -2,6 +2,7 @@
 
 namespace ByJoby\HTML\Tags;
 
+use ByJoby\HTML\Html5\Enums\BooleanAttribute;
 use ByJoby\HTML\Nodes\Text;
 use ByJoby\HTML\Nodes\UnsanitizedText;
 use PHPUnit\Framework\TestCase;
@@ -47,10 +48,10 @@ class AbstractContainerTagTest extends TestCase
     public function testBooleanAttributes(): void
     {
         $tag = $this->tag('div');
-        $tag->attributes()['a'] = true;
-        $tag->attributes()['b'] = false;
-        $tag->attributes()['c'] = null;
-        $this->assertEquals('<div a></div>', $tag->__toString());
+        $tag->attributes()['a'] = BooleanAttribute::true;
+        $tag->attributes()['b'] = BooleanAttribute::false;
+        $tag->attributes()['c'] = "";
+        $this->assertEquals('<div a c=""></div>', $tag->__toString());
     }
 
     /** @depends clone testDIV */
