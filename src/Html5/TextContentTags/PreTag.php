@@ -2,7 +2,6 @@
 
 namespace ByJoby\HTML\Html5\TextContentTags;
 
-use ByJoby\HTML\DisplayTypes\DisplayBlock;
 use ByJoby\HTML\Tags\AbstractContainerTag;
 
 /**
@@ -14,7 +13,7 @@ use ByJoby\HTML\Tags\AbstractContainerTag;
  * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre
  */
-class PreTag extends AbstractContainerTag implements DisplayBlock
+class PreTag extends AbstractContainerTag
 {
     const TAG = 'pre';
 }

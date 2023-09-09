@@ -2,8 +2,6 @@
 
 namespace ByJoby\HTML\Html5\ContentSectioningTags;
 
-use ByJoby\HTML\ContentCategories\FlowContent;
-use ByJoby\HTML\DisplayTypes\DisplayBlock;
 use ByJoby\HTML\Tags\AbstractContainerTag;
 
 /**
@@ -14,7 +12,7 @@ use ByJoby\HTML\Tags\AbstractContainerTag;
  * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header
  */
-class HeaderTag extends AbstractContainerTag implements DisplayBlock, FlowContent
+class HeaderTag extends AbstractContainerTag
 {
     const TAG = 'header';
 }

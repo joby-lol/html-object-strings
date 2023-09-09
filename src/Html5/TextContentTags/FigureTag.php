@@ -3,8 +3,6 @@
 namespace ByJoby\HTML\Html5\TextContentTags;
 
 use ByJoby\HTML\Containers\ContainerGroup;
-use ByJoby\HTML\ContentCategories\FlowContent;
-use ByJoby\HTML\DisplayTypes\DisplayBlock;
 use ByJoby\HTML\NodeInterface;
 use ByJoby\HTML\Tags\AbstractGroupedTag;
 use ByJoby\HTML\Tags\TagInterface;
@@ -17,7 +15,7 @@ use ByJoby\HTML\Tags\TagInterface;
  * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure
  */
-class FigureTag extends AbstractGroupedTag implements FlowContent, DisplayBlock
+class FigureTag extends AbstractGroupedTag
 {
     const TAG = 'figure';
 

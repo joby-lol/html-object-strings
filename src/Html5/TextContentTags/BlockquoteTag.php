@@ -2,9 +2,6 @@
 
 namespace ByJoby\HTML\Html5\TextContentTags;
 
-use ByJoby\HTML\ContentCategories\FlowContent;
-use ByJoby\HTML\ContentCategories\SectioningRoot;
-use ByJoby\HTML\DisplayTypes\DisplayBlock;
 use ByJoby\HTML\Tags\AbstractContainerTag;
 use Stringable;
 
@@ -18,7 +15,7 @@ use Stringable;
  * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote
  */
-class BlockquoteTag extends AbstractContainerTag implements FlowContent, SectioningRoot, DisplayBlock
+class BlockquoteTag extends AbstractContainerTag
 {
     const TAG = 'blockquote';
 

@@ -2,9 +2,6 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
-use ByJoby\HTML\ContentCategories\MetadataContent;
-use ByJoby\HTML\ContentCategories\PhrasingContent;
-use ByJoby\HTML\DisplayTypes\DisplayContents;
 use ByJoby\HTML\Tags\AbstractContentTag;
 
 /**
@@ -15,7 +12,7 @@ use ByJoby\HTML\Tags\AbstractContentTag;
  * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/noscript
  */
-class NoscriptTag extends AbstractContentTag implements MetadataContent, PhrasingContent, DisplayContents
+class NoscriptTag extends AbstractContentTag
 {
     const TAG = 'noscript';
 }

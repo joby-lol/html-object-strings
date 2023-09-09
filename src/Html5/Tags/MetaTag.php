@@ -2,7 +2,6 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
-use ByJoby\HTML\ContentCategories\MetadataContent;
 use ByJoby\HTML\Helpers\StringableEnumArray;
 use ByJoby\HTML\Html5\Enums\HttpEquiv_meta;
 use ByJoby\HTML\Html5\Enums\Name_meta;
@@ -18,7 +17,7 @@ use Stringable;
  * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
  */
-class MetaTag extends AbstractTag implements MetadataContent
+class MetaTag extends AbstractTag
 {
     const TAG = 'meta';
 

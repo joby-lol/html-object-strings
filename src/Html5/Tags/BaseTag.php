@@ -2,7 +2,6 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
-use ByJoby\HTML\ContentCategories\MetadataContent;
 use ByJoby\HTML\Html5\Enums\BrowsingContext;
 use ByJoby\HTML\Tags\AbstractTag;
 use Stringable;
@@ -17,7 +16,7 @@ use Stringable;
  * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
  */
-class BaseTag extends AbstractTag implements MetadataContent
+class BaseTag extends AbstractTag
 {
     const TAG = 'base';
 

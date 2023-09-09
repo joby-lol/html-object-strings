@@ -2,9 +2,6 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
-use ByJoby\HTML\ContentCategories\MetadataContent;
-use ByJoby\HTML\ContentCategories\PhrasingContent;
-use ByJoby\HTML\DisplayTypes\DisplayNone;
 use ByJoby\HTML\Html5\Enums\BooleanAttribute;
 use ByJoby\HTML\Html5\Enums\CrossOrigin;
 use ByJoby\HTML\Html5\Enums\ReferrerPolicy_script;
@@ -21,7 +18,7 @@ use Stringable;
  * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
  */
-class ScriptTag extends AbstractContentTag implements MetadataContent, PhrasingContent, DisplayNone
+class ScriptTag extends AbstractContentTag
 {
     const TAG = 'script';
 

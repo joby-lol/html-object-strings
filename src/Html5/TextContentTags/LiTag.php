@@ -2,8 +2,6 @@
 
 namespace ByJoby\HTML\Html5\TextContentTags;
 
-use ByJoby\HTML\ContentCategories\FlowContent;
-use ByJoby\HTML\DisplayTypes\DisplayBlock;
 use ByJoby\HTML\Html5\Enums\Type_list;
 use ByJoby\HTML\Tags\AbstractContainerTag;
 
@@ -17,7 +15,7 @@ use ByJoby\HTML\Tags\AbstractContainerTag;
  * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li
  */
-class LiTag extends AbstractContainerTag implements FlowContent, DisplayBlock
+class LiTag extends AbstractContainerTag
 {
     const TAG = 'li';
 

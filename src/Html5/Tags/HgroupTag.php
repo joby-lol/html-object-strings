@@ -2,8 +2,6 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
-use ByJoby\HTML\ContentCategories\HeadingContent;
-use ByJoby\HTML\DisplayTypes\DisplayBlock;
 use ByJoby\HTML\Tags\AbstractContainerTag;
 
 /**
@@ -14,7 +12,7 @@ use ByJoby\HTML\Tags\AbstractContainerTag;
  * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hgroup
  */
-class HgroupTag extends AbstractContainerTag implements DisplayBlock, HeadingContent
+class HgroupTag extends AbstractContainerTag
 {
     const TAG = 'hgroup';
 }

@@ -2,8 +2,6 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
-use ByJoby\HTML\ContentCategories\MetadataContent;
-use ByJoby\HTML\Helpers\StringableEnumArray;
 use ByJoby\HTML\Html5\Enums\As_link;
 use ByJoby\HTML\Html5\Enums\CrossOrigin;
 use ByJoby\HTML\Html5\Enums\ReferrerPolicy_link;
@@ -22,7 +20,7 @@ use Stringable;
  * Tag description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link
  */
-class LinkTag extends AbstractTag implements MetadataContent
+class LinkTag extends AbstractTag
 {
     const TAG = 'link';
 
