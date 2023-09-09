@@ -2,10 +2,8 @@
 
 namespace ByJoby\HTML\Containers\DocumentTags;
 
-use Stringable;
+use ByJoby\HTML\Tags\ContentTagInterface;
 
-interface TitleTagInterface
+interface TitleTagInterface extends ContentTagInterface
 {
-    public function setContent(string|Stringable $content): static;
-    public function content(): string|Stringable;
 }

@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class TitleTagTest extends TestCase
 {
-    public function testGetAndSet()
+    public function testGetAndSet(): void
     {
         $title = new TitleTag;
         $this->assertEquals('Untitled', $title->content());
