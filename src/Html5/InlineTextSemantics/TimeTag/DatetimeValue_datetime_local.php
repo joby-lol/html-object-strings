@@ -14,9 +14,6 @@ use Stringable;
  */
 class DatetimeValue_datetime_local extends DatetimeValue
 {
-    /** @var DateTime */
-    public $datetime;
-
     public static function fromString(string|Stringable|null $string): null|self
     {
         // null string returns null
@@ -38,24 +35,26 @@ class DatetimeValue_datetime_local extends DatetimeValue
             )
         ) {
             return new self(
-                intval($matches['year']),
-                intval($matches['month']),
-                intval($matches['day']),
-                intval($matches['hour']),
-                intval($matches['minute']),
-                intval(@$matches['second']),
-                intval(@$matches['millisecond'])
+                (new DateTime())
+                    ->setDate(
+                        intval($matches['year']),
+                        intval($matches['month']),
+                        intval($matches['day'])
+                    )
+                    ->setTime(
+                        intval($matches['hour']),
+                        intval($matches['minute']),
+                        intval(@$matches['second']),
+                        intval(@$matches['millisecond']) * 1000
+                    )
             );
         }
         // return null if nothing found
         return null;
     }
 
-    public function __construct(int $year, int $month, int $day, int $hour, int $minute, int $second = 0, int $millisecond = 0)
+    public function __construct(public DateTime $datetime)
     {
-        $this->datetime = (new DateTime())
-            ->setDate($year, $month, $day)
-            ->setTime($hour, $minute, $second, $millisecond * 1000);
     }
 
     public function __toString()

@@ -41,7 +41,7 @@ class DatetimeValue_week extends DatetimeValue
     public function __toString()
     {
         return sprintf(
-            '%s%04d-%02d',
+            '%s%04d-W%02d',
             $this->year < 0 ? '-' : '',
             abs($this->year),
             $this->week

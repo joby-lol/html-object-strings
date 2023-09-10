@@ -4,9 +4,6 @@ namespace ByJoby\HTML\Html5\InlineTextSemantics;
 
 use ByJoby\HTML\Html5\InlineTextSemantics\TimeTag\DatetimeValue;
 use ByJoby\HTML\Tags\AbstractContainerTag;
-use DateInterval;
-use DateTimeInterface;
-use Stringable;
 
 /**
  * The <time> HTML element represents a specific period in time. It may include

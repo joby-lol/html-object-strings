@@ -55,7 +55,7 @@ abstract class DatetimeValue implements StringableValue
      * Matches any integer from 00 to 59, leading zero optional. Optionally
      * followed by a three-digit decimal portion.
      */
-    const REGEX_SECOND = '((?<second>0?[0-9]|[1-5][0-9])(\.(?<microsecond>[0-9]{3}))?)';
+    const REGEX_SECOND = '((?<second>0?[0-9]|[1-5][0-9])(\.(?<millisecond>[0-9]{3}))?)';
 
     /**
      * Tries parsing with all subclasses and returns the first one that

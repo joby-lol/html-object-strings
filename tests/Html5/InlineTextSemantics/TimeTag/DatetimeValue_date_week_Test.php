@@ -26,10 +26,10 @@ class DatetimeValue_week_Test extends TestCase
             DatetimeValue_week::fromString("99999-W53")
                     ?->__toString()
         );
-        // negative year
+        // negative year less than 4 digits
         $this->assertEquals(
-            "-1500-06",
-            DatetimeValue_week::fromString("-1500-06")
+            "-0150-W06",
+            DatetimeValue_week::fromString("-0150-W06")
                     ?->__toString()
         );
     }

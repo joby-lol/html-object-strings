@@ -37,7 +37,7 @@ class DatetimeValue_time extends DatetimeValue
                 intval($matches['hour']),
                 intval($matches['minute']),
                 intval(@$matches['second']),
-                intval(@$matches['microsecond'])
+                intval(@$matches['millisecond'])
             );
         }
         // return null if nothing found
@@ -47,7 +47,12 @@ class DatetimeValue_time extends DatetimeValue
     public function __construct(int $hour, int $minute, int $second = 0, int $millisecond = 0)
     {
         $this->datetime = (new DateTime())
-            ->setTime($hour, $minute, $second, $millisecond*1000);
+            ->setTime(
+                $hour,
+                $minute,
+                $second,
+                $millisecond * 1000
+            );
     }
 
     public function __toString()
