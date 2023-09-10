@@ -20,7 +20,7 @@ trait NodeTrait
         return $this->parent;
     }
 
-    public function setParent(null|ContainerInterface $parent): self
+    public function setParent(null|ContainerInterface $parent): static
     {
         $this->parent = $parent;
         return $this;
@@ -47,7 +47,7 @@ trait NodeTrait
         }
     }
 
-    public function detachCopy(): self
+    public function detachCopy(): static
     {
         static $copier;
         $copier = $copier ?? new DeepCopy();

@@ -33,7 +33,7 @@ trait ContainerTrait
         NodeInterface|Stringable|string $child,
         bool $prepend = false,
         bool $skip_sanitize = false
-    ): self {
+    ): static {
         $child = $this->prepareChildToAdd($child, $skip_sanitize);
         if ($prepend) {
             array_unshift($this->children, $child);
@@ -45,7 +45,7 @@ trait ContainerTrait
 
     public function removeChild(
         NodeInterface|Stringable|string $child
-    ): self {
+    ): static {
         $this->children = array_filter(
             $this->children,
             function (NodeInterface $e) use ($child) {
@@ -67,7 +67,7 @@ trait ContainerTrait
         NodeInterface|Stringable|string $new_child,
         NodeInterface|Stringable|string $before_child,
         bool $skip_sanitize = false
-    ): self {
+    ): static {
         $i = $this->indexOfChild($before_child);
         if ($i === null) {
             throw new Exception('Reference child not found in this container');
@@ -81,7 +81,7 @@ trait ContainerTrait
         NodeInterface|Stringable|string $new_child,
         NodeInterface|Stringable|string $after_child,
         bool $skip_sanitize = false
-    ): self {
+    ): static {
         $i = $this->indexOfChild($after_child);
         if ($i === null) {
             throw new Exception('Reference child not found in this container');
