@@ -2,6 +2,7 @@
 
 namespace ByJoby\HTML\Html5\Traits;
 use ByJoby\HTML\Helpers\BooleanAttribute;
+use ByJoby\HTML\Html5\Enums\BrowsingContext;
 use ByJoby\HTML\Html5\Traits\HyperlinkTrait\ReferrerPolicyValue;
 use ByJoby\HTML\Html5\Traits\HyperlinkTrait\RelValue;
 use Stringable;
