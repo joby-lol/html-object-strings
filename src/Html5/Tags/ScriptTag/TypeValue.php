@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Enums;
+namespace ByJoby\HTML\Html5\Tags\ScriptTag;
 
 /**
  * The type attribute of the <script> element indicates the type of script
@@ -10,7 +10,7 @@ namespace ByJoby\HTML\Html5\Enums;
  * Descriptions by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type
  */
-enum Type_script: string
+enum TypeValue: string
 {
     /**
      * Indicates that the script is a "classic script", containing JavaScript

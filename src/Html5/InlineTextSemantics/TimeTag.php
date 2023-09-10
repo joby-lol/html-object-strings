@@ -31,14 +31,14 @@ class TimeTag extends AbstractContainerTag
         );
     }
 
-    public function setDatetime(null|DatetimeValue $datetime): static
+    public function setDatetime(null|DatetimeValue $datetime): self
     {
         if ($datetime) $this->attributes()['datetime'] = $datetime;
         else $this->unsetDatetime();
         return $this;
     }
 
-    public function unsetDatetime(): static
+    public function unsetDatetime(): self
     {
         unset($this->attributes()['datetime']);
         return $this;

@@ -1,16 +1,22 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Enums;
+namespace ByJoby\HTML\Html5\Tags\LinkTag;
 
 /**
- * This attribute is required when rel="preload" has been set on the <link> element, optional when rel="modulepreload" has been set, and otherwise should not be used. It specifies the type of content being loaded by the <link>, which is necessary for request matching, application of correct content security policy, and setting of correct Accept request header. 
- * 
- * Furthermore, rel="preload" uses this as a signal for request prioritization. The value comments list the valid values for this attribute and the elements or resources they apply to.
- * 
+ * This attribute is required when rel="preload" has been set on the <link>
+ * element, optional when rel="modulepreload" has been set, and otherwise should
+ * not be used. It specifies the type of content being loaded by the <link>,
+ * which is necessary for request matching, application of correct content
+ * security policy, and setting of correct Accept request header. 
+ *
+ * Furthermore, rel="preload" uses this as a signal for request prioritization.
+ * The value comments list the valid values for this attribute and the elements
+ * or resources they apply to.
+ *
  * Descriptions by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link
  */
-enum As_link: string {
+enum AsValue: string {
     /**
      * Applies to <audio> elements
      */
@@ -24,8 +30,8 @@ enum As_link: string {
      */
     case embed = "embed";
     /**
-     * Applies to fetch, XHR
-     * Note: This value also requires <link> to contain the crossorigin attribute.
+     * Applies to fetch, XHR Note: This value also requires <link> to contain
+     * the crossorigin attribute.
      */
     case fetch = "fetch";
     /**
@@ -33,7 +39,8 @@ enum As_link: string {
      */
     case font = "font";
     /**
-     * Applies to <img> and <picture> elements with srcset or imageset attributes, SVG <image> elements, CSS *-image rules 
+     * Applies to <img> and <picture> elements with srcset or imageset
+     * attributes, SVG <image> elements, CSS *-image rules 
      */
     case image = "image";
     /**

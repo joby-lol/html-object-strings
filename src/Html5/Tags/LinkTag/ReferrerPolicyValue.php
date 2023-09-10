@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Enums;
+namespace ByJoby\HTML\Html5\Tags\LinkTag;
 
 /**
  * A string indicating which referrer to use when fetching the resource. These
@@ -9,7 +9,7 @@ namespace ByJoby\HTML\Html5\Enums;
  * Description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link
  */
-enum ReferrerPolicy_link: string
+enum ReferrerPolicyValue: string
 {
     /**
      * means that the Referer header will not be sent.

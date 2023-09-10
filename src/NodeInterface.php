@@ -12,7 +12,7 @@ interface NodeInterface extends Stringable
 
     public function setParent(
         null|ContainerInterface $parent
-    ): static;
+    ): self;
 
     public function parentTag(): null|TagInterface;
 
@@ -25,5 +25,5 @@ interface NodeInterface extends Stringable
      */
     public function parentOfType(string $class): mixed;
 
-    public function detachCopy(): static;
+    public function detachCopy(): self;
 }

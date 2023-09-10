@@ -2,7 +2,7 @@
 
 namespace ByJoby\HTML\Html5\Enums;
 
-enum Spellcheck: string
+enum SpellcheckValue: string
 {
     case true = "true";
     case false = "false";

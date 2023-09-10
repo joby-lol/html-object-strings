@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Enums;
+namespace ByJoby\HTML\Html5\Traits\HyperlinkTrait;
 
 /**
  * The rel attribute defines the relationship between a linked resource and the
@@ -9,7 +9,7 @@ namespace ByJoby\HTML\Html5\Enums;
  * Description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel
  */
-enum Rel_a: string
+enum RelValue: string
 {
     /** 
      * Alternate representations of the current document.

@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Enums;
+namespace ByJoby\HTML\Helpers;
 
 /**
  * This special enum is used to specify that an attribute is an HTML5 boolean

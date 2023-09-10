@@ -2,10 +2,10 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
-use ByJoby\HTML\Html5\Enums\BooleanAttribute;
-use ByJoby\HTML\Html5\Enums\CrossOrigin;
-use ByJoby\HTML\Html5\Enums\ReferrerPolicy_script;
-use ByJoby\HTML\Html5\Enums\Type_script;
+use ByJoby\HTML\Helpers\BooleanAttribute;
+use ByJoby\HTML\Html5\Tags\ScriptTag\ReferrerPolicyValue;
+use ByJoby\HTML\Html5\Tags\ScriptTag\TypeValue;
+use ByJoby\HTML\Html5\Traits\CrossOriginTrait;
 use ByJoby\HTML\Tags\AbstractContentTag;
 use Stringable;
 
@@ -20,6 +20,7 @@ use Stringable;
  */
 class ScriptTag extends AbstractContentTag
 {
+    use CrossOriginTrait;
     const TAG = 'script';
 
     /**
@@ -39,7 +40,7 @@ class ScriptTag extends AbstractContentTag
      * @param boolean $async
      * @return static
      */
-    public function setAsync(bool $async): static
+    public function setAsync(bool $async): self
     {
         if ($async) $this->attributes()['async'] = BooleanAttribute::true;
         else unset($this->attributes()['async']);
@@ -78,7 +79,7 @@ class ScriptTag extends AbstractContentTag
      * @param boolean $defer
      * @return static
      */
-    public function setDefer(bool $defer): static
+    public function setDefer(bool $defer): self
     {
         if ($defer) $this->attributes()['defer'] = BooleanAttribute::true;
         else unset($this->attributes()['defer']);
@@ -98,52 +99,6 @@ class ScriptTag extends AbstractContentTag
     public function defer(): bool
     {
         return $this->attributes()['defer'] === BooleanAttribute::true;
-    }
-
-    /**
-     * Normal script elements pass minimal information to the window.onerror for
-     * scripts which do not pass the standard CORS checks. To allow error
-     * logging for sites which use a separate domain for static media, use this
-     * attribute. See CORS settings attributes for a more descriptive
-     * explanation of its valid arguments.
-     *
-     * @return null|CrossOrigin
-     */
-    public function crossorigin(): null|CrossOrigin
-    {
-        return $this->attributes()->asEnum('crossorigin', CrossOrigin::class);
-    }
-
-    /**
-     * Normal script elements pass minimal information to the window.onerror for
-     * scripts which do not pass the standard CORS checks. To allow error
-     * logging for sites which use a separate domain for static media, use this
-     * attribute. See CORS settings attributes for a more descriptive
-     * explanation of its valid arguments.
-     *
-     * @param null|CrossOrigin $crossorigin
-     * @return static
-     */
-    public function setCrossorigin(null|CrossOrigin $crossorigin): static
-    {
-        if ($crossorigin) $this->attributes()['crossorigin'] = $crossorigin->value;
-        else unset($this->attributes()['crossorigin']);
-        return $this;
-    }
-
-    /**
-     * Normal script elements pass minimal information to the window.onerror for
-     * scripts which do not pass the standard CORS checks. To allow error
-     * logging for sites which use a separate domain for static media, use this
-     * attribute. See CORS settings attributes for a more descriptive
-     * explanation of its valid arguments.
-     *
-     * @return static
-     */
-    public function unsetCrossorigin(): static
-    {
-        unset($this->attributes()['crossorigin']);
-        return $this;
     }
 
     /**
@@ -170,7 +125,7 @@ class ScriptTag extends AbstractContentTag
      * @param null|string|Stringable $integrity
      * @return static
      */
-    public function setIntegrity(null|string|Stringable $integrity): static
+    public function setIntegrity(null|string|Stringable $integrity): self
     {
         if ($integrity) $this->attributes()['integrity'] = $integrity;
         else $this->unsetIntegrity();
@@ -186,7 +141,7 @@ class ScriptTag extends AbstractContentTag
      *
      * @return static
      */
-    public function unsetIntegrity(): static
+    public function unsetIntegrity(): self
     {
         unset($this->attributes()['integrity']);
         return $this;
@@ -201,7 +156,7 @@ class ScriptTag extends AbstractContentTag
      * @param boolean $nomodule
      * @return static
      */
-    public function setNomodule(bool $nomodule): static
+    public function setNomodule(bool $nomodule): self
     {
         if ($nomodule) $this->attributes()['nomodule'] = BooleanAttribute::true;
         else unset($this->attributes()['nomodule']);
@@ -247,7 +202,7 @@ class ScriptTag extends AbstractContentTag
      * @param null|string|Stringable $nonce
      * @return static
      */
-    public function setNonce(null|string|Stringable $nonce): static
+    public function setNonce(null|string|Stringable $nonce): self
     {
         if ($nonce) $this->attributes()['nonce'] = $nonce;
         else $this->unsetNonce();
@@ -264,7 +219,7 @@ class ScriptTag extends AbstractContentTag
      *
      * @return static
      */
-    public function unsetNonce(): static
+    public function unsetNonce(): self
     {
         unset($this->attributes()['nonce']);
         return $this;
@@ -274,21 +229,21 @@ class ScriptTag extends AbstractContentTag
      * Indicates which referrer to send when fetching the script, or resources
      * fetched by the script.
      *
-     * @return null|ReferrerPolicy_script
+     * @return null|ReferrerPolicyValue
      */
-    public function referrerpolicy(): null|ReferrerPolicy_script
+    public function referrerpolicy(): null|ReferrerPolicyValue
     {
-        return $this->attributes()->asEnum('referrerpolicy', ReferrerPolicy_script::class);
+        return $this->attributes()->asEnum('referrerpolicy', ReferrerPolicyValue::class);
     }
 
     /**
      * Indicates which referrer to send when fetching the script, or resources
      * fetched by the script.
      *
-     * @param null|ReferrerPolicy_script $referrerpolicy
+     * @param null|ReferrerPolicyValue $referrerpolicy
      * @return static
      */
-    public function setReferrerpolicy(null|ReferrerPolicy_script $referrerpolicy): static
+    public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): self
     {
         if ($referrerpolicy) $this->attributes()['referrerpolicy'] = $referrerpolicy->value;
         else $this->unsetReferrerpolicy();
@@ -301,7 +256,7 @@ class ScriptTag extends AbstractContentTag
      *
      * @return static
      */
-    public function unsetReferrerpolicy(): static
+    public function unsetReferrerpolicy(): self
     {
         unset($this->attributes()['referrerpolicy']);
         return $this;
@@ -325,7 +280,7 @@ class ScriptTag extends AbstractContentTag
      * @param null|string|Stringable $src
      * @return static
      */
-    public function setSrc(null|string|Stringable $src): static
+    public function setSrc(null|string|Stringable $src): self
     {
         if ($src) $this->attributes()['src'] = $src;
         else $this->unsetSrc();
@@ -338,7 +293,7 @@ class ScriptTag extends AbstractContentTag
      *
      * @return static
      */
-    public function unsetSrc(): static
+    public function unsetSrc(): self
     {
         unset($this->attributes()['src']);
         return $this;
@@ -347,20 +302,20 @@ class ScriptTag extends AbstractContentTag
     /**
      * This attribute indicates the type of script represented.
      *
-     * @return null|Type_script
+     * @return null|TypeValue
      */
-    public function type(): null|Type_script
+    public function type(): null|TypeValue
     {
-        return $this->attributes()->asEnum('type', Type_script::class);
+        return $this->attributes()->asEnum('type', TypeValue::class);
     }
 
     /**
      * This attribute indicates the type of script represented.
      *
-     * @param null|Type_script $type
+     * @param null|TypeValue $type
      * @return static
      */
-    public function setType(null|Type_script $type): static
+    public function setType(null|TypeValue $type): self
     {
         if ($type) $this->attributes()['type'] = $type->value;
         else $this->unsetType();
@@ -372,7 +327,7 @@ class ScriptTag extends AbstractContentTag
      *
      * @return static
      */
-    public function unsetType(): static
+    public function unsetType(): self
     {
         unset($this->attributes()['type']);
         return $this;

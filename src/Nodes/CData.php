@@ -18,7 +18,7 @@ class CData implements CDataInterface
         return $this->value;
     }
 
-    public function setValue(string|Stringable $value): static
+    public function setValue(string|Stringable $value): self
     {
         $this->value = $value;
         return $this;

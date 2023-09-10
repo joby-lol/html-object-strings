@@ -2,8 +2,8 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
-use ByJoby\HTML\Html5\Enums\HttpEquiv_meta;
-use ByJoby\HTML\Html5\Enums\Name_meta;
+use ByJoby\HTML\Html5\Tags\MetaTag\HttpEquivValue;
+use ByJoby\HTML\Html5\Tags\MetaTag\NameValue;
 
 class MetaTagTest extends TagTestCase
 {
@@ -19,16 +19,16 @@ class MetaTagTest extends TagTestCase
     public function testName(): void
     {
         $tag = new MetaTag();
-        $tag->setNameAndContent(Name_meta::application, 'test');
-        $this->assertEquals(Name_meta::application->value, $tag->attributes()['name']);
+        $tag->setNameAndContent(NameValue::application, 'test');
+        $this->assertEquals(NameValue::application->value, $tag->attributes()['name']);
         $this->assertEquals('test', $tag->attributes()['content']);
     }
 
     public function testHttpEquiv(): void
     {
         $tag = new MetaTag();
-        $tag->setHttpEquivAndContent(HttpEquiv_meta::mime, 'text/plain');
-        $this->assertEquals(HttpEquiv_meta::mime->value, $tag->attributes()['http-equiv']);
+        $tag->setHttpEquivAndContent(HttpEquivValue::mime, 'text/plain');
+        $this->assertEquals(HttpEquivValue::mime->value, $tag->attributes()['http-equiv']);
         $this->assertEquals('text/plain', $tag->attributes()['content']);
     }
 
@@ -36,8 +36,8 @@ class MetaTagTest extends TagTestCase
     {
         $tag = new MetaTag();
         $tag->setCharset(true);
-        $tag->setHttpEquivAndContent(HttpEquiv_meta::mime, 'text/plain');
-        $tag->setNameAndContent(Name_meta::application, 'test');
+        $tag->setHttpEquivAndContent(HttpEquivValue::mime, 'text/plain');
+        $tag->setNameAndContent(NameValue::application, 'test');
         $this->assertNull($tag->attributes()['charset']);
         $this->assertNull($tag->attributes()['http-equiv']);
     }
@@ -46,8 +46,8 @@ class MetaTagTest extends TagTestCase
     {
         $tag = new MetaTag();
         $tag->setCharset(true);
-        $tag->setNameAndContent(Name_meta::application, 'test');
-        $tag->setHttpEquivAndContent(HttpEquiv_meta::mime, 'text/plain');
+        $tag->setNameAndContent(NameValue::application, 'test');
+        $tag->setHttpEquivAndContent(HttpEquivValue::mime, 'text/plain');
         $this->assertNull($tag->attributes()['charset']);
         $this->assertNull($tag->attributes()['name']);
     }
@@ -55,8 +55,8 @@ class MetaTagTest extends TagTestCase
     public function testCharsetOverrides(): void
     {
         $tag = new MetaTag();
-        $tag->setHttpEquivAndContent(HttpEquiv_meta::mime, 'text/plain');
-        $tag->setNameAndContent(Name_meta::application, 'test');
+        $tag->setHttpEquivAndContent(HttpEquivValue::mime, 'text/plain');
+        $tag->setNameAndContent(NameValue::application, 'test');
         $tag->setCharset(true);
         $this->assertNull($tag->attributes()['name']);
         $this->assertNull($tag->attributes()['http-equiv']);

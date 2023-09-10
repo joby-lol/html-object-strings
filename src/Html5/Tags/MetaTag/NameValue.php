@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Enums;
+namespace ByJoby\HTML\Html5\Tags\MetaTag;
 
 /**
  * Includes a selection of standard metadata names defined in the HTML and CSS standards as well as the WHATWG Wiki MetaExtensions page.
@@ -8,7 +8,7 @@ namespace ByJoby\HTML\Html5\Enums;
  * Descriptions by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name
  */
-enum Name_meta: string
+enum NameValue: string
 {
     /**
      * the name of the application running in the web page. 

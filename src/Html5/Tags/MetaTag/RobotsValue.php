@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Enums;
+namespace ByJoby\HTML\Html5\Tags\MetaTag;
 
 /**
  * the behavior that cooperative crawlers, or "robots", should use. Meant to be
@@ -9,7 +9,7 @@ namespace ByJoby\HTML\Html5\Enums;
  * Descriptions by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name
  */
-enum Robots_meta: string {
+enum RobotsValue: string {
     /**
      * Allows the robot to index the page (default).
      */

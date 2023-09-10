@@ -2,8 +2,8 @@
 
 namespace ByJoby\HTML\Html5\TextContentTags;
 
-use ByJoby\HTML\Html5\Enums\BooleanAttribute;
-use ByJoby\HTML\Html5\Enums\Type_list;
+use ByJoby\HTML\Helpers\BooleanAttribute;
+use ByJoby\HTML\Html5\Enums\ListTypeValue;
 use ByJoby\HTML\Tags\AbstractContainerTag;
 
 /**
@@ -24,7 +24,7 @@ class OlTag extends AbstractContainerTag
      * @param boolean $reversed
      * @return static
      */
-    public function setReversed(bool $reversed): static
+    public function setReversed(bool $reversed): self
     {
         if ($reversed) $this->attributes()['reversed'] = BooleanAttribute::true;
         else unset($this->attributes()['reversed']);
@@ -64,7 +64,7 @@ class OlTag extends AbstractContainerTag
      * @param null|integer $start
      * @return static
      */
-    public function setStart(null|int $start): static
+    public function setStart(null|int $start): self
     {
         if (is_null($start)) $this->unsetStart();
         else $this->attributes()['start'] = $start;
@@ -79,7 +79,7 @@ class OlTag extends AbstractContainerTag
      *
      * @return static
      */
-    public function unsetStart(): static
+    public function unsetStart(): self
     {
         unset($this->attributes()['start']);
         return $this;
@@ -91,11 +91,11 @@ class OlTag extends AbstractContainerTag
      * The specified type is used for the entire list unless a different type
      * attribute is used on an enclosed <li> element.
      *
-     * @return null|Type_list
+     * @return null|ListTypeValue
      */
-    public function type(): null|Type_list
+    public function type(): null|ListTypeValue
     {
-        return $this->attributes()->asEnum('type', Type_list::class);
+        return $this->attributes()->asEnum('type', ListTypeValue::class);
     }
 
     /**
@@ -104,10 +104,10 @@ class OlTag extends AbstractContainerTag
      * The specified type is used for the entire list unless a different type
      * attribute is used on an enclosed <li> element.
      *
-     * @param null|Type_list $type
+     * @param null|ListTypeValue $type
      * @return static
      */
-    public function setType(null|Type_list $type): static
+    public function setType(null|ListTypeValue $type): self
     {
         if ($type) $this->attributes()['type'] = $type->value;
         else $this->unsetType();
@@ -122,7 +122,7 @@ class OlTag extends AbstractContainerTag
      *
      * @return static
      */
-    public function unsetType(): static
+    public function unsetType(): self
     {
         unset($this->attributes()['type']);
         return $this;

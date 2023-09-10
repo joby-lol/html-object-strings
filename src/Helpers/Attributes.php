@@ -5,7 +5,7 @@ namespace ByJoby\HTML\Helpers;
 use ArrayAccess;
 use ArrayIterator;
 use BackedEnum;
-use ByJoby\HTML\Html5\Enums\BooleanAttribute;
+use ByJoby\HTML\Helpers\BooleanAttribute;
 use Exception;
 use IteratorAggregate;
 use Stringable;
@@ -81,7 +81,7 @@ class Attributes implements IteratorAggregate, ArrayAccess
      * @param string $separator
      * @return static
      */
-    public function setEnumArray(string $offset, null|BackedEnum|array $value, string $enum_class, string $separator): static
+    public function setEnumArray(string $offset, null|BackedEnum|array $value, string $enum_class, string $separator): self
     {
         if (is_null($value)) {
             $value = [];

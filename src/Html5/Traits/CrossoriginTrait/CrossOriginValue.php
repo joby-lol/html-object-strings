@@ -1,8 +1,8 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Enums;
+namespace ByJoby\HTML\Html5\Traits\CrossoriginTrait;
 
-enum CrossOrigin: string
+enum CrossOriginValue: string
 {
     /**
      * A cross-origin request (i.e. with an Origin HTTP header) is performed,

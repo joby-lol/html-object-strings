@@ -2,19 +2,19 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
-use ByJoby\HTML\Html5\Enums\As_link;
-use ByJoby\HTML\Html5\Enums\CrossOrigin;
-use ByJoby\HTML\Html5\Enums\ReferrerPolicy_link;
-use ByJoby\HTML\Html5\Enums\Rel_link;
+use ByJoby\HTML\Html5\Tags\LinkTag\AsValue;
+use ByJoby\HTML\Html5\Tags\LinkTag\ReferrerPolicyValue;
+use ByJoby\HTML\Html5\Tags\LinkTag\RelValue;
 use ByJoby\HTML\Html5\Exceptions\InvalidArgumentsException;
+use ByJoby\HTML\Html5\Traits\CrossoriginTrait\CrossOriginValue;
 
 class LinkTagTest extends TagTestCase
 {
     public function testAttributeHelpers(): void
     {
-        $this->assertAttributeHelperMethods('referrerpolicy', LinkTag::class, ReferrerPolicy_link::origin, 'origin');
-        $this->assertAttributeHelperMethods('crossorigin', LinkTag::class, CrossOrigin::anonymous, 'anonymous');
-        $this->assertAttributeHelperMethods('crossorigin', LinkTag::class, CrossOrigin::useCredentials, 'use-credentials');
+        $this->assertAttributeHelperMethods('referrerpolicy', LinkTag::class, ReferrerPolicyValue::origin, 'origin');
+        $this->assertAttributeHelperMethods('crossorigin', LinkTag::class, CrossOriginValue::anonymous, 'anonymous');
+        $this->assertAttributeHelperMethods('crossorigin', LinkTag::class, CrossOriginValue::useCredentials, 'use-credentials');
         $this->assertAttributeHelperMethods('href', LinkTag::class);
         $this->assertAttributeHelperMethods('hreflang', LinkTag::class);
         $this->assertAttributeHelperMethods('imagesizes', LinkTag::class);
@@ -28,10 +28,10 @@ class LinkTagTest extends TagTestCase
     {
         $tag = new LinkTag();
         // set as to something that can be set alone
-        $tag->setAs(As_link::document);
+        $tag->setAs(AsValue::document);
         $this->assertEquals('document', $tag->attributes()->asString('as'));
         // set as to fetch so crossorigin is required
-        $tag->setAs(As_link::fetch, CrossOrigin::anonymous);
+        $tag->setAs(AsValue::fetch, CrossOriginValue::anonymous);
         $this->assertEquals('fetch', $tag->attributes()->asString('as'));
         $this->assertEquals('anonymous', $tag->attributes()->asString('crossorigin'));
     }
@@ -40,13 +40,13 @@ class LinkTagTest extends TagTestCase
     {
         $tag = new LinkTag();
         // set rel as a single attribute
-        $tag->setRel(Rel_link::prefetch);
+        $tag->setRel(RelValue::prefetch);
         $this->assertEquals('prefetch', $tag->attributes()->asString('rel'));
         // set rel as an array of attributes
-        $tag->setRel([Rel_link::prefetch, Rel_link::next]);
+        $tag->setRel([RelValue::prefetch, RelValue::next]);
         $this->assertEquals('prefetch next', $tag->attributes()->asString('rel'));
         // set deeper values
-        $tag->setRel(Rel_link::preload, As_link::fetch, CrossOrigin::anonymous);
+        $tag->setRel(RelValue::preload, AsValue::fetch, CrossOriginValue::anonymous);
         $this->assertEquals('preload', $tag->attributes()->asString('rel'));
         $this->assertEquals('fetch', $tag->attributes()->asString('as'));
         $this->assertEquals('anonymous', $tag->attributes()->asString('crossorigin'));
@@ -56,13 +56,13 @@ class LinkTagTest extends TagTestCase
     {
         $this->expectException(InvalidArgumentsException::class);
         $tag = new LinkTag();
-        $tag->setRel(Rel_link::preload);
+        $tag->setRel(RelValue::preload);
     }
 
     public function testRelMIssingCrossorigin(): void
     {
         $this->expectException(InvalidArgumentsException::class);
         $tag = new LinkTag();
-        $tag->setRel(Rel_link::preload, As_link::fetch);
+        $tag->setRel(RelValue::preload, AsValue::fetch);
     }
 }

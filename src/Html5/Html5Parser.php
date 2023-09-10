@@ -12,11 +12,12 @@ class Html5Parser extends AbstractParser
 {
     /** @var array<int,string> */
     protected $tag_namespaces = [
-        '\\ByJoby\\HTML\\Html5\\Tags\\',
-        '\\ByJoby\\HTML\\Html5\\InlineTextSemantics\\',
-        '\\ByJoby\\HTML\\Html5\\TextContentTags\\',
         '\\ByJoby\\HTML\\Html5\\ContentSectioningTags\\',
         '\\ByJoby\\HTML\\Html5\\DocumentTags\\',
+        '\\ByJoby\\HTML\\Html5\\InlineTextSemantics\\',
+        '\\ByJoby\\HTML\\Html5\\Multimedia\\',
+        '\\ByJoby\\HTML\\Html5\\Tags\\',
+        '\\ByJoby\\HTML\\Html5\\TextContentTags\\',
     ];
 
     /** @var class-string<HtmlDocumentInterface> */

@@ -9,5 +9,5 @@ interface CommentInterface extends NodeInterface
 {
     public function __construct(Stringable|string $value);
     public function value(): string;
-    public function setValue(string|Stringable $value): static;
+    public function setValue(string|Stringable $value): self;
 }

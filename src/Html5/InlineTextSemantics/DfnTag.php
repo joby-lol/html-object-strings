@@ -53,7 +53,7 @@ class DataTag extends AbstractContainerTag
      * @param null|string|Stringable $title
      * @return static
      */
-    public function setTitle(null|string|Stringable $title): static
+    public function setTitle(null|string|Stringable $title): self
     {
         if ($title) $this->attributes()['title'] = $title;
         else $this->unsetTitle();
@@ -68,7 +68,7 @@ class DataTag extends AbstractContainerTag
      *
      * @return static
      */
-    public function unsetTitle(): static
+    public function unsetTitle(): self
     {
         unset($this->attributes()['title']);
         return $this;

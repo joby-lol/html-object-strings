@@ -40,7 +40,7 @@ class FigureTag extends AbstractGroupedTag
      *
      * @return static
      */
-    public function flipCaptionOrder(): static
+    public function flipCaptionOrder(): self
     {
         $this->children = array_reverse($this->children);
         return $this;

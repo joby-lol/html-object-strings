@@ -11,7 +11,7 @@ namespace ByJoby\HTML\Html5\Enums;
  * Description by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate
  */
-enum Translate: string
+enum TranslateValue: string
 {
     case true = "yes";
     case false = "no";

@@ -38,7 +38,7 @@ class QTag extends AbstractContainerTag
      * @param null|string|Stringable $cite
      * @return static
      */
-    public function setCite(null|string|Stringable $cite): static
+    public function setCite(null|string|Stringable $cite): self
     {
         if ($cite) $this->attributes()['cite'] = $cite;
         else $this->unsetCite();
@@ -52,7 +52,7 @@ class QTag extends AbstractContainerTag
      *
      * @return static
      */
-    public function unsetCite(): static
+    public function unsetCite(): self
     {
         unset($this->attributes()['cite']);
         return $this;

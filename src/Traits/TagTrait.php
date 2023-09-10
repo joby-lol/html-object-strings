@@ -3,9 +3,9 @@
 namespace ByJoby\HTML\Traits;
 
 use ByJoby\HTML\Helpers\Attributes;
+use ByJoby\HTML\Helpers\BooleanAttribute;
 use ByJoby\HTML\Helpers\Classes;
 use ByJoby\HTML\Helpers\Styles;
-use ByJoby\HTML\Html5\Enums\BooleanAttribute;
 use Exception;
 use Stringable;
 
@@ -34,7 +34,7 @@ trait TagTrait
         return $this->id;
     }
 
-    public function setID(null|string|Stringable $id): static
+    public function setID(null|string|Stringable $id): self
     {
         if ($id) {
             $this->id = static::sanitizeID($id);

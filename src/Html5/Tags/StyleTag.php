@@ -37,7 +37,7 @@ class StyleTag extends AbstractContentTag
      * @param null|string|Stringable $media
      * @return static
      */
-    public function setMedia(null|string|Stringable $media): static
+    public function setMedia(null|string|Stringable $media): self
     {
         if ($media) $this->attributes()['media'] = $media;
         else $this->unsetMedia();
@@ -51,7 +51,7 @@ class StyleTag extends AbstractContentTag
      *
      * @return static
      */
-    public function unsetMedia(): static
+    public function unsetMedia(): self
     {
         unset($this->attributes()['media']);
         return $this;
@@ -85,7 +85,7 @@ class StyleTag extends AbstractContentTag
      * @param null|string|Stringable $nonce
      * @return static
      */
-    public function setNonce(null|string|Stringable $nonce): static
+    public function setNonce(null|string|Stringable $nonce): self
     {
         if ($nonce) $this->attributes()['nonce'] = $nonce;
         else $this->unsetNonce();
@@ -104,7 +104,7 @@ class StyleTag extends AbstractContentTag
      *
      * @return static
      */
-    public function unsetNonce(): static
+    public function unsetNonce(): self
     {
         unset($this->attributes()['nonce']);
         return $this;

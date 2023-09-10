@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Enums;
+namespace ByJoby\HTML\Html5\Tags\MetaTag;
 
 /**
  * Defines a pragma directive. The attribute is named http-equiv(alent) because
@@ -9,7 +9,7 @@ namespace ByJoby\HTML\Html5\Enums;
  * Descriptions by Mozilla Contributors licensed under CC-BY-SA 2.5
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#http-equiv
  */
-enum HttpEquiv_meta: string {
+enum HttpEquivValue: string {
     /**
      * Allows page authors to define a content policy for the current page.
      * Content policies mostly specify allowed server origins and script

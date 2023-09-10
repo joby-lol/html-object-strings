@@ -1,14 +1,14 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Enums;
+namespace ByJoby\HTML\Html5\Multimedia\ImgTag;
 
 /**
- * How much of the referrer to send when following the link.
+ * A string indicating which referrer to use when fetching the resource.
  *
  * Description by Mozilla Contributors licensed under CC-BY-SA 2.5
- * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img
  */
-enum ReferrerPolicy_a: string
+enum ReferrerPolicyValue: string
 {
     /**
      * DEFAULT: Send a full URL when performing a same-origin request, only send

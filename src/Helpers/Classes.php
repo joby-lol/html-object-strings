@@ -59,7 +59,7 @@ class Classes implements Countable
         return $this->classes;
     }
 
-    public function add(string|Stringable $class, bool $no_exception = false): static
+    public function add(string|Stringable $class, bool $no_exception = false): self
     {
         try {
             $class = static::sanitizeClassName($class, true);
@@ -77,7 +77,7 @@ class Classes implements Countable
         return $this;
     }
 
-    public function remove(string|Stringable $class): static
+    public function remove(string|Stringable $class): self
     {
         $class = static::sanitizeClassName($class);
         $this->classes = array_values(array_filter(

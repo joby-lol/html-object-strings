@@ -2,11 +2,12 @@
 
 namespace ByJoby\HTML\Html5\Tags;
 
-use ByJoby\HTML\Html5\Enums\As_link;
-use ByJoby\HTML\Html5\Enums\CrossOrigin;
-use ByJoby\HTML\Html5\Enums\ReferrerPolicy_link;
-use ByJoby\HTML\Html5\Enums\Rel_link;
 use ByJoby\HTML\Html5\Exceptions\InvalidArgumentsException;
+use ByJoby\HTML\Html5\Tags\LinkTag\AsValue;
+use ByJoby\HTML\Html5\Tags\LinkTag\ReferrerPolicyValue;
+use ByJoby\HTML\Html5\Tags\LinkTag\RelValue;
+use ByJoby\HTML\Html5\Traits\CrossOriginTrait;
+use ByJoby\HTML\Html5\Traits\CrossoriginTrait\CrossOriginValue;
 use ByJoby\HTML\Tags\AbstractTag;
 use Stringable;
 
@@ -22,6 +23,7 @@ use Stringable;
  */
 class LinkTag extends AbstractTag
 {
+    use CrossOriginTrait;
     const TAG = 'link';
 
     /**
@@ -29,11 +31,11 @@ class LinkTag extends AbstractTag
      * document. The attribute must be a space-separated list of link type
      * values.
      *
-     * @return Rel_link[]
+     * @return RelValue[]
      */
     public function rel(): array
     {
-        return $this->attributes()->asEnumArray('rel', Rel_link::class, ' ');
+        return $this->attributes()->asEnumArray('rel', RelValue::class, ' ');
     }
 
     /**
@@ -45,20 +47,20 @@ class LinkTag extends AbstractTag
      *
      * if $as is As_link::fetch then $crossorigin must be specified
      *
-     * @param null|Rel_link|array<int|string,Rel_link> $rel
-     * @param null|As_link|null $as
-     * @param null|CrossOrigin|null $crossorigin
+     * @param null|RelValue|array<int|string,RelValue> $rel
+     * @param null|AsValue|null $as
+     * @param null|CrossOriginValue|null $crossorigin
      * @return static
      */
-    public function setRel(null|Rel_link|array $rel, null|As_link $as = null, null|CrossOrigin $crossorigin = null): static
+    public function setRel(null|RelValue|array $rel, null|AsValue $as = null, null|CrossOriginValue $crossorigin = null): self
     {
         if (!$rel) {
             $this->unsetRel();
         } else {
-            $this->attributes()->setEnumArray('rel', $rel, Rel_link::class, ' ');
+            $this->attributes()->setEnumArray('rel', $rel, RelValue::class, ' ');
             // check if new value includes Rel_link::preload and require $as if so
             $rel = $this->rel();
-            if (in_array(Rel_link::preload, $rel)) {
+            if (in_array(RelValue::preload, $rel)) {
                 if (!$as) {
                     throw new InvalidArgumentsException('$as is required when $rel includes Rel_link::preload');
                 }
@@ -78,7 +80,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetRel(): static
+    public function unsetRel(): self
     {
         unset($this->attributes()['rel']);
         return $this;
@@ -91,11 +93,11 @@ class LinkTag extends AbstractTag
      * <link>, which is necessary for request matching, application of correct
      * content security policy, and setting of correct Accept request header. 
      *
-     * @return null|As_link
+     * @return null|AsValue
      */
-    public function as (): null|As_link
+    public function as (): null|AsValue
     {
-        return $this->attributes()->asEnum('as', As_link::class);
+        return $this->attributes()->asEnum('as', AsValue::class);
     }
 
     /**
@@ -107,18 +109,18 @@ class LinkTag extends AbstractTag
      *
      * if $as is As_link::fetch then $crossorigin must be specified
      *
-     * @param null|As_link $as
-     * @param null|CrossOrigin|null $crossorigin
+     * @param null|AsValue $as
+     * @param null|CrossOriginValue|null $crossorigin
      * @return static
      */
-    public function setAs(null|As_link $as, null|CrossOrigin $crossorigin = null): static
+    public function setAs(null|AsValue $as, null|CrossOriginValue $crossorigin = null): self
     {
         if (!$as) {
             $this->unsetAs();
         } else {
             $this->attributes()['as'] = $as->value;
             // check if we just set as to As_link::fetch and require $crossorigin if so
-            if ($as == As_link::fetch) {
+            if ($as == AsValue::fetch) {
                 if (!$crossorigin) {
                     throw new InvalidArgumentsException('$crossorigin is required when $as is As_link::fetch');
                 }
@@ -140,52 +142,9 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetAs(): static
+    public function unsetAs(): self
     {
         unset($this->attributes()['as']);
-        return $this;
-    }
-
-    /**
-     * This enumerated attribute indicates whether CORS must be used when
-     * fetching the resource. CORS-enabled images can be reused in the <canvas>
-     * element without being tainted. The allowed values are: 
-     *
-     * @return null|CrossOrigin
-     */
-    public function crossorigin(): null|CrossOrigin
-    {
-        return $this->attributes()->asEnum('crossorigin', CrossOrigin::class);
-    }
-
-    /**
-     * This enumerated attribute indicates whether CORS must be used when
-     * fetching the resource. CORS-enabled images can be reused in the <canvas>
-     * element without being tainted. The allowed values are: 
-     *
-     * @param null|CrossOrigin $crossorigin
-     * @return static
-     */
-    public function setCrossorigin(null|CrossOrigin $crossorigin): static
-    {
-        if (!$crossorigin) {
-            $this->unsetCrossorigin();
-        } else {
-            $this->attributes()['crossorigin'] = $crossorigin->value;
-        }
-        return $this;
-    }
-
-    /**
-     * This enumerated attribute indicates whether CORS must be used when
-     * fetching the resource. CORS-enabled images can be reused in the <canvas>
-     * element without being tainted. The allowed values are: 
-     *
-     * @return static
-     */
-    public function unsetCrossorigin(): static
-    {
-        unset($this->attributes()['crossorigin']);
         return $this;
     }
 
@@ -207,7 +166,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $href
      * @return static
      */
-    public function setHref(null|string|Stringable $href): static
+    public function setHref(null|string|Stringable $href): self
     {
         if ($href) $this->attributes()['href'] = $href;
         else $this->unsetHref();
@@ -220,7 +179,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetHref(): static
+    public function unsetHref(): self
     {
         $this->unsetHreflang();
         unset($this->attributes()['href']);
@@ -251,7 +210,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $hreflang
      * @return static
      */
-    public function setHreflang(null|string|Stringable $hreflang): static
+    public function setHreflang(null|string|Stringable $hreflang): self
     {
         if ($hreflang) $this->attributes()['hreflang'] = $hreflang;
         else $this->unsetHreflang();
@@ -266,7 +225,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetHreflang(): static
+    public function unsetHreflang(): self
     {
         unset($this->attributes()['hreflang']);
         return $this;
@@ -294,7 +253,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $imagesizes
      * @return static
      */
-    public function setImagesizes(null|string|Stringable $imagesizes): static
+    public function setImagesizes(null|string|Stringable $imagesizes): self
     {
         if ($imagesizes) $this->attributes()['imagesizes'] = $imagesizes;
         else $this->unsetImagesizes();
@@ -309,7 +268,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetImagesizes(): static
+    public function unsetImagesizes(): self
     {
         unset($this->attributes()['imagesizes']);
         return $this;
@@ -337,7 +296,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $imagesrcset
      * @return static
      */
-    public function setImagesrcset(null|string|Stringable $imagesrcset): static
+    public function setImagesrcset(null|string|Stringable $imagesrcset): self
     {
         if ($imagesrcset) $this->attributes()['imagesrcset'] = $imagesrcset;
         else $this->unsetImagesrcset();
@@ -352,7 +311,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetImagesrcset(): static
+    public function unsetImagesrcset(): self
     {
         unset($this->attributes()['imagesrcset']);
         return $this;
@@ -380,7 +339,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $integrity
      * @return static
      */
-    public function setIntegrity(null|string|Stringable $integrity): static
+    public function setIntegrity(null|string|Stringable $integrity): self
     {
         if ($integrity) $this->attributes()['integrity'] = $integrity;
         else $this->unsetIntegrity();
@@ -395,7 +354,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetIntegrity(): static
+    public function unsetIntegrity(): self
     {
         unset($this->attributes()['integrity']);
         return $this;
@@ -423,7 +382,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $media
      * @return static
      */
-    public function setMedia(null|string|Stringable $media): static
+    public function setMedia(null|string|Stringable $media): self
     {
         if ($media) $this->attributes()['media'] = $media;
         else $this->unsetMedia();
@@ -438,7 +397,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetMedia(): static
+    public function unsetMedia(): self
     {
         unset($this->attributes()['media']);
         return $this;
@@ -447,20 +406,20 @@ class LinkTag extends AbstractTag
     /**
      * An enum indicating which referrer to use when fetching the resource.
      *
-     * @return null|ReferrerPolicy_link
+     * @return null|ReferrerPolicyValue
      */
-    public function referrerpolicy(): null|ReferrerPolicy_link
+    public function referrerpolicy(): null|ReferrerPolicyValue
     {
-        return $this->attributes()->asEnum('referrerpolicy', ReferrerPolicy_link::class);
+        return $this->attributes()->asEnum('referrerpolicy', ReferrerPolicyValue::class);
     }
 
     /**
      * An enum indicating which referrer to use when fetching the resource.
      *
-     * @param null|ReferrerPolicy_link $referrerpolicy
+     * @param null|ReferrerPolicyValue $referrerpolicy
      * @return static
      */
-    public function setReferrerpolicy(null|ReferrerPolicy_link $referrerpolicy): static
+    public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): self
     {
         if ($referrerpolicy) $this->attributes()['referrerpolicy'] = $referrerpolicy->value;
         else $this->unsetReferrerpolicy();
@@ -472,7 +431,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetReferrerpolicy(): static
+    public function unsetReferrerpolicy(): self
     {
         unset($this->attributes()['referrerpolicy']);
         return $this;
@@ -508,7 +467,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $type
      * @return static
      */
-    public function setType(null|string|Stringable $type): static
+    public function setType(null|string|Stringable $type): self
     {
         if ($type) $this->attributes()['type'] = $type;
         else $this->unsetType();
@@ -527,7 +486,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetType(): static
+    public function unsetType(): self
     {
         unset($this->attributes()['type']);
         return $this;

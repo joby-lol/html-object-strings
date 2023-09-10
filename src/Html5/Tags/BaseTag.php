@@ -40,7 +40,7 @@ class BaseTag extends AbstractTag
      * @param null|string|Stringable $href
      * @return static
      */
-    public function setHref(null|string|Stringable $href): static
+    public function setHref(null|string|Stringable $href): self
     {
         if ($href) $this->attributes()['href'] = $href;
         else $this->unsetHref();
@@ -54,7 +54,7 @@ class BaseTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetHref(): static
+    public function unsetHref(): self
     {
         unset($this->attributes()['href']);
         return $this;
@@ -81,7 +81,7 @@ class BaseTag extends AbstractTag
      * @param null|string|Stringable|BrowsingContext $target
      * @return static
      */
-    public function setTarget(null|string|Stringable|BrowsingContext $target): static
+    public function setTarget(null|string|Stringable|BrowsingContext $target): self
     {
         if (!$target) {
             $this->unsetTarget();
@@ -100,7 +100,7 @@ class BaseTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetTarget(): static
+    public function unsetTarget(): self
     {
         unset($this->attributes()['target']);
         return $this;

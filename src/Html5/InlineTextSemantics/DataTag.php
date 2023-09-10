@@ -35,7 +35,7 @@ class DataTag extends AbstractContainerTag
      * @param null|string|Stringable $value
      * @return static
      */
-    public function setValue(null|string|Stringable $value): static
+    public function setValue(null|string|Stringable $value): self
     {
         if ($value) $this->attributes()['value'] = $value;
         else $this->unsetValue();
@@ -48,7 +48,7 @@ class DataTag extends AbstractContainerTag
      *
      * @return static
      */
-    public function unsetValue(): static
+    public function unsetValue(): self
     {
         unset($this->attributes()['value']);
         return $this;

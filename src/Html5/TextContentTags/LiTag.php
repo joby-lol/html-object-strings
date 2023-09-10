@@ -2,7 +2,7 @@
 
 namespace ByJoby\HTML\Html5\TextContentTags;
 
-use ByJoby\HTML\Html5\Enums\Type_list;
+use ByJoby\HTML\Html5\Enums\ListTypeValue;
 use ByJoby\HTML\Tags\AbstractContainerTag;
 
 /**
@@ -22,20 +22,20 @@ class LiTag extends AbstractContainerTag
     /**
      * Gets the numbering type to be used if placed in an <OL> tag.
      *
-     * @return null|Type_list
+     * @return null|ListTypeValue
      */
-    public function type(): null|Type_list
+    public function type(): null|ListTypeValue
     {
-        return $this->attributes()->asEnum('type', Type_list::class);
+        return $this->attributes()->asEnum('type', ListTypeValue::class);
     }
 
     /**
      * Sets the numbering type to be used if placed in an <OL> tag.
      *
-     * @param null|Type_list $type
+     * @param null|ListTypeValue $type
      * @return static
      */
-    public function setType(null|Type_list $type): static
+    public function setType(null|ListTypeValue $type): self
     {
         if ($type) $this->attributes()['type'] = $type->value;
         else $this->unsetType();
@@ -47,7 +47,7 @@ class LiTag extends AbstractContainerTag
      *
      * @return static
      */
-    public function unsetType(): static
+    public function unsetType(): self
     {
         unset($this->attributes()['type']);
         return $this;

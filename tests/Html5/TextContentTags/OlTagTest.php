@@ -2,7 +2,7 @@
 
 namespace ByJoby\HTML\Html5\TextContentTags;
 
-use ByJoby\HTML\Html5\Enums\Type_list;
+use ByJoby\HTML\Html5\Enums\ListTypeValue;
 use ByJoby\HTML\Html5\Tags\BaseTagTest;
 
 class OlTagTest extends BaseTagTest
@@ -12,11 +12,11 @@ class OlTagTest extends BaseTagTest
         $this->assertBooleanAttributeHelperMethods('reversed', OlTag::class);
         $this->assertAttributeHelperMethods('start', OlTag::class, 1, '1');
         $this->assertAttributeHelperMethods('start', OlTag::class, 0, '0');
-        $this->assertAttributeHelperMethods('type', OlTag::class, Type_list::letterLower, 'a');
-        $this->assertAttributeHelperMethods('type', OlTag::class, Type_list::letterUpper, 'A');
-        $this->assertAttributeHelperMethods('type', OlTag::class, Type_list::romanLower, 'i');
-        $this->assertAttributeHelperMethods('type', OlTag::class, Type_list::romanUpper, 'I');
-        $this->assertAttributeHelperMethods('type', OlTag::class, Type_list::number, '1');
+        $this->assertAttributeHelperMethods('type', OlTag::class, ListTypeValue::letterLower, 'a');
+        $this->assertAttributeHelperMethods('type', OlTag::class, ListTypeValue::letterUpper, 'A');
+        $this->assertAttributeHelperMethods('type', OlTag::class, ListTypeValue::romanLower, 'i');
+        $this->assertAttributeHelperMethods('type', OlTag::class, ListTypeValue::romanUpper, 'I');
+        $this->assertAttributeHelperMethods('type', OlTag::class, ListTypeValue::number, '1');
     }
 
     public function testInvalidType(): void

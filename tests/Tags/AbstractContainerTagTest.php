@@ -2,7 +2,7 @@
 
 namespace ByJoby\HTML\Tags;
 
-use ByJoby\HTML\Html5\Enums\BooleanAttribute;
+use ByJoby\HTML\Helpers\BooleanAttribute;
 use ByJoby\HTML\Nodes\Text;
 use ByJoby\HTML\Nodes\UnsanitizedText;
 use PHPUnit\Framework\TestCase;

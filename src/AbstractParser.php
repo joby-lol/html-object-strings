@@ -5,7 +5,7 @@ namespace ByJoby\HTML;
 use ByJoby\HTML\Containers\Fragment;
 use ByJoby\HTML\Containers\FragmentInterface;
 use ByJoby\HTML\Containers\HtmlDocumentInterface;
-use ByJoby\HTML\Html5\Enums\BooleanAttribute;
+use ByJoby\HTML\Helpers\BooleanAttribute;
 use ByJoby\HTML\Nodes\CData;
 use ByJoby\HTML\Nodes\CDataInterface;
 use ByJoby\HTML\Nodes\Comment;

@@ -3,9 +3,9 @@
 namespace ByJoby\HTML\Html5\Tags;
 
 use ByJoby\HTML\Helpers\StringableEnumArray;
-use ByJoby\HTML\Html5\Enums\HttpEquiv_meta;
-use ByJoby\HTML\Html5\Enums\Name_meta;
-use ByJoby\HTML\Html5\Enums\Robots_meta;
+use ByJoby\HTML\Html5\Tags\MetaTag\HttpEquivValue;
+use ByJoby\HTML\Html5\Tags\MetaTag\NameValue;
+use ByJoby\HTML\Html5\Tags\MetaTag\RobotsValue;
 use ByJoby\HTML\Tags\AbstractTag;
 use Stringable;
 
@@ -30,13 +30,13 @@ class MetaTag extends AbstractTag
      * metadata names defined in the HTML specification.
      * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name
      *
-     * @param string|Stringable|Name_meta $name
+     * @param string|Stringable|NameValue $name
      * @param string|Stringable $content
      * @return static
      */
-    public function setNameAndContent(string|Stringable|Name_meta $name, string|Stringable $content): static
+    public function setNameAndContent(string|Stringable|NameValue $name, string|Stringable $content): self
     {
-        if ($name instanceof Name_meta) {
+        if ($name instanceof NameValue) {
             $name = $name->value;
         }
         unset($this->attributes()['http-equiv']);
@@ -50,11 +50,11 @@ class MetaTag extends AbstractTag
      * Defines a pragma directive. The attribute is named http-equiv(alent)
      * because all the allowed values are names of particular HTTP headers.
      *
-     * @param HttpEquiv_meta $name
+     * @param HttpEquivValue $name
      * @param string|Stringable $content
      * @return static
      */
-    public function setHttpEquivAndContent(HttpEquiv_meta $name, string|Stringable $content): static
+    public function setHttpEquivAndContent(HttpEquivValue $name, string|Stringable $content): self
     {
         unset($this->attributes()['name']);
         unset($this->attributes()['charset']);
@@ -64,18 +64,19 @@ class MetaTag extends AbstractTag
     }
 
     /**
-     * he behavior that cooperative crawlers, or "robots", should use with the page
+     * The behavior that cooperative crawlers, or "robots", should use with the
+     * page
      *
-     * @param Robots_meta|Robots_meta[] $robots
+     * @param RobotsValue|RobotsValue[] $robots
      * @return static
      */
-    public function setRobots(Robots_meta|array $robots): static
+    public function setRobots(RobotsValue|array $robots): self
     {
         if (!is_array($robots)) {
             $robots = [$robots];
         }
         $this->setNameAndContent(
-            Name_meta::robots,
+            NameValue::robots,
             new StringableEnumArray($robots, ',')
         );
         return $this;
@@ -108,11 +109,11 @@ class MetaTag extends AbstractTag
      * metadata in terms of name-value pairs, with the name attribute giving the
      * metadata name, and the content attribute giving the value.
      *
-     * @return null|string|Stringable|Name_meta
+     * @return null|string|Stringable|NameValue
      */
-    public function name(): null|string|Stringable|Name_meta
+    public function name(): null|string|Stringable|NameValue
     {
-        return $this->attributes()->asEnum('name', Name_meta::class)
+        return $this->attributes()->asEnum('name', NameValue::class)
             ?? $this->attributes()->asString('name');
     }
 
@@ -120,11 +121,11 @@ class MetaTag extends AbstractTag
      * Defines a pragma directive. The attribute is named http-equiv(alent)
      * because all the allowed values are names of particular HTTP headers.
      *
-     * @return null|HttpEquiv_meta
+     * @return null|HttpEquivValue
      */
-    public function httpEquiv(): null|HttpEquiv_meta
+    public function httpEquiv(): null|HttpEquivValue
     {
-        return $this->attributes()->asEnum('http-equiv', HttpEquiv_meta::class);
+        return $this->attributes()->asEnum('http-equiv', HttpEquivValue::class);
     }
 
     /**
@@ -134,7 +135,7 @@ class MetaTag extends AbstractTag
      * @param boolean $charset
      * @return static
      */
-    public function setCharset(bool $charset): static
+    public function setCharset(bool $charset): self
     {
         if ($charset) {
             $this->attributes()['charset'] = 'utf-8';

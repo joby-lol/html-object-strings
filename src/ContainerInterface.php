@@ -17,21 +17,21 @@ interface ContainerInterface extends Stringable
         NodeInterface|Stringable|string $child,
         bool $prepend = false,
         bool $skip_sanitize = false
-    ): static;
+    ): self;
 
     public function removeChild(
         NodeInterface|Stringable|string $child
-    ): static;
+    ): self;
 
     public function addChildBefore(
         NodeInterface|Stringable|string $new_child,
         NodeInterface|Stringable|string $before_child,
         bool $skip_sanitize = false
-    ): static;
+    ): self;
 
     public function addChildAfter(
         NodeInterface|Stringable|string $new_child,
         NodeInterface|Stringable|string $after_child,
         bool $skip_sanitize = false
-    ): static;
+    ): self;
 }

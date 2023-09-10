@@ -16,7 +16,7 @@ abstract class AbstractContentTag extends AbstractTag implements ContentTagInter
         return trim($this->content, "\t\n\r\0x0B");
     }
 
-    public function setContent(string|Stringable $content): static
+    public function setContent(string|Stringable $content): self
     {
         $this->content = $content;
         return $this;

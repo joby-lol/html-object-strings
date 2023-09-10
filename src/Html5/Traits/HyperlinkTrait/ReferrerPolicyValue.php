@@ -1,27 +1,29 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Enums;
+namespace ByJoby\HTML\Html5\Traits\HyperlinkTrait;
 
 /**
- * A string indicating which referrer to use when fetching the resource. These
- * values are valid in <script> elements.
+ * How much of the referrer to send when following the link.
  *
  * Description by Mozilla Contributors licensed under CC-BY-SA 2.5
- * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
  */
-enum ReferrerPolicy_script: string
+enum ReferrerPolicyValue: string
 {
     /**
-     * (default): Send a full URL when performing a same-origin request, only
-     * send the origin when the protocol security level stays the same
-     * (HTTPS→HTTPS), and send no header to a less secure destination
-     * (HTTPS→HTTP).
+     * DEFAULT: Send a full URL when performing a same-origin request, only send
+     * the origin when the protocol security level stays the same (HTTPS→HTTPS),
+     * and send no header to a less secure destination (HTTPS→HTTP).
      */
     case strictOriginWhenCrossOrigin = "strict-origin-when-cross-origin";
     /**
      * means that the Referer header will not be sent.
      */
     case noReferrer = "no-referrer";
+    /**
+     * The Referer header will not be sent to origins without TLS (HTTPS).
+     */
+    case noReferrerWhenDowngrade = "no-referrer-when-downgrade";
     /**
      * The sent referrer will be limited to the origin of the referring page:
      * its scheme, host, and port.
@@ -46,8 +48,8 @@ enum ReferrerPolicy_script: string
     case strictOrigin = "strict-origin";
     /**
      * The referrer will include the origin and the path (but not the fragment,
-     * password, or username). This value is unsafe, because it leaks origins
-     * and paths from TLS-protected resources to insecure origins.
+     * password, or username). THIS VALUE IS UNSAFE, because it leaks origins
+     * and paths from TLS-protected resources to insecure origins. 
      */
     case unsafeUrl = "unsafe-url";
 }

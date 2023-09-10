@@ -3,8 +3,8 @@
 namespace ByJoby\HTML\Tags;
 
 use ByJoby\HTML\Helpers\Attributes;
+use ByJoby\HTML\Helpers\BooleanAttribute;
 use ByJoby\HTML\Helpers\Classes;
-use ByJoby\HTML\Html5\Enums\BooleanAttribute;
 use PHPUnit\Framework\TestCase;
 
 class AbstractTagTest extends TestCase
