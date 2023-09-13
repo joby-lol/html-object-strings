@@ -6,6 +6,7 @@ use ByJoby\HTML\Helpers\BooleanAttribute;
 use ByJoby\HTML\Html5\Multimedia\ImgTag\DecodingValue;
 use ByJoby\HTML\Html5\Multimedia\ImgTag\ReferrerPolicyValue;
 use ByJoby\HTML\Html5\Traits\CrossOriginTrait;
+use ByJoby\HTML\Html5\Traits\HeightAndWidthTrait;
 use ByJoby\HTML\Tags\AbstractTag;
 use Stringable;
 
@@ -18,6 +19,7 @@ use Stringable;
 class ImgTag extends AbstractTag
 {
     use CrossOriginTrait;
+    use HeightAndWidthTrait;
     const TAG = "img";
 
     /**
@@ -154,43 +156,6 @@ class ImgTag extends AbstractTag
     public function unsetDecoding(): self
     {
         unset($this->attributes()['decoding']);
-        return $this;
-    }
-
-    /**
-     * The intrinsic height of the image, in pixels. Must be an integer without
-     * a unit.
-     *
-     * @return null|integer
-     */
-    public function height(): null|int
-    {
-        return $this->attributes()->asInt('height');
-    }
-
-    /**
-     * The intrinsic height of the image, in pixels. Must be an integer without
-     * a unit.
-     *
-     * @param null|integer $height
-     * @return self
-     */
-    public function setHeight(null|int $height): self
-    {
-        if (is_int($height)) $this->attributes()['height'] = $height;
-        else $this->unsetHeight();
-        return $this;
-    }
-
-    /**
-     * The intrinsic height of the image, in pixels. Must be an integer without
-     * a unit.
-     *
-     * @return self
-     */
-    public function unsetHeight(): self
-    {
-        unset($this->attributes()['height']);
         return $this;
     }
 
@@ -479,43 +444,6 @@ class ImgTag extends AbstractTag
     public function unsetSrcset(): self
     {
         unset($this->attributes()['srcset']);
-        return $this;
-    }
-
-    /**
-     * The intrinsic width of the image in pixels. Must be an integer without a
-     * unit.
-     *
-     * @return null|integer
-     */
-    public function width(): null|int
-    {
-        return $this->attributes()->asInt('width');
-    }
-
-    /**
-     * The intrinsic width of the image in pixels. Must be an integer without a
-     * unit.
-     *
-     * @param null|integer $width
-     * @return self
-     */
-    public function setWidth(null|int $width): self
-    {
-        if (is_int($width)) $this->attributes()['width'] = $width;
-        else $this->unsetWidth();
-        return $this;
-    }
-
-    /**
-     * The intrinsic width of the image in pixels. Must be an integer without a
-     * unit.
-     *
-     * @return self
-     */
-    public function unsetWidth(): self
-    {
-        unset($this->attributes()['width']);
         return $this;
     }
 

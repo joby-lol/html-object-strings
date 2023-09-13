@@ -5,6 +5,7 @@ namespace ByJoby\HTML\Html5\Multimedia;
 use ByJoby\HTML\Helpers\StringableEnumArray;
 use ByJoby\HTML\Html5\Multimedia\IframeTag\ReferrerPolicyValue;
 use ByJoby\HTML\Html5\Multimedia\IframeTag\SandboxValue;
+use ByJoby\HTML\Html5\Traits\HeightAndWidthTrait;
 use ByJoby\HTML\Tags\AbstractTag;
 use Stringable;
 
@@ -22,6 +23,7 @@ use Stringable;
  */
 class IframeTag extends AbstractTag
 {
+    use HeightAndWidthTrait;
     const TAG = "embed";
 
     /**
@@ -222,40 +224,6 @@ class IframeTag extends AbstractTag
     }
 
     /**
-     * The height of the frame in CSS pixels. Default is 150.
-     *
-     * @return null|integer
-     */
-    public function height(): null|int
-    {
-        return $this->attributes()->asInt('height');
-    }
-
-    /**
-     * The height of the frame in CSS pixels. Default is 150.
-     *
-     * @param null|integer $height
-     * @return self
-     */
-    public function setHeight(null|int $height): self
-    {
-        if (is_int($height)) $this->attributes()['height'] = $height;
-        else $this->unsetHeight();
-        return $this;
-    }
-
-    /**
-     * The height of the frame in CSS pixels. Default is 150.
-     *
-     * @return self
-     */
-    public function unsetHeight(): self
-    {
-        unset($this->attributes()['height']);
-        return $this;
-    }
-
-    /**
      * The URL of the page to embed. Use a value of about:blank to embed an
      * empty page that conforms to the same-origin policy. Also note that
      * programmatically removing an <iframe>'s src attribute (e.g. via
@@ -338,40 +306,6 @@ class IframeTag extends AbstractTag
     public function unsetSrcdoc(): self
     {
         unset($this->attributes()['srcdoc']);
-        return $this;
-    }
-
-    /**
-     * The width of the frame in CSS pixels. Default is 300.
-     *
-     * @return null|integer
-     */
-    public function width(): null|int
-    {
-        return $this->attributes()->asInt('width');
-    }
-
-    /**
-     * The width of the frame in CSS pixels. Default is 300.
-     *
-     * @param null|integer $width
-     * @return self
-     */
-    public function setWidth(null|int $width): self
-    {
-        if (is_int($width)) $this->attributes()['width'] = $width;
-        else $this->unsetWidth();
-        return $this;
-    }
-
-    /**
-     * The width of the frame in CSS pixels. Default is 300.
-     *
-     * @return self
-     */
-    public function unsetWidth(): self
-    {
-        unset($this->attributes()['width']);
         return $this;
     }
 }

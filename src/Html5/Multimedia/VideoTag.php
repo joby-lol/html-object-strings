@@ -3,6 +3,7 @@
 namespace ByJoby\HTML\Html5\Multimedia;
 
 use ByJoby\HTML\Helpers\BooleanAttribute;
+use ByJoby\HTML\Html5\Traits\HeightAndWidthTrait;
 use Stringable;
 
 /**
@@ -15,41 +16,8 @@ use Stringable;
  */
 class VideoTag extends AbstractPlaybackTag
 {
+    use HeightAndWidthTrait;
     const TAG = 'video';
-
-    /**
-     * The height of the video's display area, in CSS pixels
-     *
-     * @return null|integer
-     */
-    public function height(): null|int
-    {
-        return $this->attributes()->asInt('height');
-    }
-
-    /**
-     * The height of the video's display area, in CSS pixels
-     *
-     * @param null|integer $height
-     * @return self
-     */
-    public function setHeight(null|int $height): self
-    {
-        if (is_int($height)) $this->attributes()['height'] = $height;
-        else $this->unsetHeight();
-        return $this;
-    }
-
-    /**
-     * The height of the video's display area, in CSS pixels
-     *
-     * @return self
-     */
-    public function unsetHeight(): self
-    {
-        unset($this->attributes()['height']);
-        return $this;
-    }
 
     /**
      * A Boolean attribute indicating that the video is to be played "inline",
@@ -117,40 +85,6 @@ class VideoTag extends AbstractPlaybackTag
     public function unsetPoster(): self
     {
         unset($this->attributes()['poster']);
-        return $this;
-    }
-
-    /**
-     * The width of the video's display area, in CSS pixels
-     *
-     * @return null|integer
-     */
-    public function width(): null|int
-    {
-        return $this->attributes()->asInt('width');
-    }
-
-    /**
-     * The width of the video's display area, in CSS pixels
-     *
-     * @param null|integer $width
-     * @return self
-     */
-    public function setWidth(null|int $width): self
-    {
-        if (is_int($width)) $this->attributes()['width'] = $width;
-        else $this->unsetWidth();
-        return $this;
-    }
-
-    /**
-     * The width of the video's display area, in CSS pixels
-     *
-     * @return self
-     */
-    public function unsetWidth(): self
-    {
-        unset($this->attributes()['width']);
         return $this;
     }
 }

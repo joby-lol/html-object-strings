@@ -2,6 +2,7 @@
 
 namespace ByJoby\HTML\Html5\Multimedia;
 
+use ByJoby\HTML\Html5\Traits\HeightAndWidthTrait;
 use ByJoby\HTML\Tags\AbstractTag;
 use Stringable;
 
@@ -18,6 +19,9 @@ use Stringable;
  */
 class SourceTag extends AbstractTag
 {
+    use HeightAndWidthTrait;
+    const TAG = "source";
+
     /**
      * The MIME media type of the image or other media type, optionally with a
      * codecs parameter.
@@ -308,98 +312,6 @@ class SourceTag extends AbstractTag
     public function unsetMedia(): self
     {
         unset($this->attributes()['media']);
-        return $this;
-    }
-
-    /**
-     * Allowed if the source element's parent is a <picture> element, but not
-     * allowed if the source element's parent is an <audio> or <video> element.
-     *
-     * The intrinsic height of the image, in pixels. Must be an integer without
-     * a unit.
-     *
-     * @return null|integer
-     */
-    public function height(): null|int
-    {
-        return $this->attributes()->asInt('height');
-    }
-
-    /**
-     * Allowed if the source element's parent is a <picture> element, but not
-     * allowed if the source element's parent is an <audio> or <video> element.
-     *
-     * The intrinsic height of the image, in pixels. Must be an integer without
-     * a unit.
-     *
-     * @param null|integer $height
-     * @return self
-     */
-    public function setHeight(null|int $height): self
-    {
-        if (is_int($height)) $this->attributes()['height'] = $height;
-        else $this->unsetHeight();
-        return $this;
-    }
-
-    /**
-     * Allowed if the source element's parent is a <picture> element, but not
-     * allowed if the source element's parent is an <audio> or <video> element.
-     *
-     * The intrinsic height of the image, in pixels. Must be an integer without
-     * a unit.
-     *
-     * @return self
-     */
-    public function unsetHeight(): self
-    {
-        unset($this->attributes()['height']);
-        return $this;
-    }
-
-    /**
-     * Allowed if the source element's parent is a <picture> element, but not
-     * allowed if the source element's parent is an <audio> or <video> element.
-     *
-     * The intrinsic width of the image in pixels. Must be an integer without a
-     * unit.
-     *
-     * @return null|integer
-     */
-    public function width(): null|int
-    {
-        return $this->attributes()->asInt('width');
-    }
-
-    /**
-     * Allowed if the source element's parent is a <picture> element, but not
-     * allowed if the source element's parent is an <audio> or <video> element.
-     *
-     * The intrinsic width of the image in pixels. Must be an integer without a
-     * unit.
-     *
-     * @param null|integer $width
-     * @return self
-     */
-    public function setWidth(null|int $width): self
-    {
-        if (is_int($width)) $this->attributes()['width'] = $width;
-        else $this->unsetWidth();
-        return $this;
-    }
-
-    /**
-     * Allowed if the source element's parent is a <picture> element, but not
-     * allowed if the source element's parent is an <audio> or <video> element.
-     *
-     * The intrinsic width of the image in pixels. Must be an integer without a
-     * unit.
-     *
-     * @return self
-     */
-    public function unsetWidth(): self
-    {
-        unset($this->attributes()['width']);
         return $this;
     }
 }
