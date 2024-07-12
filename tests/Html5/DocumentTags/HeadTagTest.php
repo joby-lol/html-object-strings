@@ -1,8 +1,8 @@
 <?php
 
-namespace ByJoby\HTML\Html5\DocumentTags;
+namespace Joby\HTML\Html5\DocumentTags;
 
-use ByJoby\HTML\Containers\DocumentTags\TitleTagInterface;
+use Joby\HTML\Containers\DocumentTags\TitleTagInterface;
 use PHPUnit\Framework\TestCase;
 
 class HeadTagTest extends TestCase

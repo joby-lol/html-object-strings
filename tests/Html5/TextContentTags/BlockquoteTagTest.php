@@ -1,8 +1,8 @@
 <?php
 
-namespace ByJoby\HTML\Html5\TextContentTags;
+namespace Joby\HTML\Html5\TextContentTags;
 
-use ByJoby\HTML\Html5\Tags\BaseTagTest;
+use Joby\HTML\Html5\Tags\BaseTagTest;
 
 class BlockquoteTagTest extends BaseTagTest
 {

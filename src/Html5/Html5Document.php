@@ -1,16 +1,39 @@
 <?php
 
-namespace ByJoby\HTML\Html5;
+/**
+ * Joby's HTML Object Strings: https://code.byjoby.com/html-object-strings/
+ * MIT License: Copyright (c) 2024 Joby Elliott
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+ * SOFTWARE.
+ */
 
-use ByJoby\HTML\Containers\ContainerGroup;
-use ByJoby\HTML\Containers\DocumentTags\BodyTagInterface;
-use ByJoby\HTML\Containers\DocumentTags\DoctypeInterface;
-use ByJoby\HTML\Containers\DocumentTags\HeadTagInterface;
-use ByJoby\HTML\Containers\DocumentTags\HtmlTagInterface;
-use ByJoby\HTML\Containers\HtmlDocumentInterface;
-use ByJoby\HTML\Html5\DocumentTags\Doctype;
-use ByJoby\HTML\Html5\DocumentTags\HtmlTag;
-use ByJoby\HTML\Traits\GroupedContainerTrait;
+namespace Joby\HTML\Html5;
+
+use Joby\HTML\Containers\ContainerGroup;
+use Joby\HTML\Containers\DocumentTags\BodyTagInterface;
+use Joby\HTML\Containers\DocumentTags\DoctypeInterface;
+use Joby\HTML\Containers\DocumentTags\HeadTagInterface;
+use Joby\HTML\Containers\DocumentTags\HtmlTagInterface;
+use Joby\HTML\Containers\HtmlDocumentInterface;
+use Joby\HTML\Html5\DocumentTags\Doctype;
+use Joby\HTML\Html5\DocumentTags\HtmlTag;
+use Joby\HTML\Traits\GroupedContainerTrait;
 
 class Html5Document implements HtmlDocumentInterface
 {

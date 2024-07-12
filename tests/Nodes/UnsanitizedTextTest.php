@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Nodes;
+namespace Joby\HTML\Nodes;
 
 use PHPUnit\Framework\TestCase;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Helpers;
+namespace Joby\HTML\Helpers;
 
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;

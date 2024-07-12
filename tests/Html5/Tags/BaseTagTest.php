@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Tags;
+namespace Joby\HTML\Html5\Tags;
 
 class BaseTagTest extends TagTestCase
 {

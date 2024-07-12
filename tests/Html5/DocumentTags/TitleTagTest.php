@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Html5\DocumentTags;
+namespace Joby\HTML\Html5\DocumentTags;
 
 use PHPUnit\Framework\TestCase;
 

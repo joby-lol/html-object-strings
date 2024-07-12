@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Html5\InlineTextSemantics\TimeTag;
+namespace Joby\HTML\Html5\InlineTextSemantics\TimeTag;
 
 use PHPUnit\Framework\TestCase;
 

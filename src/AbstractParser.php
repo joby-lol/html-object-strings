@@ -1,19 +1,42 @@
 <?php
 
-namespace ByJoby\HTML;
+/**
+ * Joby's HTML Object Strings: https://code.byjoby.com/html-object-strings/
+ * MIT License: Copyright (c) 2024 Joby Elliott
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+ * SOFTWARE.
+ */
 
-use ByJoby\HTML\Containers\Fragment;
-use ByJoby\HTML\Containers\FragmentInterface;
-use ByJoby\HTML\Containers\HtmlDocumentInterface;
-use ByJoby\HTML\Helpers\BooleanAttribute;
-use ByJoby\HTML\Nodes\CData;
-use ByJoby\HTML\Nodes\CDataInterface;
-use ByJoby\HTML\Nodes\Comment;
-use ByJoby\HTML\Nodes\CommentInterface;
-use ByJoby\HTML\Nodes\Text;
-use ByJoby\HTML\Nodes\TextInterface;
-use ByJoby\HTML\Tags\ContentTagInterface;
-use ByJoby\HTML\Tags\TagInterface;
+namespace Joby\HTML;
+
+use Joby\HTML\Containers\Fragment;
+use Joby\HTML\Containers\FragmentInterface;
+use Joby\HTML\Containers\HtmlDocumentInterface;
+use Joby\HTML\Helpers\BooleanAttribute;
+use Joby\HTML\Nodes\CData;
+use Joby\HTML\Nodes\CDataInterface;
+use Joby\HTML\Nodes\Comment;
+use Joby\HTML\Nodes\CommentInterface;
+use Joby\HTML\Nodes\Text;
+use Joby\HTML\Nodes\TextInterface;
+use Joby\HTML\Tags\ContentTagInterface;
+use Joby\HTML\Tags\TagInterface;
 use DOMComment;
 use DOMDocument;
 use DOMElement;

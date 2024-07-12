@@ -1,12 +1,12 @@
 <?php
 
-namespace ByJoby\HTML\Containers;
+namespace Joby\HTML\Containers;
 
-use ByJoby\HTML\Html5\Tags\BaseTag;
-use ByJoby\HTML\Html5\Tags\LinkTag;
-use ByJoby\HTML\Html5\Tags\ScriptTag;
-use ByJoby\HTML\Html5\Tags\StyleTag;
-use ByJoby\HTML\Nodes\Comment;
+use Joby\HTML\Html5\Tags\BaseTag;
+use Joby\HTML\Html5\Tags\LinkTag;
+use Joby\HTML\Html5\Tags\ScriptTag;
+use Joby\HTML\Html5\Tags\StyleTag;
+use Joby\HTML\Nodes\Comment;
 use PHPUnit\Framework\TestCase;
 
 class GroupedContainerTest extends TestCase

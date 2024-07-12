@@ -1,6 +1,6 @@
 <?php
 
-namespace ByJoby\HTML\Tags;
+namespace Joby\HTML\Tags;
 
 use Stringable;
 

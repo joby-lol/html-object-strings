@@ -1,11 +1,11 @@
 <?php
 
-namespace ByJoby\HTML\Html5;
+namespace Joby\HTML\Html5;
 
-use ByJoby\HTML\Containers\DocumentTags\BodyTagInterface;
-use ByJoby\HTML\Containers\DocumentTags\DoctypeInterface;
-use ByJoby\HTML\Containers\DocumentTags\HeadTagInterface;
-use ByJoby\HTML\Containers\DocumentTags\HtmlTagInterface;
+use Joby\HTML\Containers\DocumentTags\BodyTagInterface;
+use Joby\HTML\Containers\DocumentTags\DoctypeInterface;
+use Joby\HTML\Containers\DocumentTags\HeadTagInterface;
+use Joby\HTML\Containers\DocumentTags\HtmlTagInterface;
 use PHPUnit\Framework\TestCase;
 
 class GenericHtmlDocumentTest extends TestCase

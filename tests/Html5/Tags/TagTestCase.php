@@ -1,10 +1,10 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Tags;
+namespace Joby\HTML\Html5\Tags;
 
-use ByJoby\HTML\ContainerInterface;
-use ByJoby\HTML\Tags\ContentTagInterface;
-use ByJoby\HTML\Tags\TagInterface;
+use Joby\HTML\ContainerInterface;
+use Joby\HTML\Tags\ContentTagInterface;
+use Joby\HTML\Tags\TagInterface;
 use PHPUnit\Framework\TestCase;
 
 abstract class TagTestCase extends TestCase

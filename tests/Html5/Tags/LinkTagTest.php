@@ -1,12 +1,12 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Tags;
+namespace Joby\HTML\Html5\Tags;
 
-use ByJoby\HTML\Html5\Tags\LinkTag\AsValue;
-use ByJoby\HTML\Html5\Tags\LinkTag\ReferrerPolicyValue;
-use ByJoby\HTML\Html5\Tags\LinkTag\RelValue;
-use ByJoby\HTML\Html5\Exceptions\InvalidArgumentsException;
-use ByJoby\HTML\Html5\Traits\CrossoriginTrait\CrossOriginValue;
+use Joby\HTML\Html5\Tags\LinkTag\AsValue;
+use Joby\HTML\Html5\Tags\LinkTag\ReferrerPolicyValue;
+use Joby\HTML\Html5\Tags\LinkTag\RelValue;
+use Joby\HTML\Html5\Exceptions\InvalidArgumentsException;
+use Joby\HTML\Html5\Traits\CrossoriginTrait\CrossOriginValue;
 
 class LinkTagTest extends TagTestCase
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace ByJoby\HTML\Html5;
+namespace Joby\HTML\Html5;
 
-use ByJoby\HTML\Html5\TextContentTags\DivTag;
-use ByJoby\HTML\Nodes\TextInterface;
+use Joby\HTML\Html5\TextContentTags\DivTag;
+use Joby\HTML\Nodes\TextInterface;
 use PHPUnit\Framework\TestCase;
 
 class Html5ParserTest extends TestCase

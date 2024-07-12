@@ -1,10 +1,10 @@
 <?php
 
-namespace ByJoby\HTML\Tags;
+namespace Joby\HTML\Tags;
 
-use ByJoby\HTML\Traits\ContainerTrait;
-use ByJoby\HTML\Traits\TagTrait;
-use ByJoby\HTML\Traits\NodeTrait;
+use Joby\HTML\Traits\ContainerTrait;
+use Joby\HTML\Traits\TagTrait;
+use Joby\HTML\Traits\NodeTrait;
 
 abstract class AbstractContainerTag extends AbstractTag implements ContainerTagInterface
 {

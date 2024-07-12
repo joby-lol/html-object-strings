@@ -1,9 +1,9 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Tags;
+namespace Joby\HTML\Html5\Tags;
 
-use ByJoby\HTML\Html5\Tags\MetaTag\HttpEquivValue;
-use ByJoby\HTML\Html5\Tags\MetaTag\NameValue;
+use Joby\HTML\Html5\Tags\MetaTag\HttpEquivValue;
+use Joby\HTML\Html5\Tags\MetaTag\NameValue;
 
 class MetaTagTest extends TagTestCase
 {

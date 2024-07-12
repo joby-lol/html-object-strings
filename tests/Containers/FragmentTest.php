@@ -1,8 +1,8 @@
 <?php
 
-namespace ByJoby\HTML\Containers;
+namespace Joby\HTML\Containers;
 
-use ByJoby\HTML\Tags\AbstractContainerTag;
+use Joby\HTML\Tags\AbstractContainerTag;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 

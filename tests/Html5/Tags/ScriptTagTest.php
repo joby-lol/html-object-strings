@@ -1,10 +1,10 @@
 <?php
 
-namespace ByJoby\HTML\Html5\Tags;
+namespace Joby\HTML\Html5\Tags;
 
-use ByJoby\HTML\Html5\Tags\ScriptTag\ReferrerPolicyValue;
-use ByJoby\HTML\Html5\Tags\ScriptTag\TypeValue;
-use ByJoby\HTML\Html5\Traits\CrossoriginTrait\CrossOriginValue;
+use Joby\HTML\Html5\Tags\ScriptTag\ReferrerPolicyValue;
+use Joby\HTML\Html5\Tags\ScriptTag\TypeValue;
+use Joby\HTML\Html5\Traits\CrossoriginTrait\CrossOriginValue;
 
 class ScriptTagTest extends TagTestCase
 {
