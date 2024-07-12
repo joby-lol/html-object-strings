@@ -12,10 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: php-actions/composer@v6
-        with:
-          php-version: ${{ matrix.php-versions }}
       - uses: php-actions/phpstan@v3
       - uses: php-actions/phpunit@v3
         with:
+          version: 10
           test_suffix: "Test.php"
           php_version: ${{ matrix.php-versions }}
