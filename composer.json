@@ -1,5 +1,5 @@
 {
-    "name": "byjoby/html-object-strings",
+    "name": "joby/html-object-strings",
     "description": "Abstraction layer for constructing arbitrary HTML tags and documents in PHP",
     "type": "library",
     "require": {
