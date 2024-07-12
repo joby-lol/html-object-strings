@@ -17,21 +17,21 @@ class AttributesTest extends TestCase
 
     public function testInvalidConstructionEmptyName(): void
     {
+        $attributes = new Attributes(['foo' => 'bar', 'baz' => true]);
         $this->expectExceptionMessage('Attribute name must be specified when setting');
         $attributes = new Attributes(['' => 'foo']);
     }
 
     public function testInvalidConstructionInvalidName(): void
     {
+        $attributes = new Attributes(['foo' => 'bar', 'baz' => true]);
         $this->expectExceptionMessage('Invalid character in attribute name');
         $attributes = new Attributes(['a=b' => 'foo']);
     }
 
-    /**
-     * @depends clone testConstruction
-     */
-    public function testSetAndUnset(Attributes $attributes): void
+    public function testSetAndUnset(): void
     {
+        $attributes = new Attributes(['foo' => 'bar', 'baz' => true]);
         $attributes['a'] = 'b';
         $this->assertEquals('b', $attributes['a']);
         $this->assertEquals(['a' => 'b', 'baz' => true, 'foo' => 'bar'], $attributes->getArray());
@@ -39,11 +39,9 @@ class AttributesTest extends TestCase
         $this->assertEquals(['a' => 'b', 'foo' => 'bar'], $attributes->getArray());
     }
 
-    /**
-     * @depends clone testConstruction
-     */
-    public function testOffsetExists(Attributes $attributes): void
+    public function testOffsetExists(): void
     {
+        $attributes = new Attributes(['foo' => 'bar', 'baz' => true]);
         // test with a regular string
         $this->assertFalse(isset($attributes['a']));
         $attributes['a'] = 'b';
@@ -56,20 +54,16 @@ class AttributesTest extends TestCase
         $this->assertFalse(isset($attributes['c']));
     }
 
-    /**
-     * @depends clone testConstruction
-     */
-    public function testInvalidSetEmptyName(Attributes $attributes): void
+    public function testInvalidSetEmptyName(): void
     {
+        $attributes = new Attributes(['foo' => 'bar', 'baz' => true]);
         $this->expectExceptionMessage('Attribute name must be specified when setting');
         $attributes[] = 'b';
     }
 
-    /**
-     * @depends clone testConstruction
-     */
-    public function testInvalidSetInvalidName(Attributes $attributes): void
+    public function testInvalidSetInvalidName(): void
     {
+        $attributes = new Attributes(['foo' => 'bar', 'baz' => true]);
         $this->expectExceptionMessage('Invalid character in attribute name');
         $attributes['>'] = 'b';
     }

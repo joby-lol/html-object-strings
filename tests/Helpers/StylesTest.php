@@ -2,6 +2,7 @@
 
 namespace ByJoby\HTML\Helpers;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 
 class StylesTest extends TestCase
@@ -15,11 +16,9 @@ class StylesTest extends TestCase
         return $styles;
     }
 
-    /**
-     * @depends clone testConstruction
-     */
-    public function testGettingAndSetting(Styles $styles): void
+    public function testGettingAndSetting(): void
     {
+        $styles = new Styles();
         $styles['a'] = 'b';
         $this->assertEquals('b', $styles['a']);
         unset($styles['foo']);
@@ -34,11 +33,9 @@ class StylesTest extends TestCase
         $this->assertEquals('a:b;b:c', $styles->__toString());
     }
 
-    /**
-     * @depends clone testConstruction
-     */
-    public function testInvalidInputs(Styles $styles): void
+    public function testInvalidInputs(): void
     {
+        $styles = new Styles(['foo' => 'bar']);
         // null assignments don't work
         $styles[] = 'b';
         $this->assertEquals(['foo' => 'bar'], $styles->getArray());

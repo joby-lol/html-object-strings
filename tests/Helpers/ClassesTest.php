@@ -21,11 +21,9 @@ class ClassesTest extends TestCase
         $classes = new Classes(['a', 'c', ' a ', 'b', '!'], false);
     }
 
-    /**
-     * @depends clone testConstruction
-     */
-    public function testAddRemove(Classes $classes): void
+    public function testAddRemove(): void
     {
+        $classes = new Classes(['a', 'c', ' a ', 'b', '!']);
         $classes->add('d');
         $this->assertEquals(['a', 'b', 'c', 'd'], $classes->getArray());
         $classes->add('-d');
@@ -38,11 +36,9 @@ class ClassesTest extends TestCase
         $classes->add('0a');
     }
 
-    /**
-     * @depends clone testConstruction
-     */
-    public function testContains(Classes $classes): void
+    public function testContains(): void
     {
+        $classes = new Classes(['a', 'c', ' a ', 'b', '!']);
         $this->assertFalse($classes->contains('d'));
         $classes->add('d');
         $this->assertTrue($classes->contains('d'));

@@ -4,7 +4,7 @@ namespace ByJoby\HTML\Html5\InlineTextSemantics\TimeTag;
 
 use PHPUnit\Framework\TestCase;
 
-class DatetimeValue_week_Test extends TestCase
+class DatetimeValue_date_week_Test extends TestCase
 {
     public function testFromValidStrings(): void
     {

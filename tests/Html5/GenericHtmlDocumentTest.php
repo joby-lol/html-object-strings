@@ -8,7 +8,7 @@ use ByJoby\HTML\Containers\DocumentTags\HeadTagInterface;
 use ByJoby\HTML\Containers\DocumentTags\HtmlTagInterface;
 use PHPUnit\Framework\TestCase;
 
-class Html5DocumentTest extends TestCase
+class GenericHtmlDocumentTest extends TestCase
 {
     public function testConstruction(): void
     {

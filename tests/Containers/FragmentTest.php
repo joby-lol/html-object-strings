@@ -3,22 +3,25 @@
 namespace ByJoby\HTML\Containers;
 
 use ByJoby\HTML\Tags\AbstractContainerTag;
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 
 class FragmentTest extends TestCase
 {
+
     public function tag(string $name): AbstractContainerTag
     {
-        $tag = $this->getMockForAbstractClass(
-            AbstractContainerTag::class,
-            [], 'Mock_Tag_' . $name,
-            true,
-            true,
-            true,
-            ['tag']
-        );
-        $tag->method('tag')->willReturn($name);
-        return $tag;
+        return new class($name) extends AbstractContainerTag
+        {
+            public function __construct(
+                protected string $name
+            ) {
+            }
+            public function tag(): string
+            {
+                return $this->name;
+            }
+        };
     }
 
     public function testConstruction()
@@ -54,7 +57,7 @@ class FragmentTest extends TestCase
         $this->assertEquals('b' . PHP_EOL . 'a', $fragment->__toString());
     }
 
-    /** @depends clone testNestingDocument */
+    #[Depends('testNestingDocument')]
     public function testAddBeforeAndAfterOnChildren(Fragment $fragment): void
     {
         /** @var AbstractContainerTag */
