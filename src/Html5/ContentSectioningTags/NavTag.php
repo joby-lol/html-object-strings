@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Joby's HTML Object Strings: https://code.byjoby.com/html-object-strings/
+ * Joby's HTML Object Strings: https://go.joby.lol/htmlobjectstrings
  * MIT License: Copyright (c) 2024 Joby Elliott
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
