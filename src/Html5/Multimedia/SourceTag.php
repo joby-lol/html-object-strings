@@ -53,7 +53,7 @@ class SourceTag extends AbstractTag
      * @param null|string|Stringable $type
      * @return static
      */
-    public function setType(null|string|Stringable $type): self
+    public function setType(null|string|Stringable $type): static
     {
         if ($type)
             $this->attributes()['type'] = $type;
@@ -70,7 +70,7 @@ class SourceTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetType(): self
+    public function unsetType(): static
     {
         unset($this->attributes()['type']);
         return $this;
@@ -100,7 +100,7 @@ class SourceTag extends AbstractTag
      * @param null|string|Stringable $src
      * @return static
      */
-    public function setSrc(null|string|Stringable $src): self
+    public function setSrc(null|string|Stringable $src): static
     {
         if ($src)
             $this->attributes()['src'] = $src;
@@ -118,7 +118,7 @@ class SourceTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetSrc(): self
+    public function unsetSrc(): static
     {
         unset($this->attributes()['src']);
         return $this;
@@ -184,7 +184,7 @@ class SourceTag extends AbstractTag
      * @param null|string|Stringable $srcset
      * @return static
      */
-    public function setSrcset(null|string|Stringable $srcset): self
+    public function setSrcset(null|string|Stringable $srcset): static
     {
         if ($srcset)
             $this->attributes()['srcset'] = $srcset;
@@ -220,7 +220,7 @@ class SourceTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetSrcset(): self
+    public function unsetSrcset(): static
     {
         unset($this->attributes()['srcset']);
         return $this;
@@ -258,9 +258,8 @@ class SourceTag extends AbstractTag
      * pixel ratio values (200w instead of 2x for example).
      *
      * @param null|string|Stringable $sizes
-     * @return self
      */
-    public function setSizes(null|string|Stringable $sizes): self
+    public function setSizes(null|string|Stringable $sizes): static
     {
         if (is_null($sizes))
             $this->unsetSizes();
@@ -280,10 +279,8 @@ class SourceTag extends AbstractTag
      * defined in srcset to use. Please note that sizes will have its effect
      * only if width dimension descriptors are provided with srcset instead of
      * pixel ratio values (200w instead of 2x for example).
-     *
-     * @return self
      */
-    public function unsetSizes(): self
+    public function unsetSizes(): static
     {
         unset($this->attributes()['sizes']);
         return $this;
@@ -311,7 +308,7 @@ class SourceTag extends AbstractTag
      * @param null|string|Stringable $media
      * @return static
      */
-    public function setMedia(null|string|Stringable $media): self
+    public function setMedia(null|string|Stringable $media): static
     {
         if ($media)
             $this->attributes()['media'] = $media;
@@ -328,7 +325,7 @@ class SourceTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetMedia(): self
+    public function unsetMedia(): static
     {
         unset($this->attributes()['media']);
         return $this;

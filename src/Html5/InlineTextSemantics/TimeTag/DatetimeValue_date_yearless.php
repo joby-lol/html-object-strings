@@ -18,16 +18,20 @@ use Stringable;
  * Stored internally as a DateTime with the time set to noon, which is public
  * and as such can be conveniently manipulated. Internally the year will be set
  * to the current year.
+ * 
+ * @phpstan-consistent-constructor
  */
 class DatetimeValue_date_yearless extends DatetimeValue
 {
+
     /** @var DateTime */
     public $datetime;
 
-    public static function fromString(string|Stringable|null $string): null|self
+    public static function fromString(string|Stringable|null $string): null|static
     {
         // null string returns null
-        if (is_null($string)) return null;
+        if (is_null($string))
+            return null;
         // try to match regular expression
         elseif (
             preg_match(
@@ -37,10 +41,10 @@ class DatetimeValue_date_yearless extends DatetimeValue
                     static::REGEX_DAY,
                 ),
                 $string,
-                $matches
+                $matches,
             )
         ) {
-            return new self(
+            return new static(
                 intval($matches['month']),
                 intval($matches['day']),
             );
@@ -60,4 +64,5 @@ class DatetimeValue_date_yearless extends DatetimeValue
     {
         return $this->datetime->format('m-d');
     }
+
 }

@@ -19,19 +19,23 @@ use Stringable;
  *
  * Stored internally as a DateTime, which is public and as such can be
  * conveniently manipulated.
+ * 
+ * @phpstan-consistent-constructor
  */
 class DatetimeValue_datetime extends DatetimeValue
 {
+
     /**
      * Matches either "Z" or a positive or negative offset from GMT in which the
      * colon is optional, such as +04:00 or -1030
      */
     const REGEX_TIMEZONE = '(?<timezone>Z|(\+|\-)(0[0-9]|1[0-9]|2[0-3]):?(0[0-9]|[0-5][0-9]))';
 
-    public static function fromString(string|Stringable|null $string): null|self
+    public static function fromString(string|Stringable|null $string): null|static
     {
         // null string returns null
-        if (is_null($string)) return null;
+        if (is_null($string))
+            return null;
         // try to match regular expression
         elseif (
             preg_match(
@@ -46,25 +50,25 @@ class DatetimeValue_datetime extends DatetimeValue
                     static::REGEX_TIMEZONE,
                 ),
                 $string,
-                $matches
+                $matches,
             )
         ) {
-            return new self(
+            return new static(
                 (new DateTime())
                     ->setTimezone(
-                        self::parseTimezone($matches['timezone'])
+                        self::parseTimezone($matches['timezone']),
                     )
                     ->setDate(
                         intval($matches['year']),
                         intval($matches['month']),
-                        intval($matches['day'])
+                        intval($matches['day']),
                     )
                     ->setTime(
                         intval($matches['hour']),
                         intval($matches['minute']),
                         intval(@$matches['second']),
                         intval(@$matches['millisecond']) * 1000
-                    )
+                    ),
             );
         }
         // return null if nothing found
@@ -75,17 +79,17 @@ class DatetimeValue_datetime extends DatetimeValue
     {
         if ($timezone == 'Z' || $timezone == 'z') {
             return new DateTimeZone('UTC');
-        } else {
+        }
+        else {
             return new DateTimeZone(str_replace(':', '', $timezone));
         }
     }
 
-    public function __construct(public DateTime $datetime)
-    {
-    }
+    public function __construct(public DateTime $datetime) {}
 
     public function __toString()
     {
         return $this->datetime->format('c');
     }
+
 }

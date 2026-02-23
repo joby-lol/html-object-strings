@@ -32,7 +32,7 @@ class MapTag extends AbstractGroupedTag
      *
      * @param string|Stringable|null $name
      */
-    public function __construct(string|Stringable $name = null)
+    public function __construct(string|Stringable|null $name = null)
     {
         parent::__construct();
         $this->addGroup(ContainerGroup::ofTag('area'));
@@ -83,9 +83,8 @@ class MapTag extends AbstractGroupedTag
      * have the same value.
      *
      * @param string|Stringable $name
-     * @return self
      */
-    public function setName(string|Stringable $name): self
+    public function setName(string|Stringable $name): static
     {
         $this->attributes()['name'] = $name;
         return $this;

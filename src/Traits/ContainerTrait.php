@@ -9,6 +9,8 @@
 
 namespace Joby\HTML\Traits;
 
+use Generator;
+use Joby\HTML\ContainerInterface;
 use Joby\HTML\NodeInterface;
 use Joby\HTML\Nodes\Text;
 use Joby\HTML\Nodes\UnsanitizedText;
@@ -132,5 +134,24 @@ trait ContainerTrait
             }
         }
         return null;
+    }
+
+    /**
+     * Walk the entire tree from this object, yielding all child Nodes recursively. Optionally filtered to only Nodes of a particular class.
+     * 
+     * @template WalkNodeType of NodeInterface
+     * @param class-string<WalkNodeType>|null $of_class
+     * @return ($of_class is null ? Generator<NodeInterface> : Generator<WalkNodeType>)
+     */
+    public function walk(string|null $of_class = null): Generator
+    {
+        foreach ($this->children() as $child) {
+            if ($of_class === null || $child instanceof $of_class) {
+                yield $child;
+            }
+            if ($child instanceof ContainerInterface) {
+                yield from $child->walk($of_class);
+            }
+        }
     }
 }

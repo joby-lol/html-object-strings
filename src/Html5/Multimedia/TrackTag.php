@@ -46,9 +46,8 @@ class TrackTag extends AbstractTag
      * may only be used on one track element per media element.
      *
      * @param boolean $default
-     * @return self
      */
-    public function setDefault(bool $default): self
+    public function setDefault(bool $default): static
     {
         if ($default)
             $this->attributes()['default'] = BooleanAttribute::true;
@@ -77,9 +76,8 @@ class TrackTag extends AbstractTag
      * subtitles). 
      *
      * @param null|KindValue $kind
-     * @return self
      */
-    public function setKind(null|KindValue $kind): self
+    public function setKind(null|KindValue $kind): static
     {
         if ($kind !== null)
             $this->attributes()['kind'] = $kind->value;
@@ -93,10 +91,8 @@ class TrackTag extends AbstractTag
      * subtitles. If the attribute contains an invalid value, it will use
      * metadata (Versions of Chrome earlier than 52 treated an invalid value as
      * subtitles). 
-     *
-     * @return self
      */
-    public function unsetKind(): self
+    public function unsetKind(): static
     {
         unset($this->attributes()['kind']);
         return $this;
@@ -120,7 +116,7 @@ class TrackTag extends AbstractTag
      * @param null|string|Stringable $label
      * @return static
      */
-    public function setLabel(null|string|Stringable $label): self
+    public function setLabel(null|string|Stringable $label): static
     {
         if ($label !== null)
             $this->attributes()['label'] = $label;
@@ -135,7 +131,7 @@ class TrackTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetLabel(): self
+    public function unsetLabel(): static
     {
         unset($this->attributes()['label']);
         return $this;
@@ -163,7 +159,7 @@ class TrackTag extends AbstractTag
      * @param null|string|Stringable $src
      * @return static
      */
-    public function setSrc(null|string|Stringable $src): self
+    public function setSrc(null|string|Stringable $src): static
     {
         if ($src !== null)
             $this->attributes()['src'] = $src;
@@ -180,7 +176,7 @@ class TrackTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetSrc(): self
+    public function unsetSrc(): static
     {
         unset($this->attributes()['src']);
         return $this;
@@ -204,7 +200,7 @@ class TrackTag extends AbstractTag
      * @param null|string|Stringable $srclang
      * @return static
      */
-    public function setSrclang(null|string|Stringable $srclang): self
+    public function setSrclang(null|string|Stringable $srclang): static
     {
         if ($srclang !== null)
             $this->attributes()['srclang'] = $srclang;
@@ -219,7 +215,7 @@ class TrackTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetSrclang(): self
+    public function unsetSrclang(): static
     {
         unset($this->attributes()['srclang']);
         return $this;

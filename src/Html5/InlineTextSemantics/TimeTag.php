@@ -39,7 +39,7 @@ class TimeTag extends AbstractContainerTag
         );
     }
 
-    public function setDatetime(null|DatetimeValue $datetime): self
+    public function setDatetime(null|DatetimeValue $datetime): static
     {
         if ($datetime)
             $this->attributes()['datetime'] = $datetime;
@@ -48,7 +48,7 @@ class TimeTag extends AbstractContainerTag
         return $this;
     }
 
-    public function unsetDatetime(): self
+    public function unsetDatetime(): static
     {
         unset($this->attributes()['datetime']);
         return $this;

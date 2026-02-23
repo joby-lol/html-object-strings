@@ -61,7 +61,7 @@ class IframeTag extends AbstractTag
      * @param null|string|Stringable $allow
      * @return static
      */
-    public function setAllow(null|string|Stringable $allow): self
+    public function setAllow(null|string|Stringable $allow): static
     {
         if ($allow)
             $this->attributes()['allow'] = $allow;
@@ -80,7 +80,7 @@ class IframeTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetAllow(): self
+    public function unsetAllow(): static
     {
         unset($this->attributes()['allow']);
         return $this;
@@ -102,9 +102,8 @@ class IframeTag extends AbstractTag
      * the viewport, as defined by the browser.
      *
      * @param boolean $lazy
-     * @return self
      */
-    public function setLazy(bool $lazy): self
+    public function setLazy(bool $lazy): static
     {
         if ($lazy)
             $this->attributes()['loading'] = 'lazy';
@@ -135,7 +134,7 @@ class IframeTag extends AbstractTag
      * @param null|string|Stringable $name
      * @return static
      */
-    public function setName(null|string|Stringable $name): self
+    public function setName(null|string|Stringable $name): static
     {
         if ($name)
             $this->attributes()['name'] = $name;
@@ -152,7 +151,7 @@ class IframeTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetName(): self
+    public function unsetName(): static
     {
         unset($this->attributes()['name']);
         return $this;
@@ -174,7 +173,7 @@ class IframeTag extends AbstractTag
      * @param null|ReferrerPolicyValue $referrerpolicy
      * @return static
      */
-    public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): self
+    public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): static
     {
         if ($referrerpolicy)
             $this->attributes()['referrerpolicy'] = $referrerpolicy->value;
@@ -188,7 +187,7 @@ class IframeTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetReferrerpolicy(): self
+    public function unsetReferrerpolicy(): static
     {
         unset($this->attributes()['referrerpolicy']);
         return $this;
@@ -203,7 +202,6 @@ class IframeTag extends AbstractTag
      */
     public function sandbox(): null|array
     {
-        // TODO test retrieving various possible values
         if (!$this->attributes()->asString('sandbox'))
             return null;
         else
@@ -218,9 +216,8 @@ class IframeTag extends AbstractTag
      * @param null|SandboxValue|array<int|string,SandboxValue> $sandbox
      * @return static
      */
-    public function setSandbox(null|SandboxValue|array $sandbox): self
+    public function setSandbox(null|SandboxValue|array $sandbox): static
     {
-        // TODO test the ways this can be set
         if (is_null($sandbox))
             $this->unsetSandbox();
         else {
@@ -237,10 +234,8 @@ class IframeTag extends AbstractTag
      * Controls the restrictions applied to the content embedded in the
      * <iframe>. The value of the attribute can either be empty to apply all
      * restrictions, or space-separated tokens to lift particular restrictions:
-     *
-     * @return self
      */
-    public function unsetSandbox(): self
+    public function unsetSandbox(): static
     {
         unset($this->attributes()['sandbox']);
         return $this;
@@ -270,7 +265,7 @@ class IframeTag extends AbstractTag
      * @param null|string|Stringable $src
      * @return static
      */
-    public function setSrc(null|string|Stringable $src): self
+    public function setSrc(null|string|Stringable $src): static
     {
         if ($src)
             $this->attributes()['src'] = $src;
@@ -288,7 +283,7 @@ class IframeTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetSrc(): self
+    public function unsetSrc(): static
     {
         unset($this->attributes()['src']);
         return $this;
@@ -314,7 +309,7 @@ class IframeTag extends AbstractTag
      * @param null|string|Stringable $srcdoc
      * @return static
      */
-    public function setSrcdoc(null|string|Stringable $srcdoc): self
+    public function setSrcdoc(null|string|Stringable $srcdoc): static
     {
         if ($srcdoc)
             $this->attributes()['srcdoc'] = $srcdoc;
@@ -330,7 +325,7 @@ class IframeTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetSrcdoc(): self
+    public function unsetSrcdoc(): static
     {
         unset($this->attributes()['srcdoc']);
         return $this;

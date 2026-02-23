@@ -61,7 +61,7 @@ class DfnTag extends AbstractContainerTag
      * @param null|string|Stringable $title
      * @return static
      */
-    public function setTitle(null|string|Stringable $title): self
+    public function setTitle(null|string|Stringable $title): static
     {
         if ($title)
             $this->attributes()['title'] = $title;
@@ -78,7 +78,7 @@ class DfnTag extends AbstractContainerTag
      *
      * @return static
      */
-    public function unsetTitle(): self
+    public function unsetTitle(): static
     {
         unset($this->attributes()['title']);
         return $this;

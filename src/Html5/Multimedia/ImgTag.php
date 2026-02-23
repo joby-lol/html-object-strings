@@ -57,9 +57,8 @@ class ImgTag extends AbstractTag
      * image failed to display.
      *
      * @param null|string|Stringable $alt
-     * @return self
      */
-    public function setAlt(null|string|Stringable $alt): self
+    public function setAlt(null|string|Stringable $alt): static
     {
         if (is_null($alt))
             $this->unsetAlt();
@@ -76,10 +75,8 @@ class ImgTag extends AbstractTag
      * pixel), and that non-visual browsers may omit it from rendering. Visual
      * browsers will also hide the broken image icon if the alt is empty and the
      * image failed to display.
-     *
-     * @return self
      */
-    public function unsetAlt(): self
+    public function unsetAlt(): static
     {
         unset($this->attributes()['alt']);
         return $this;
@@ -133,9 +130,8 @@ class ImgTag extends AbstractTag
      * https://www.tunetheweb.com/blog/what-does-the-image-decoding-attribute-actually-do/
      *
      * @param null|DecodingValue $decoding
-     * @return self
      */
-    public function setDecoding(null|DecodingValue $decoding): self
+    public function setDecoding(null|DecodingValue $decoding): static
     {
         if (!$decoding)
             $this->unsetDecoding();
@@ -163,10 +159,8 @@ class ImgTag extends AbstractTag
      * analysis (tunetheweb.com, 2023).
      *
      * https://www.tunetheweb.com/blog/what-does-the-image-decoding-attribute-actually-do/
-     *
-     * @return self
      */
-    public function unsetDecoding(): self
+    public function unsetDecoding(): static
     {
         unset($this->attributes()['decoding']);
         return $this;
@@ -194,9 +188,8 @@ class ImgTag extends AbstractTag
      * https://en.wikipedia.org/wiki/Image_map#Server-side
      *
      * @param boolean $ismap
-     * @return self
      */
-    public function setIsmap(bool $ismap): self
+    public function setIsmap(bool $ismap): static
     {
         if ($ismap)
             $this->attributes()['ismap'] = BooleanAttribute::true;
@@ -227,9 +220,8 @@ class ImgTag extends AbstractTag
      * of the content in most typical use cases.
      *
      * @param boolean $lazy
-     * @return self
      */
-    public function setLazy(bool $lazy): self
+    public function setLazy(bool $lazy): static
     {
         if ($lazy)
             $this->attributes()['loading'] = 'lazy';
@@ -254,7 +246,7 @@ class ImgTag extends AbstractTag
      * @param null|ReferrerPolicyValue $referrerpolicy
      * @return static
      */
-    public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): self
+    public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): static
     {
         if ($referrerpolicy)
             $this->attributes()['referrerpolicy'] = $referrerpolicy->value;
@@ -268,7 +260,7 @@ class ImgTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetReferrerpolicy(): self
+    public function unsetReferrerpolicy(): static
     {
         unset($this->attributes()['referrerpolicy']);
         return $this;
@@ -302,9 +294,8 @@ class ImgTag extends AbstractTag
      * 1000px width, if the viewport is not higher than 500px.
      *
      * @param null|string|Stringable $sizes
-     * @return self
      */
-    public function setSizes(null|string|Stringable $sizes): self
+    public function setSizes(null|string|Stringable $sizes): static
     {
         if (is_null($sizes))
             $this->unsetSizes();
@@ -322,10 +313,8 @@ class ImgTag extends AbstractTag
      * Media Conditions describe properties of the viewport, not of the image.
      * For example, (max-height: 500px) 1000px proposes to use a source of
      * 1000px width, if the viewport is not higher than 500px.
-     *
-     * @return self
      */
-    public function unsetSizes(): self
+    public function unsetSizes(): static
     {
         unset($this->attributes()['sizes']);
         return $this;
@@ -353,7 +342,7 @@ class ImgTag extends AbstractTag
      * @param null|string|Stringable $src
      * @return static
      */
-    public function setSrc(null|string|Stringable $src): self
+    public function setSrc(null|string|Stringable $src): static
     {
         if ($src)
             $this->attributes()['src'] = $src;
@@ -370,7 +359,7 @@ class ImgTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetSrc(): self
+    public function unsetSrc(): static
     {
         unset($this->attributes()['src']);
         return $this;
@@ -432,7 +421,7 @@ class ImgTag extends AbstractTag
      * @param null|string|Stringable $srcset
      * @return static
      */
-    public function setSrcset(null|string|Stringable $srcset): self
+    public function setSrcset(null|string|Stringable $srcset): static
     {
         if ($srcset)
             $this->attributes()['srcset'] = $srcset;
@@ -466,7 +455,7 @@ class ImgTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetSrcset(): self
+    public function unsetSrcset(): static
     {
         unset($this->attributes()['srcset']);
         return $this;
@@ -496,7 +485,7 @@ class ImgTag extends AbstractTag
      * @param null|string|Stringable $usemap
      * @return static
      */
-    public function setUsemap(null|string|Stringable|MapTag $usemap): self
+    public function setUsemap(null|string|Stringable|MapTag $usemap): static
     {
         if (empty($usemap))
             return $this->unsetUsemap();
@@ -517,7 +506,7 @@ class ImgTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetUsemap(): self
+    public function unsetUsemap(): static
     {
         unset($this->attributes()['usemap']);
         return $this;

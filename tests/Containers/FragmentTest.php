@@ -2,6 +2,8 @@
 
 namespace Joby\HTML\Containers;
 
+use Joby\HTML\Html5\InlineTextSemantics\ATag;
+use Joby\HTML\Html5\TextContentTags\DivTag;
 use Joby\HTML\Tags\AbstractContainerTag;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
@@ -71,5 +73,98 @@ class FragmentTest extends TestCase
         // add child after a
         $div2->addChildAfter('c', 'a');
         $this->assertEquals($fragment, $div2->children()[2]->parentDocument());
+    }
+
+    // --- walk ---
+
+    public function testWalkYieldsDirectChildren(): void
+    {
+        $fragment = new Fragment();
+        $div1 = new DivTag();
+        $div2 = new DivTag();
+        $fragment->addChild($div1);
+        $fragment->addChild($div2);
+        $found = iterator_to_array($fragment->walk(), false);
+        $this->assertContains($div1, $found);
+        $this->assertContains($div2, $found);
+    }
+
+    public function testWalkYieldsNestedChildren(): void
+    {
+        $fragment = new Fragment();
+        $div = new DivTag();
+        $inner = new DivTag();
+        $div->addChild($inner);
+        $fragment->addChild($div);
+        $found = iterator_to_array($fragment->walk(), false);
+        $this->assertContains($inner, $found);
+    }
+
+    public function testWalkDoesNotYieldSelf(): void
+    {
+        $fragment = new Fragment();
+        $found = iterator_to_array($fragment->walk(), false);
+        $this->assertNotContains($fragment, $found);
+    }
+
+    public function testWalkEmptyFragment(): void
+    {
+        $fragment = new Fragment();
+        $found = iterator_to_array($fragment->walk(), false);
+        $this->assertEmpty($found);
+    }
+
+    public function testWalkFilterByClass(): void
+    {
+        $fragment = new Fragment();
+        $a = new ATag();
+        $div = new DivTag();
+        $fragment->addChild($a);
+        $fragment->addChild($div);
+        $found = iterator_to_array($fragment->walk(ATag::class), false);
+        $this->assertContains($a, $found);
+        $this->assertNotContains($div, $found);
+    }
+
+    public function testWalkFilterByClassFindsNestedNodes(): void
+    {
+        $fragment = new Fragment();
+        $div = new DivTag();
+        $a = new ATag();
+        $div->addChild($a);
+        $fragment->addChild($div);
+        $found = iterator_to_array($fragment->walk(ATag::class), false);
+        $this->assertContains($a, $found);
+        $this->assertNotContains($div, $found);
+    }
+
+    public function testWalkFilterByClassTraversesNonMatchingContainers(): void
+    {
+        $fragment = new Fragment();
+        $outer = new DivTag();
+        $inner = new DivTag();
+        $a = new ATag();
+        $inner->addChild($a);
+        $outer->addChild($inner);
+        $fragment->addChild($outer);
+        $found = iterator_to_array($fragment->walk(ATag::class), false);
+        $this->assertContains($a, $found);
+    }
+
+    public function testWalkIsDepthFirst(): void
+    {
+        $fragment = new Fragment();
+        $div = new DivTag();
+        $inner = new DivTag();
+        $a = new ATag();
+        $inner->addChild($a);
+        $div->addChild($inner);
+        $fragment->addChild($div);
+        $found = iterator_to_array($fragment->walk(), false);
+        $divIndex = array_search($div, $found);
+        $innerIndex = array_search($inner, $found);
+        $aIndex = array_search($a, $found);
+        $this->assertLessThan($innerIndex, $divIndex);
+        $this->assertLessThan($aIndex, $innerIndex);
     }
 }

@@ -48,9 +48,8 @@ class VideoTag extends AbstractPlaybackTag
      * fullscreen.
      *
      * @param boolean $playsinline
-     * @return self
      */
-    public function setPlaysinline(bool $playsinline): self
+    public function setPlaysinline(bool $playsinline): static
     {
         if ($playsinline)
             $this->attributes()['playsinline'] = BooleanAttribute::true;
@@ -77,9 +76,8 @@ class VideoTag extends AbstractPlaybackTag
      * available, then the first frame is shown as the poster frame.
      *
      * @param null|string|Stringable $poster
-     * @return self
      */
-    public function setPoster(null|string|Stringable $poster): self
+    public function setPoster(null|string|Stringable $poster): static
     {
         if ($poster !== null)
             $this->attributes()['poster'] = $poster;
@@ -92,10 +90,8 @@ class VideoTag extends AbstractPlaybackTag
      * A URL for an image to be shown while the video is downloading. If this
      * attribute isn't specified, nothing is displayed until the first frame is
      * available, then the first frame is shown as the poster frame.
-     *
-     * @return self
      */
-    public function unsetPoster(): self
+    public function unsetPoster(): static
     {
         unset($this->attributes()['poster']);
         return $this;

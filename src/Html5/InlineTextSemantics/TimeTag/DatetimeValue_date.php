@@ -17,16 +17,20 @@ use Stringable;
  *
  * Stored internally as a DateTime with the time set to noon, which is public
  * and as such can be conveniently manipulated.
+ * 
+ * @phpstan-consistent-constructor
  */
 class DatetimeValue_date extends DatetimeValue
 {
+
     /** @var DateTime */
     public $datetime;
 
-    public static function fromString(string|Stringable|null $string): null|self
+    public static function fromString(string|Stringable|null $string): null|static
     {
         // null string returns null
-        if (is_null($string)) return null;
+        if (is_null($string))
+            return null;
         // try to match regular expression
         elseif (
             preg_match(
@@ -37,10 +41,10 @@ class DatetimeValue_date extends DatetimeValue
                     static::REGEX_DAY,
                 ),
                 $string,
-                $matches
+                $matches,
             )
         ) {
-            return new self(
+            return new static(
                 intval($matches['year']),
                 intval($matches['month']),
                 intval($matches['day']),
@@ -53,12 +57,13 @@ class DatetimeValue_date extends DatetimeValue
     public function __construct(int $year, int $month, int $day)
     {
         $this->datetime = (new DateTime())
-            ->setDate($year,$month,$day)
-            ->setTime(12,0,0,0);
+            ->setDate($year, $month, $day)
+            ->setTime(12, 0, 0, 0);
     }
 
     public function __toString()
     {
         return $this->datetime->format('Y-m-d');
     }
+
 }

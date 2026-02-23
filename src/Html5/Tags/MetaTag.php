@@ -41,7 +41,7 @@ class MetaTag extends AbstractTag
      * @param string|Stringable $content
      * @return static
      */
-    public function setNameAndContent(string|Stringable|NameValue $name, string|Stringable $content): self
+    public function setNameAndContent(string|Stringable|NameValue $name, string|Stringable $content): static
     {
         if ($name instanceof NameValue) {
             $name = $name->value;
@@ -61,7 +61,7 @@ class MetaTag extends AbstractTag
      * @param string|Stringable $content
      * @return static
      */
-    public function setHttpEquivAndContent(HttpEquivValue $name, string|Stringable $content): self
+    public function setHttpEquivAndContent(HttpEquivValue $name, string|Stringable $content): static
     {
         unset($this->attributes()['name']);
         unset($this->attributes()['charset']);
@@ -77,7 +77,7 @@ class MetaTag extends AbstractTag
      * @param RobotsValue|RobotsValue[] $robots
      * @return static
      */
-    public function setRobots(RobotsValue|array $robots): self
+    public function setRobots(RobotsValue|array $robots): static
     {
         if (!is_array($robots)) {
             $robots = [$robots];
@@ -142,7 +142,7 @@ class MetaTag extends AbstractTag
      * @param boolean $charset
      * @return static
      */
-    public function setCharset(bool $charset): self
+    public function setCharset(bool $charset): static
     {
         if ($charset) {
             $this->attributes()['charset'] = 'utf-8';

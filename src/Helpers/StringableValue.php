@@ -23,5 +23,6 @@ use Stringable;
  */
 interface StringableValue extends Stringable
 {
-    public static function fromString(string|Stringable|null $string): self|null;
+
+    public static function fromString(string|Stringable|null $string): static|null;
 }

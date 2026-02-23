@@ -18,13 +18,17 @@ use Stringable;
  *
  * Stored internally as a DateTime, which is public and as such can be
  * conveniently manipulated.
+ * 
+ * @phpstan-consistent-constructor
  */
 class DatetimeValue_datetime_local extends DatetimeValue
 {
-    public static function fromString(string|Stringable|null $string): null|self
+
+    public static function fromString(string|Stringable|null $string): null|static
     {
         // null string returns null
-        if (is_null($string)) return null;
+        if (is_null($string))
+            return null;
         // try to match regular expression
         elseif (
             preg_match(
@@ -38,34 +42,33 @@ class DatetimeValue_datetime_local extends DatetimeValue
                     static::REGEX_SECOND,
                 ),
                 $string,
-                $matches
+                $matches,
             )
         ) {
-            return new self(
+            return new static(
                 (new DateTime())
                     ->setDate(
                         intval($matches['year']),
                         intval($matches['month']),
-                        intval($matches['day'])
+                        intval($matches['day']),
                     )
                     ->setTime(
                         intval($matches['hour']),
                         intval($matches['minute']),
                         intval(@$matches['second']),
                         intval(@$matches['millisecond']) * 1000
-                    )
+                    ),
             );
         }
         // return null if nothing found
         return null;
     }
 
-    public function __construct(public DateTime $datetime)
-    {
-    }
+    public function __construct(public DateTime $datetime) {}
 
     public function __toString()
     {
         return $this->datetime->format('Y-m-d\TH:i:s.v');
     }
+
 }

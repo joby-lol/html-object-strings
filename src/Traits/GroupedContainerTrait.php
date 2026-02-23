@@ -65,7 +65,8 @@ trait GroupedContainerTrait
         NodeInterface|Stringable|string $child,
         bool $prepend = false,
         bool $skip_sanitize = false
-    ): self {
+    ): static
+    {
         foreach ($this->groups() as $group) {
             if ($group->willAccept($child)) {
                 $group->addChild($child, $prepend, $skip_sanitize);
@@ -77,7 +78,8 @@ trait GroupedContainerTrait
 
     public function removeChild(
         NodeInterface|Stringable|string $child
-    ): self {
+    ): static
+    {
         foreach ($this->groups() as $group) {
             $group->removeChild($child);
         }
@@ -88,7 +90,8 @@ trait GroupedContainerTrait
         NodeInterface|Stringable|string $new_child,
         NodeInterface|Stringable|string $before_child,
         bool $skip_sanitize = false
-    ): self {
+    ): static
+    {
         foreach ($this->groups() as $group) {
             if ($group->willAccept($new_child) && $group->contains($before_child)) {
                 $group->addChildBefore($new_child, $before_child, $skip_sanitize);
@@ -102,7 +105,8 @@ trait GroupedContainerTrait
         NodeInterface|Stringable|string $new_child,
         NodeInterface|Stringable|string $after_child,
         bool $skip_sanitize = false
-    ): self {
+    ): static
+    {
         foreach ($this->groups() as $group) {
             if ($group->willAccept($new_child) && $group->contains($after_child)) {
                 $group->addChildAfter($new_child, $after_child, $skip_sanitize);

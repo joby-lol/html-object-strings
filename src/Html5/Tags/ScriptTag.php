@@ -47,7 +47,7 @@ class ScriptTag extends AbstractContentTag
      * @param boolean $async
      * @return static
      */
-    public function setAsync(bool $async): self
+    public function setAsync(bool $async): static
     {
         if ($async) $this->attributes()['async'] = BooleanAttribute::true;
         else unset($this->attributes()['async']);
@@ -86,7 +86,7 @@ class ScriptTag extends AbstractContentTag
      * @param boolean $defer
      * @return static
      */
-    public function setDefer(bool $defer): self
+    public function setDefer(bool $defer): static
     {
         if ($defer) $this->attributes()['defer'] = BooleanAttribute::true;
         else unset($this->attributes()['defer']);
@@ -132,7 +132,7 @@ class ScriptTag extends AbstractContentTag
      * @param null|string|Stringable $integrity
      * @return static
      */
-    public function setIntegrity(null|string|Stringable $integrity): self
+    public function setIntegrity(null|string|Stringable $integrity): static
     {
         if ($integrity) $this->attributes()['integrity'] = $integrity;
         else $this->unsetIntegrity();
@@ -148,7 +148,7 @@ class ScriptTag extends AbstractContentTag
      *
      * @return static
      */
-    public function unsetIntegrity(): self
+    public function unsetIntegrity(): static
     {
         unset($this->attributes()['integrity']);
         return $this;
@@ -163,7 +163,7 @@ class ScriptTag extends AbstractContentTag
      * @param boolean $nomodule
      * @return static
      */
-    public function setNomodule(bool $nomodule): self
+    public function setNomodule(bool $nomodule): static
     {
         if ($nomodule) $this->attributes()['nomodule'] = BooleanAttribute::true;
         else unset($this->attributes()['nomodule']);
@@ -209,7 +209,7 @@ class ScriptTag extends AbstractContentTag
      * @param null|string|Stringable $nonce
      * @return static
      */
-    public function setNonce(null|string|Stringable $nonce): self
+    public function setNonce(null|string|Stringable $nonce): static
     {
         if ($nonce) $this->attributes()['nonce'] = $nonce;
         else $this->unsetNonce();
@@ -226,7 +226,7 @@ class ScriptTag extends AbstractContentTag
      *
      * @return static
      */
-    public function unsetNonce(): self
+    public function unsetNonce(): static
     {
         unset($this->attributes()['nonce']);
         return $this;
@@ -250,7 +250,7 @@ class ScriptTag extends AbstractContentTag
      * @param null|ReferrerPolicyValue $referrerpolicy
      * @return static
      */
-    public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): self
+    public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): static
     {
         if ($referrerpolicy) $this->attributes()['referrerpolicy'] = $referrerpolicy->value;
         else $this->unsetReferrerpolicy();
@@ -263,7 +263,7 @@ class ScriptTag extends AbstractContentTag
      *
      * @return static
      */
-    public function unsetReferrerpolicy(): self
+    public function unsetReferrerpolicy(): static
     {
         unset($this->attributes()['referrerpolicy']);
         return $this;
@@ -287,7 +287,7 @@ class ScriptTag extends AbstractContentTag
      * @param null|string|Stringable $src
      * @return static
      */
-    public function setSrc(null|string|Stringable $src): self
+    public function setSrc(null|string|Stringable $src): static
     {
         if ($src) $this->attributes()['src'] = $src;
         else $this->unsetSrc();
@@ -300,7 +300,7 @@ class ScriptTag extends AbstractContentTag
      *
      * @return static
      */
-    public function unsetSrc(): self
+    public function unsetSrc(): static
     {
         unset($this->attributes()['src']);
         return $this;
@@ -322,7 +322,7 @@ class ScriptTag extends AbstractContentTag
      * @param null|TypeValue $type
      * @return static
      */
-    public function setType(null|TypeValue $type): self
+    public function setType(null|TypeValue $type): static
     {
         if ($type) $this->attributes()['type'] = $type->value;
         else $this->unsetType();
@@ -334,7 +334,7 @@ class ScriptTag extends AbstractContentTag
      *
      * @return static
      */
-    public function unsetType(): self
+    public function unsetType(): static
     {
         unset($this->attributes()['type']);
         return $this;

@@ -46,7 +46,7 @@ class EmbedTag extends AbstractTag
      * @param null|string|Stringable $src
      * @return static
      */
-    public function setSrc(null|string|Stringable $src): self
+    public function setSrc(null|string|Stringable $src): static
     {
         if ($src) $this->attributes()['src'] = $src;
         else $this->unsetSrc();
@@ -58,7 +58,7 @@ class EmbedTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetSrc(): self
+    public function unsetSrc(): static
     {
         unset($this->attributes()['src']);
         return $this;
@@ -80,7 +80,7 @@ class EmbedTag extends AbstractTag
      * @param null|string|Stringable $type
      * @return static
      */
-    public function setType(null|string|Stringable $type): self
+    public function setType(null|string|Stringable $type): static
     {
         if ($type) $this->attributes()['type'] = $type;
         else $this->unsetType();
@@ -92,7 +92,7 @@ class EmbedTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetType(): self
+    public function unsetType(): static
     {
         unset($this->attributes()['type']);
         return $this;

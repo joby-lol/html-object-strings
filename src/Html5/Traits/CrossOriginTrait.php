@@ -32,7 +32,7 @@ trait CrossOriginTrait {
      * @param null|CrossOriginValue $crossorigin
      * @return static
      */
-    public function setCrossorigin(null|CrossOriginValue $crossorigin): self
+    public function setCrossorigin(null|CrossOriginValue $crossorigin): static
     {
         if (!$crossorigin) {
             $this->unsetCrossorigin();
@@ -49,7 +49,7 @@ trait CrossOriginTrait {
      *
      * @return static
      */
-    public function unsetCrossorigin(): self
+    public function unsetCrossorigin(): static
     {
         unset($this->attributes()['crossorigin']);
         return $this;

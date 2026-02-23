@@ -25,7 +25,7 @@ class Comment implements CommentInterface
         return $this->value;
     }
 
-    public function setValue(string|Stringable $value): self
+    public function setValue(string|Stringable $value): static
     {
         $this->value = $value;
         return $this;

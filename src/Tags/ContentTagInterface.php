@@ -21,5 +21,6 @@ use Stringable;
 interface ContentTagInterface extends TagInterface
 {
     public function content(): string|Stringable;
-    public function setContent(string|Stringable $content): self;
+
+    public function setContent(string|Stringable $content): static;
 }

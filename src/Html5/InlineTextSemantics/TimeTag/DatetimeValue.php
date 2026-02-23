@@ -14,6 +14,7 @@ use Stringable;
 
 abstract class DatetimeValue implements StringableValue
 {
+
     /** @var array<int,class-string<DatetimeValue>> */
     const SUBCLASSES = [
         DatetimeValue_datetime::class,
@@ -67,17 +68,17 @@ abstract class DatetimeValue implements StringableValue
     /**
      * Tries parsing with all subclasses and returns the first one that
      * succeeds, or null if nothing does.
-     *
-     * @param string|Stringable|null $string
-     * @return null|self
      */
-    public static function fromString(string|Stringable|null $string): null|self
+    public static function fromString(string|Stringable|null $string): static|null
     {
-        if (is_null($string)) return null;
+        if (is_null($string))
+            return null;
         foreach (static::SUBCLASSES as $class) {
             $result = $class::fromString(strval($string));
-            if ($result) return $result;
+            if ($result)
+                return $result; // @phpstan-ignore-line
         }
         return null;
     }
+
 }

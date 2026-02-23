@@ -41,7 +41,7 @@ trait TagTrait
         return $this->id;
     }
 
-    public function setID(null|string|Stringable $id): self
+    public function setID(null|string|Stringable $id): static
     {
         if ($id) {
             $this->id = static::sanitizeID($id);

@@ -101,9 +101,8 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      * file to finish downloading.
      *
      * @param boolean $autoplay
-     * @return self
      */
-    public function setAutoplay(bool $autoplay): self
+    public function setAutoplay(bool $autoplay): static
     {
         if ($autoplay)
             $this->attributes()['autoplay'] = BooleanAttribute::true;
@@ -130,9 +129,8 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      * pause/resume playback.
      *
      * @param boolean $controls
-     * @return self
      */
-    public function setControls(bool $controls): self
+    public function setControls(bool $controls): static
     {
         if ($controls)
             $this->attributes()['controls'] = BooleanAttribute::true;
@@ -157,9 +155,8 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      * back to the start upon reaching the end of the content.
      *
      * @param boolean $loop
-     * @return self
      */
-    public function setLoop(bool $loop): self
+    public function setLoop(bool $loop): static
     {
         if ($loop)
             $this->attributes()['loop'] = BooleanAttribute::true;
@@ -184,9 +181,8 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      * silenced. Its default value is false.
      *
      * @param boolean $muted
-     * @return self
      */
-    public function setMuted(bool $muted): self
+    public function setMuted(bool $muted): static
     {
         if ($muted)
             $this->attributes()['muted'] = BooleanAttribute::true;
@@ -215,7 +211,7 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      * @param null|string|Stringable $src
      * @return static
      */
-    public function setSrc(null|string|Stringable $src): self
+    public function setSrc(null|string|Stringable $src): static
     {
         if ($src)
             $this->attributes()['src'] = $src;
@@ -231,7 +227,7 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      *
      * @return static
      */
-    public function unsetSrc(): self
+    public function unsetSrc(): static
     {
         unset($this->attributes()['src']);
         return $this;
@@ -259,9 +255,8 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      * be set to metadata.
      *
      * @param null|PreloadValue $preload
-     * @return self
      */
-    public function setPreload(null|PreloadValue $preload): self
+    public function setPreload(null|PreloadValue $preload): static
     {
         if ($preload)
             $this->attributes()['preload'] = $preload->value;
@@ -276,10 +271,8 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      *
      * The default value is different for each browser. The spec advises it to
      * be set to metadata.
-     *
-     * @return self
      */
-    public function unsetPreload(): self
+    public function unsetPreload(): static
     {
         unset($this->attributes()['preload']);
         return $this;

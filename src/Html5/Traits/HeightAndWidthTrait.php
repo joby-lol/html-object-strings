@@ -26,9 +26,8 @@ trait HeightAndWidthTrait {
      * absolute value; percentages are not allowed.
      *
      * @param null|integer $height
-     * @return self
      */
-    public function setHeight(null|int $height): self
+    public function setHeight(null|int $height): static
     {
         if (is_int($height)) $this->attributes()['height'] = $height;
         else $this->unsetHeight();
@@ -38,10 +37,8 @@ trait HeightAndWidthTrait {
     /**
      * The displayed height of the resource, in CSS pixels. This must be an
      * absolute value; percentages are not allowed.
-     *
-     * @return self
      */
-    public function unsetHeight(): self
+    public function unsetHeight(): static
     {
         unset($this->attributes()['height']);
         return $this;
@@ -63,9 +60,8 @@ trait HeightAndWidthTrait {
      * absolute value; percentages are not allowed.
      *
      * @param null|integer $width
-     * @return self
      */
-    public function setWidth(null|int $width): self
+    public function setWidth(null|int $width): static
     {
         if (is_int($width)) $this->attributes()['width'] = $width;
         else $this->unsetWidth();
@@ -75,10 +71,8 @@ trait HeightAndWidthTrait {
     /**
      * The displayed width of the resource, in CSS pixels. This must be an
      * absolute value; percentages are not allowed.
-     *
-     * @return self
      */
-    public function unsetWidth(): self
+    public function unsetWidth(): static
     {
         unset($this->attributes()['width']);
         return $this;

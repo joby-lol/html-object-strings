@@ -37,9 +37,8 @@ class AreaTag extends AbstractTag
      *
      * @param null|string|Stringable $href
      * @param null|string|Stringable|null $alt required to set for <area> tags
-     * @return self
      */
-    public function setHref(null|string|Stringable $href, null|string|Stringable $alt = null): self
+    public function setHref(null|string|Stringable $href, null|string|Stringable $alt = null): static
     {
         if ($href) {
             $this->attributes()['href'] = $href;
@@ -75,9 +74,8 @@ class AreaTag extends AbstractTag
      * is used. 
      *
      * @param null|string|Stringable $alt
-     * @return self
      */
-    public function setAlt(null|string|Stringable $alt): self
+    public function setAlt(null|string|Stringable $alt): static
     {
         if ($alt === null)
             $this->unsetAlt();
@@ -92,10 +90,8 @@ class AreaTag extends AbstractTag
      * same kind of choice as the image would offer when displayed without the
      * alternative text. This attribute is required only if the href attribute
      * is used. 
-     *
-     * @return self
      */
-    public function unsetAlt(): self
+    public function unsetAlt(): static
     {
         unset($this->attributes()['alt']);
         return $this;
@@ -126,9 +122,8 @@ class AreaTag extends AbstractTag
      * if shape is set to default. 
      *
      * @param null|string|Stringable|array<int|string,int> $coords
-     * @return self
      */
-    public function setCoords(null|string|Stringable|array $coords): self
+    public function setCoords(null|string|Stringable|array $coords): static
     {
         if (is_array($coords))
             $coords = implode(',', $coords);
@@ -139,7 +134,7 @@ class AreaTag extends AbstractTag
         return $this;
     }
 
-    public function unsetCoords(): self
+    public function unsetCoords(): static
     {
         unset($this->attributes()['coords']);
         return $this;
@@ -166,9 +161,8 @@ class AreaTag extends AbstractTag
      *
      * @param ShapeValue|null $shape
      * @param int $coords
-     * @return self
      */
-    public function setShape(ShapeValue|null $shape, ...$coords): self
+    public function setShape(ShapeValue|null $shape, ...$coords): static
     {
         if (!$shape)
             return $this->unsetShape();
@@ -189,10 +183,8 @@ class AreaTag extends AbstractTag
      * the values rect, which defines a rectangular region; circle, which
      * defines a circular region; poly, which defines a polygon; and default,
      * which indicates the entire region beyond any defined shapes.
-     *
-     * @return self
      */
-    public function unsetShape(): self
+    public function unsetShape(): static
     {
         unset($this->attributes()['shape']);
         $this->unsetCoords();
@@ -201,10 +193,8 @@ class AreaTag extends AbstractTag
 
     /**
      * indicates the entire region beyond any defined shapes.
-     *
-     * @return self
      */
-    public function setShapeDefault(): self
+    public function setShapeDefault(): static
     {
         $this->attributes()['shape'] = ShapeValue::default ->value;
         $this->unsetCoords();
@@ -222,9 +212,8 @@ class AreaTag extends AbstractTag
      * @param integer $y1
      * @param integer $x2
      * @param integer $y2
-     * @return self
      */
-    public function setRectangle(int $x1, int $y1, int $x2, int $y2): self
+    public function setRectangle(int $x1, int $y1, int $x2, int $y2): static
     {
         $this->attributes()['shape'] = ShapeValue::rectangle->value;
         $this->setCoords([$x1, $y1, $x2, $y2]);
@@ -238,9 +227,8 @@ class AreaTag extends AbstractTag
      * @param integer $x
      * @param integer $y
      * @param integer $radius
-     * @return self
      */
-    public function setCircle(int $x, int $y, int $radius): self
+    public function setCircle(int $x, int $y, int $radius): static
     {
         $this->attributes()['shape'] = ShapeValue::circle->value;
         $this->setCoords([$x, $y, $radius]);
@@ -253,9 +241,8 @@ class AreaTag extends AbstractTag
      * same, the browser will add the last coordinate pair to close the polygon 
      *
      * @param int ...$coords
-     * @return self
      */
-    public function setPolygon(...$coords): self
+    public function setPolygon(...$coords): static
     {
         $this->attributes()['shape'] = ShapeValue::polygon->value;
         $this->setCoords($coords);

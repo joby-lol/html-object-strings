@@ -25,6 +25,8 @@ class Html5Parser extends AbstractParser
         '\\Joby\\HTML\\Html5\\Multimedia\\',
         '\\Joby\\HTML\\Html5\\Tags\\',
         '\\Joby\\HTML\\Html5\\TextContentTags\\',
+        '\\Joby\\HTML\\Html5\\Tables\\',
+        '\\Joby\\HTML\\Html5\\Forms\\',
     ];
 
     /** @var class-string<HtmlDocumentInterface> */

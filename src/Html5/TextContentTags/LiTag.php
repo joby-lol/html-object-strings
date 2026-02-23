@@ -42,7 +42,7 @@ class LiTag extends AbstractContainerTag
      * @param null|ListTypeValue $type
      * @return static
      */
-    public function setType(null|ListTypeValue $type): self
+    public function setType(null|ListTypeValue $type): static
     {
         if ($type) $this->attributes()['type'] = $type->value;
         else $this->unsetType();
@@ -54,7 +54,7 @@ class LiTag extends AbstractContainerTag
      *
      * @return static
      */
-    public function unsetType(): self
+    public function unsetType(): static
     {
         unset($this->attributes()['type']);
         return $this;

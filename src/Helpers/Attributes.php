@@ -88,7 +88,7 @@ class Attributes implements IteratorAggregate, ArrayAccess
      * @param string $separator
      * @return static
      */
-    public function setEnumArray(string $offset, null|BackedEnum|array $value, string $enum_class, string $separator): self
+    public function setEnumArray(string $offset, null|BackedEnum|array $value, string $enum_class, string $separator): static
     {
         if (is_null($value)) {
             $value = [];

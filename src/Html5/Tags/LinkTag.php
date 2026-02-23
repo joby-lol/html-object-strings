@@ -59,7 +59,7 @@ class LinkTag extends AbstractTag
      * @param null|CrossOriginValue|null $crossorigin
      * @return static
      */
-    public function setRel(null|RelValue|array $rel, null|AsValue $as = null, null|CrossOriginValue $crossorigin = null): self
+    public function setRel(null|RelValue|array $rel, null|AsValue $as = null, null|CrossOriginValue $crossorigin = null): static
     {
         if (!$rel) {
             $this->unsetRel();
@@ -87,7 +87,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetRel(): self
+    public function unsetRel(): static
     {
         unset($this->attributes()['rel']);
         return $this;
@@ -120,7 +120,7 @@ class LinkTag extends AbstractTag
      * @param null|CrossOriginValue|null $crossorigin
      * @return static
      */
-    public function setAs(null|AsValue $as, null|CrossOriginValue $crossorigin = null): self
+    public function setAs(null|AsValue $as, null|CrossOriginValue $crossorigin = null): static
     {
         if (!$as) {
             $this->unsetAs();
@@ -149,7 +149,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetAs(): self
+    public function unsetAs(): static
     {
         unset($this->attributes()['as']);
         return $this;
@@ -173,7 +173,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $href
      * @return static
      */
-    public function setHref(null|string|Stringable $href): self
+    public function setHref(null|string|Stringable $href): static
     {
         if ($href) $this->attributes()['href'] = $href;
         else $this->unsetHref();
@@ -186,7 +186,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetHref(): self
+    public function unsetHref(): static
     {
         $this->unsetHreflang();
         unset($this->attributes()['href']);
@@ -217,7 +217,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $hreflang
      * @return static
      */
-    public function setHreflang(null|string|Stringable $hreflang): self
+    public function setHreflang(null|string|Stringable $hreflang): static
     {
         if ($hreflang) $this->attributes()['hreflang'] = $hreflang;
         else $this->unsetHreflang();
@@ -232,7 +232,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetHreflang(): self
+    public function unsetHreflang(): static
     {
         unset($this->attributes()['hreflang']);
         return $this;
@@ -260,7 +260,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $imagesizes
      * @return static
      */
-    public function setImagesizes(null|string|Stringable $imagesizes): self
+    public function setImagesizes(null|string|Stringable $imagesizes): static
     {
         if ($imagesizes) $this->attributes()['imagesizes'] = $imagesizes;
         else $this->unsetImagesizes();
@@ -275,7 +275,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetImagesizes(): self
+    public function unsetImagesizes(): static
     {
         unset($this->attributes()['imagesizes']);
         return $this;
@@ -303,7 +303,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $imagesrcset
      * @return static
      */
-    public function setImagesrcset(null|string|Stringable $imagesrcset): self
+    public function setImagesrcset(null|string|Stringable $imagesrcset): static
     {
         if ($imagesrcset) $this->attributes()['imagesrcset'] = $imagesrcset;
         else $this->unsetImagesrcset();
@@ -318,7 +318,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetImagesrcset(): self
+    public function unsetImagesrcset(): static
     {
         unset($this->attributes()['imagesrcset']);
         return $this;
@@ -346,7 +346,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $integrity
      * @return static
      */
-    public function setIntegrity(null|string|Stringable $integrity): self
+    public function setIntegrity(null|string|Stringable $integrity): static
     {
         if ($integrity) $this->attributes()['integrity'] = $integrity;
         else $this->unsetIntegrity();
@@ -361,7 +361,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetIntegrity(): self
+    public function unsetIntegrity(): static
     {
         unset($this->attributes()['integrity']);
         return $this;
@@ -389,7 +389,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $media
      * @return static
      */
-    public function setMedia(null|string|Stringable $media): self
+    public function setMedia(null|string|Stringable $media): static
     {
         if ($media) $this->attributes()['media'] = $media;
         else $this->unsetMedia();
@@ -404,7 +404,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetMedia(): self
+    public function unsetMedia(): static
     {
         unset($this->attributes()['media']);
         return $this;
@@ -426,7 +426,7 @@ class LinkTag extends AbstractTag
      * @param null|ReferrerPolicyValue $referrerpolicy
      * @return static
      */
-    public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): self
+    public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): static
     {
         if ($referrerpolicy) $this->attributes()['referrerpolicy'] = $referrerpolicy->value;
         else $this->unsetReferrerpolicy();
@@ -438,7 +438,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetReferrerpolicy(): self
+    public function unsetReferrerpolicy(): static
     {
         unset($this->attributes()['referrerpolicy']);
         return $this;
@@ -474,7 +474,7 @@ class LinkTag extends AbstractTag
      * @param null|string|Stringable $type
      * @return static
      */
-    public function setType(null|string|Stringable $type): self
+    public function setType(null|string|Stringable $type): static
     {
         if ($type) $this->attributes()['type'] = $type;
         else $this->unsetType();
@@ -493,7 +493,7 @@ class LinkTag extends AbstractTag
      *
      * @return static
      */
-    public function unsetType(): self
+    public function unsetType(): static
     {
         unset($this->attributes()['type']);
         return $this;

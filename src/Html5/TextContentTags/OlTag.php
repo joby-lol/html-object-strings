@@ -31,7 +31,7 @@ class OlTag extends AbstractContainerTag
      * @param boolean $reversed
      * @return static
      */
-    public function setReversed(bool $reversed): self
+    public function setReversed(bool $reversed): static
     {
         if ($reversed) $this->attributes()['reversed'] = BooleanAttribute::true;
         else unset($this->attributes()['reversed']);
@@ -71,7 +71,7 @@ class OlTag extends AbstractContainerTag
      * @param null|integer $start
      * @return static
      */
-    public function setStart(null|int $start): self
+    public function setStart(null|int $start): static
     {
         if (is_null($start)) $this->unsetStart();
         else $this->attributes()['start'] = $start;
@@ -86,7 +86,7 @@ class OlTag extends AbstractContainerTag
      *
      * @return static
      */
-    public function unsetStart(): self
+    public function unsetStart(): static
     {
         unset($this->attributes()['start']);
         return $this;
@@ -114,7 +114,7 @@ class OlTag extends AbstractContainerTag
      * @param null|ListTypeValue $type
      * @return static
      */
-    public function setType(null|ListTypeValue $type): self
+    public function setType(null|ListTypeValue $type): static
     {
         if ($type) $this->attributes()['type'] = $type->value;
         else $this->unsetType();
@@ -129,7 +129,7 @@ class OlTag extends AbstractContainerTag
      *
      * @return static
      */
-    public function unsetType(): self
+    public function unsetType(): static
     {
         unset($this->attributes()['type']);
         return $this;

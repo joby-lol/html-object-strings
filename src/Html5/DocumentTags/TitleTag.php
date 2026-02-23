@@ -27,7 +27,7 @@ class TitleTag extends AbstractContentTag implements TitleTagInterface
     protected $content = 'Untitled';
     protected $inline = true;
 
-    public function setContent(string|Stringable $content): self
+    public function setContent(string|Stringable $content): static
     {
         parent::setContent(trim(strip_tags($content)));
         return $this;

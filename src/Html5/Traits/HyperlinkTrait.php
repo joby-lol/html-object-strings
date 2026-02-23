@@ -41,7 +41,7 @@ trait HyperlinkTrait
      * @param null|string|Stringable|BooleanAttribute $download
      * @return static
      */
-    public function setDownload(null|string|Stringable|BooleanAttribute $download): self
+    public function setDownload(null|string|Stringable|BooleanAttribute $download): static
     {
         if ($download === BooleanAttribute::true) $this->attributes()['download'] = BooleanAttribute::true;
         elseif ($download === BooleanAttribute::false) $this->unsetDownload();
@@ -56,7 +56,7 @@ trait HyperlinkTrait
      *
      * @return static
      */
-    public function unsetDownload(): self
+    public function unsetDownload(): static
     {
         unset($this->attributes()['download']);
         return $this;
@@ -80,7 +80,7 @@ trait HyperlinkTrait
      * @param null|string|Stringable $href
      * @return static
      */
-    public function setHref(null|string|Stringable $href): self
+    public function setHref(null|string|Stringable $href): static
     {
         if ($href) $this->attributes()['href'] = $href;
         else $this->unsetHref();
@@ -93,7 +93,7 @@ trait HyperlinkTrait
      *
      * @return static
      */
-    public function unsetHref(): self
+    public function unsetHref(): static
     {
         $this->unsetHreflang();
         unset($this->attributes()['href']);
@@ -118,7 +118,7 @@ trait HyperlinkTrait
      * @param null|string|Stringable $hreflang
      * @return static
      */
-    public function setHreflang(null|string|Stringable $hreflang): self
+    public function setHreflang(null|string|Stringable $hreflang): static
     {
         if ($hreflang) $this->attributes()['hreflang'] = $hreflang;
         else $this->unsetHreflang();
@@ -131,7 +131,7 @@ trait HyperlinkTrait
      *
      * @return static
      */
-    public function unsetHreflang(): self
+    public function unsetHreflang(): static
     {
         unset($this->attributes()['hreflang']);
         return $this;
@@ -157,7 +157,7 @@ trait HyperlinkTrait
      * @param null|string|Stringable $ping
      * @return static
      */
-    public function setPing(null|string|Stringable $ping): self
+    public function setPing(null|string|Stringable $ping): static
     {
         if ($ping) $this->attributes()['ping'] = $ping;
         else $this->unsetPing();
@@ -171,7 +171,7 @@ trait HyperlinkTrait
      *
      * @return static
      */
-    public function unsetPing(): self
+    public function unsetPing(): static
     {
         unset($this->attributes()['ping']);
         return $this;
@@ -193,7 +193,7 @@ trait HyperlinkTrait
      * @param null|ReferrerPolicyValue $referrerpolicy
      * @return static
      */
-    public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): self
+    public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): static
     {
         if ($referrerpolicy) $this->attributes()['referrerpolicy'] = $referrerpolicy->value;
         else $this->unsetReferrerpolicy();
@@ -205,7 +205,7 @@ trait HyperlinkTrait
      *
      * @return static
      */
-    public function unsetReferrerpolicy(): self
+    public function unsetReferrerpolicy(): static
     {
         unset($this->attributes()['referrerpolicy']);
         return $this;
@@ -227,7 +227,7 @@ trait HyperlinkTrait
      * @param null|RelValue|array<int|string,RelValue> $rel
      * @return static
      */
-    public function setRel(null|RelValue|array $rel): self
+    public function setRel(null|RelValue|array $rel): static
     {
         if ($rel) $this->attributes()->setEnumArray('rel', $rel, RelValue::class, ' ');
         else $this->unsetRel();
@@ -239,7 +239,7 @@ trait HyperlinkTrait
      *
      * @return static
      */
-    public function unsetRel(): self
+    public function unsetRel(): static
     {
         unset($this->attributes()['rel']);
         return $this;
@@ -264,7 +264,7 @@ trait HyperlinkTrait
      * @param null|string|Stringable|BrowsingContext $target
      * @return static
      */
-    public function setTarget(null|string|Stringable|BrowsingContext $target): self
+    public function setTarget(null|string|Stringable|BrowsingContext $target): static
     {
         if (!$target) {
             $this->unsetTarget();
@@ -282,7 +282,7 @@ trait HyperlinkTrait
      *
      * @return static
      */
-    public function unsetTarget(): self
+    public function unsetTarget(): static
     {
         unset($this->attributes()['target']);
         return $this;
@@ -306,7 +306,7 @@ trait HyperlinkTrait
      * @param null|string|Stringable $type
      * @return static
      */
-    public function setType(null|string|Stringable $type): self
+    public function setType(null|string|Stringable $type): static
     {
         if ($type) $this->attributes()['type'] = $type;
         else $this->unsetType();
@@ -319,7 +319,7 @@ trait HyperlinkTrait
      *
      * @return static
      */
-    public function unsetType(): self
+    public function unsetType(): static
     {
         unset($this->attributes()['type']);
         return $this;

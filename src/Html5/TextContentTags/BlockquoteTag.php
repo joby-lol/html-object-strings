@@ -46,7 +46,7 @@ class BlockquoteTag extends AbstractContainerTag
      * @param null|string|Stringable $cite
      * @return static
      */
-    public function setCite(null|string|Stringable $cite): self
+    public function setCite(null|string|Stringable $cite): static
     {
         if ($cite) $this->attributes()['cite'] = $cite;
         else $this->unsetCite();
@@ -60,7 +60,7 @@ class BlockquoteTag extends AbstractContainerTag
      *
      * @return static
      */
-    public function unsetCite(): self
+    public function unsetCite(): static
     {
         unset($this->attributes()['cite']);
         return $this;

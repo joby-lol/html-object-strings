@@ -17,16 +17,20 @@ use Stringable;
  *
  * Stored internally as a DateTime with the date set to today, which is public
  * and as such can be conveniently manipulated.
+ * 
+ * @phpstan-consistent-constructor
  */
 class DatetimeValue_time extends DatetimeValue
 {
+
     /** @var DateTime */
     public $datetime;
 
-    public static function fromString(string|Stringable|null $string): null|self
+    public static function fromString(string|Stringable|null $string): null|static
     {
         // null string returns null
-        if (is_null($string)) return null;
+        if (is_null($string))
+            return null;
         // try to match regular expression
         elseif (
             preg_match(
@@ -37,14 +41,14 @@ class DatetimeValue_time extends DatetimeValue
                     static::REGEX_SECOND,
                 ),
                 $string,
-                $matches
+                $matches,
             )
         ) {
-            return new self(
+            return new static(
                 intval($matches['hour']),
                 intval($matches['minute']),
                 intval(@$matches['second']),
-                intval(@$matches['millisecond'])
+                intval(@$matches['millisecond']),
             );
         }
         // return null if nothing found
@@ -66,4 +70,5 @@ class DatetimeValue_time extends DatetimeValue
     {
         return $this->datetime->format('H:i:s.v');
     }
+
 }

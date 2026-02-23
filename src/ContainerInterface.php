@@ -9,6 +9,7 @@
 
 namespace Joby\HTML;
 
+use Generator;
 use Stringable;
 
 interface ContainerInterface extends Stringable
@@ -24,21 +25,30 @@ interface ContainerInterface extends Stringable
         NodeInterface|Stringable|string $child,
         bool $prepend = false,
         bool $skip_sanitize = false
-    ): self;
+    ): static;
 
     public function removeChild(
         NodeInterface|Stringable|string $child
-    ): self;
+    ): static;
 
     public function addChildBefore(
         NodeInterface|Stringable|string $new_child,
         NodeInterface|Stringable|string $before_child,
         bool $skip_sanitize = false
-    ): self;
+    ): static;
 
     public function addChildAfter(
         NodeInterface|Stringable|string $new_child,
         NodeInterface|Stringable|string $after_child,
         bool $skip_sanitize = false
-    ): self;
+    ): static;
+
+    /**
+     * Walk the entire tree from this object, yielding all child Nodes recursively. Optionally filtered to only Nodes of a particular class.
+     * 
+     * @template WalkNodeType of NodeInterface
+     * @param class-string<WalkNodeType>|null $of_class
+     * @return ($of_class is null ? Generator<NodeInterface> : Generator<WalkNodeType>)
+     */
+    public function walk(string|null $of_class = null): Generator;
 }
