@@ -12,7 +12,7 @@ class TableTagTest extends TagTestCase
     public function testDefaultConstructor(): void
     {
         $tag = new TableTag();
-        $this->assertEquals("<table>\r\n<tbody></tbody>\r\n</table>", (string) $tag);
+        $this->assertEquals("<table>" . PHP_EOL . "<tbody></tbody>" . PHP_EOL . "</table>", (string) $tag);
     }
 
     // --- caption ---
