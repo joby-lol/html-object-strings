@@ -1,26 +1,10 @@
 <?php
 
 /**
- * Joby's HTML Object Strings: https://go.joby.lol/htmlobjectstrings
- * MIT License: Copyright (c) 2024 Joby Elliott
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
- * SOFTWARE.
+ * HTML Object Strings
+ * https://github.com/joby-lol/html-object-strings
+ * (c) 2024-2026 Joby Elliott code@joby.lol
+ * MIT License https://opensource.org/licenses/MIT
  */
 
 namespace Joby\HTML\Html5\Multimedia;
@@ -41,8 +25,10 @@ use Stringable;
  */
 class ImgTag extends AbstractTag
 {
+
     use CrossOriginTrait;
     use HeightAndWidthTrait;
+
     const TAG = "img";
 
     /**
@@ -75,8 +61,10 @@ class ImgTag extends AbstractTag
      */
     public function setAlt(null|string|Stringable $alt): self
     {
-        if (is_null($alt)) $this->unsetAlt();
-        else $this->attributes()['alt'] = $alt;
+        if (is_null($alt))
+            $this->unsetAlt();
+        else
+            $this->attributes()['alt'] = $alt;
         return $this;
     }
 
@@ -149,8 +137,10 @@ class ImgTag extends AbstractTag
      */
     public function setDecoding(null|DecodingValue $decoding): self
     {
-        if (!$decoding) $this->unsetDecoding();
-        else $this->attributes()['decoding'] = $decoding->value;
+        if (!$decoding)
+            $this->unsetDecoding();
+        else
+            $this->attributes()['decoding'] = $decoding->value;
         return $this;
     }
 
@@ -208,8 +198,10 @@ class ImgTag extends AbstractTag
      */
     public function setIsmap(bool $ismap): self
     {
-        if ($ismap) $this->attributes()['ismap'] = BooleanAttribute::true;
-        else unset($this->attributes()['ismap']);
+        if ($ismap)
+            $this->attributes()['ismap'] = BooleanAttribute::true;
+        else
+            unset($this->attributes()['ismap']);
         return $this;
     }
 
@@ -239,8 +231,10 @@ class ImgTag extends AbstractTag
      */
     public function setLazy(bool $lazy): self
     {
-        if ($lazy) $this->attributes()['loading'] = 'lazy';
-        else unset($this->attributes()['lazy']);
+        if ($lazy)
+            $this->attributes()['loading'] = 'lazy';
+        else
+            unset($this->attributes()['loading']);
         return $this;
     }
 
@@ -262,8 +256,10 @@ class ImgTag extends AbstractTag
      */
     public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): self
     {
-        if ($referrerpolicy) $this->attributes()['referrerpolicy'] = $referrerpolicy->value;
-        else $this->unsetReferrerpolicy();
+        if ($referrerpolicy)
+            $this->attributes()['referrerpolicy'] = $referrerpolicy->value;
+        else
+            $this->unsetReferrerpolicy();
         return $this;
     }
 
@@ -310,8 +306,10 @@ class ImgTag extends AbstractTag
      */
     public function setSizes(null|string|Stringable $sizes): self
     {
-        if (is_null($sizes)) $this->unsetSizes();
-        else $this->attributes()['sizes'] = $sizes;
+        if (is_null($sizes))
+            $this->unsetSizes();
+        else
+            $this->attributes()['sizes'] = $sizes;
         return $this;
     }
 
@@ -357,8 +355,10 @@ class ImgTag extends AbstractTag
      */
     public function setSrc(null|string|Stringable $src): self
     {
-        if ($src) $this->attributes()['src'] = $src;
-        else $this->unsetSrc();
+        if ($src)
+            $this->attributes()['src'] = $src;
+        else
+            $this->unsetSrc();
         return $this;
     }
 
@@ -434,8 +434,10 @@ class ImgTag extends AbstractTag
      */
     public function setSrcset(null|string|Stringable $srcset): self
     {
-        if ($srcset) $this->attributes()['srcset'] = $srcset;
-        else $this->unsetSrcset();
+        if ($srcset)
+            $this->attributes()['srcset'] = $srcset;
+        else
+            $this->unsetSrcset();
         return $this;
     }
 
@@ -496,9 +498,12 @@ class ImgTag extends AbstractTag
      */
     public function setUsemap(null|string|Stringable|MapTag $usemap): self
     {
-        if (empty($usemap)) return $this->unsetUsemap();
-        if ($usemap instanceof MapTag) $usemap = $usemap->name();
-        if (!str_starts_with($usemap, '#')) $usemap = '#' . $usemap;
+        if (empty($usemap))
+            return $this->unsetUsemap();
+        if ($usemap instanceof MapTag)
+            $usemap = $usemap->name();
+        if (!str_starts_with($usemap, '#'))
+            $usemap = '#' . $usemap;
         $this->attributes()['usemap'] = $usemap;
         return $this;
     }
@@ -517,4 +522,5 @@ class ImgTag extends AbstractTag
         unset($this->attributes()['usemap']);
         return $this;
     }
+
 }

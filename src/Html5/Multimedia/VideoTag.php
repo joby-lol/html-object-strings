@@ -1,26 +1,10 @@
 <?php
 
 /**
- * Joby's HTML Object Strings: https://go.joby.lol/htmlobjectstrings
- * MIT License: Copyright (c) 2024 Joby Elliott
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
- * SOFTWARE.
+ * HTML Object Strings
+ * https://github.com/joby-lol/html-object-strings
+ * (c) 2024-2026 Joby Elliott code@joby.lol
+ * MIT License https://opensource.org/licenses/MIT
  */
 
 namespace Joby\HTML\Html5\Multimedia;
@@ -39,7 +23,9 @@ use Stringable;
  */
 class VideoTag extends AbstractPlaybackTag
 {
+
     use HeightAndWidthTrait;
+
     const TAG = 'video';
 
     /**
@@ -66,8 +52,10 @@ class VideoTag extends AbstractPlaybackTag
      */
     public function setPlaysinline(bool $playsinline): self
     {
-        if ($playsinline) $this->attributes()['playslinline'] = BooleanAttribute::true;
-        else unset($this->attributes()['playsinline']);
+        if ($playsinline)
+            $this->attributes()['playsinline'] = BooleanAttribute::true;
+        else
+            unset($this->attributes()['playsinline']);
         return $this;
     }
 
@@ -93,8 +81,10 @@ class VideoTag extends AbstractPlaybackTag
      */
     public function setPoster(null|string|Stringable $poster): self
     {
-        if ($poster) $this->attributes()['poster'] = $poster;
-        else $this->unsetPoster();
+        if ($poster !== null)
+            $this->attributes()['poster'] = $poster;
+        else
+            $this->unsetPoster();
         return $this;
     }
 
@@ -110,4 +100,5 @@ class VideoTag extends AbstractPlaybackTag
         unset($this->attributes()['poster']);
         return $this;
     }
+
 }

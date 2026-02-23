@@ -1,26 +1,10 @@
 <?php
 
 /**
- * Joby's HTML Object Strings: https://go.joby.lol/htmlobjectstrings
- * MIT License: Copyright (c) 2024 Joby Elliott
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
- * SOFTWARE.
+ * HTML Object Strings
+ * https://github.com/joby-lol/html-object-strings
+ * (c) 2024-2026 Joby Elliott code@joby.lol
+ * MIT License https://opensource.org/licenses/MIT
  */
 
 namespace Joby\HTML\Html5\Multimedia;
@@ -46,8 +30,10 @@ use Stringable;
  */
 class IframeTag extends AbstractTag
 {
+
     use HeightAndWidthTrait;
-    const TAG = "embed";
+
+    const TAG = "iframe";
 
     /**
      * Specifies a Permissions Policy for the <iframe>. The policy defines what
@@ -77,8 +63,10 @@ class IframeTag extends AbstractTag
      */
     public function setAllow(null|string|Stringable $allow): self
     {
-        if ($allow) $this->attributes()['allow'] = $allow;
-        else $this->unsetAllow();
+        if ($allow)
+            $this->attributes()['allow'] = $allow;
+        else
+            $this->unsetAllow();
         return $this;
     }
 
@@ -118,8 +106,10 @@ class IframeTag extends AbstractTag
      */
     public function setLazy(bool $lazy): self
     {
-        if ($lazy) $this->attributes()['loading'] = 'lazy';
-        else unset($this->attributes()['lazy']);
+        if ($lazy)
+            $this->attributes()['loading'] = 'lazy';
+        else
+            unset($this->attributes()['loading']);
         return $this;
     }
 
@@ -147,8 +137,10 @@ class IframeTag extends AbstractTag
      */
     public function setName(null|string|Stringable $name): self
     {
-        if ($name) $this->attributes()['name'] = $name;
-        else $this->unsetName();
+        if ($name)
+            $this->attributes()['name'] = $name;
+        else
+            $this->unsetName();
         return $this;
     }
 
@@ -184,8 +176,10 @@ class IframeTag extends AbstractTag
      */
     public function setReferrerpolicy(null|ReferrerPolicyValue $referrerpolicy): self
     {
-        if ($referrerpolicy) $this->attributes()['referrerpolicy'] = $referrerpolicy->value;
-        else $this->unsetReferrerpolicy();
+        if ($referrerpolicy)
+            $this->attributes()['referrerpolicy'] = $referrerpolicy->value;
+        else
+            $this->unsetReferrerpolicy();
         return $this;
     }
 
@@ -207,10 +201,13 @@ class IframeTag extends AbstractTag
      *
      * @return null|array<int|string,SandboxValue>
      */
-    public function sandbox(): null|array {
+    public function sandbox(): null|array
+    {
         // TODO test retrieving various possible values
-        if (!$this->attributes()->asString('sandbox')) return null;
-        else return $this->attributes()->asEnumArray('sandbox',SandboxValue::class,' ');
+        if (!$this->attributes()->asString('sandbox'))
+            return null;
+        else
+            return $this->attributes()->asEnumArray('sandbox', SandboxValue::class, ' ');
     }
 
     /**
@@ -224,10 +221,13 @@ class IframeTag extends AbstractTag
     public function setSandbox(null|SandboxValue|array $sandbox): self
     {
         // TODO test the ways this can be set
-        if (is_null($sandbox)) $this->unsetSandbox();
+        if (is_null($sandbox))
+            $this->unsetSandbox();
         else {
-            if ($sandbox instanceof SandboxValue) $sandbox = [$sandbox];
-            if (count($sandbox) === 0) $sandbox = [SandboxValue::denyAll];
+            if ($sandbox instanceof SandboxValue)
+                $sandbox = [$sandbox];
+            if (count($sandbox) === 0)
+                $sandbox = [SandboxValue::denyAll];
             $this->attributes()['sandbox'] = new StringableEnumArray($sandbox, ' ');
         }
         return $this;
@@ -272,8 +272,10 @@ class IframeTag extends AbstractTag
      */
     public function setSrc(null|string|Stringable $src): self
     {
-        if ($src) $this->attributes()['src'] = $src;
-        else $this->unsetSrc();
+        if ($src)
+            $this->attributes()['src'] = $src;
+        else
+            $this->unsetSrc();
         return $this;
     }
 
@@ -314,8 +316,10 @@ class IframeTag extends AbstractTag
      */
     public function setSrcdoc(null|string|Stringable $srcdoc): self
     {
-        if ($srcdoc) $this->attributes()['srcdoc'] = $srcdoc;
-        else $this->unsetSrcdoc();
+        if ($srcdoc)
+            $this->attributes()['srcdoc'] = $srcdoc;
+        else
+            $this->unsetSrcdoc();
         return $this;
     }
 
@@ -331,4 +335,5 @@ class IframeTag extends AbstractTag
         unset($this->attributes()['srcdoc']);
         return $this;
     }
+
 }

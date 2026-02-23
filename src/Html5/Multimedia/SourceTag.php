@@ -1,26 +1,10 @@
 <?php
 
 /**
- * Joby's HTML Object Strings: https://go.joby.lol/htmlobjectstrings
- * MIT License: Copyright (c) 2024 Joby Elliott
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
- * SOFTWARE.
+ * HTML Object Strings
+ * https://github.com/joby-lol/html-object-strings
+ * (c) 2024-2026 Joby Elliott code@joby.lol
+ * MIT License https://opensource.org/licenses/MIT
  */
 
 namespace Joby\HTML\Html5\Multimedia;
@@ -42,7 +26,9 @@ use Stringable;
  */
 class SourceTag extends AbstractTag
 {
+
     use HeightAndWidthTrait;
+
     const TAG = "source";
 
     /**
@@ -69,8 +55,10 @@ class SourceTag extends AbstractTag
      */
     public function setType(null|string|Stringable $type): self
     {
-        if ($type) $this->attributes()['type'] = $type;
-        else $this->unsetType();
+        if ($type)
+            $this->attributes()['type'] = $type;
+        else
+            $this->unsetType();
         return $this;
     }
 
@@ -114,8 +102,10 @@ class SourceTag extends AbstractTag
      */
     public function setSrc(null|string|Stringable $src): self
     {
-        if ($src) $this->attributes()['src'] = $src;
-        else $this->unsetSrc();
+        if ($src)
+            $this->attributes()['src'] = $src;
+        else
+            $this->unsetSrc();
         return $this;
     }
 
@@ -196,8 +186,10 @@ class SourceTag extends AbstractTag
      */
     public function setSrcset(null|string|Stringable $srcset): self
     {
-        if ($srcset) $this->attributes()['srcset'] = $srcset;
-        else $this->unsetSrcset();
+        if ($srcset)
+            $this->attributes()['srcset'] = $srcset;
+        else
+            $this->unsetSrcset();
         return $this;
     }
 
@@ -270,8 +262,10 @@ class SourceTag extends AbstractTag
      */
     public function setSizes(null|string|Stringable $sizes): self
     {
-        if (is_null($sizes)) $this->unsetSizes();
-        else $this->attributes()['sizes'] = $sizes;
+        if (is_null($sizes))
+            $this->unsetSizes();
+        else
+            $this->attributes()['sizes'] = $sizes;
         return $this;
     }
 
@@ -319,8 +313,10 @@ class SourceTag extends AbstractTag
      */
     public function setMedia(null|string|Stringable $media): self
     {
-        if ($media) $this->attributes()['media'] = $media;
-        else $this->unsetMedia();
+        if ($media)
+            $this->attributes()['media'] = $media;
+        else
+            $this->unsetMedia();
         return $this;
     }
 
@@ -337,4 +333,5 @@ class SourceTag extends AbstractTag
         unset($this->attributes()['media']);
         return $this;
     }
+
 }

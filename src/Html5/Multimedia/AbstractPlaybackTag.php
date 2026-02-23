@@ -1,26 +1,10 @@
 <?php
 
 /**
- * Joby's HTML Object Strings: https://go.joby.lol/htmlobjectstrings
- * MIT License: Copyright (c) 2024 Joby Elliott
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
- * SOFTWARE.
+ * HTML Object Strings
+ * https://github.com/joby-lol/html-object-strings
+ * (c) 2024-2026 Joby Elliott code@joby.lol
+ * MIT License https://opensource.org/licenses/MIT
  */
 
 namespace Joby\HTML\Html5\Multimedia;
@@ -47,17 +31,21 @@ use Stringable;
  */
 abstract class AbstractPlaybackTag extends AbstractGroupedTag
 {
+
     use CrossOriginTrait;
 
     /** @var ContainerGroup<TagInterface> */
     protected $sources;
+
     /** @var ContainerGroup<TagInterface> */
     protected $tracks;
+
     /** @var ContainerGroup<NodeInterface> */
     protected $fallback;
 
     public function __construct()
     {
+        parent::__construct();
         $this->addGroup($this->sources = ContainerGroup::ofTag('source'));
         $this->addGroup($this->tracks = ContainerGroup::ofTag('track'));
         $this->addGroup($this->fallback = ContainerGroup::catchAll());
@@ -117,8 +105,10 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      */
     public function setAutoplay(bool $autoplay): self
     {
-        if ($autoplay) $this->attributes()['autoplay'] = BooleanAttribute::true;
-        else unset($this->attributes()['autoplay']);
+        if ($autoplay)
+            $this->attributes()['autoplay'] = BooleanAttribute::true;
+        else
+            unset($this->attributes()['autoplay']);
         return $this;
     }
 
@@ -144,8 +134,10 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      */
     public function setControls(bool $controls): self
     {
-        if ($controls) $this->attributes()['controls'] = BooleanAttribute::true;
-        else unset($this->attributes()['controls']);
+        if ($controls)
+            $this->attributes()['controls'] = BooleanAttribute::true;
+        else
+            unset($this->attributes()['controls']);
         return $this;
     }
 
@@ -169,8 +161,10 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      */
     public function setLoop(bool $loop): self
     {
-        if ($loop) $this->attributes()['loop'] = BooleanAttribute::true;
-        else unset($this->attributes()['loop']);
+        if ($loop)
+            $this->attributes()['loop'] = BooleanAttribute::true;
+        else
+            unset($this->attributes()['loop']);
         return $this;
     }
 
@@ -194,8 +188,10 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      */
     public function setMuted(bool $muted): self
     {
-        if ($muted) $this->attributes()['muted'] = BooleanAttribute::true;
-        else unset($this->attributes()['muted']);
+        if ($muted)
+            $this->attributes()['muted'] = BooleanAttribute::true;
+        else
+            unset($this->attributes()['muted']);
         return $this;
     }
 
@@ -221,8 +217,10 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      */
     public function setSrc(null|string|Stringable $src): self
     {
-        if ($src) $this->attributes()['src'] = $src;
-        else $this->unsetSrc();
+        if ($src)
+            $this->attributes()['src'] = $src;
+        else
+            $this->unsetSrc();
         return $this;
     }
 
@@ -265,8 +263,10 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
      */
     public function setPreload(null|PreloadValue $preload): self
     {
-        if ($preload) $this->attributes()['preload'] = $preload->value;
-        else $this->unsetPreload();
+        if ($preload)
+            $this->attributes()['preload'] = $preload->value;
+        else
+            $this->unsetPreload();
         return $this;
     }
 
@@ -284,4 +284,5 @@ abstract class AbstractPlaybackTag extends AbstractGroupedTag
         unset($this->attributes()['preload']);
         return $this;
     }
+
 }

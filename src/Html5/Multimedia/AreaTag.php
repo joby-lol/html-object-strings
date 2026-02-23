@@ -1,26 +1,10 @@
 <?php
 
 /**
- * Joby's HTML Object Strings: https://go.joby.lol/htmlobjectstrings
- * MIT License: Copyright (c) 2024 Joby Elliott
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
- * SOFTWARE.
+ * HTML Object Strings
+ * https://github.com/joby-lol/html-object-strings
+ * (c) 2024-2026 Joby Elliott code@joby.lol
+ * MIT License https://opensource.org/licenses/MIT
  */
 
 namespace Joby\HTML\Html5\Multimedia;
@@ -43,7 +27,9 @@ use Stringable;
  */
 class AreaTag extends AbstractTag
 {
+
     use HyperlinkTrait;
+
     const TAG = 'area';
 
     /**
@@ -57,9 +43,13 @@ class AreaTag extends AbstractTag
     {
         if ($href) {
             $this->attributes()['href'] = $href;
-            if (!$alt) throw new InvalidArgumentsException('alt text is required to set href on an <area> tag');
-        } else $this->unsetHref();
-        if ($alt) $this->setAlt($alt);
+            if (!$alt)
+                throw new InvalidArgumentsException('alt text is required to set href on an <area> tag');
+        }
+        else
+            $this->unsetHref();
+        if ($alt)
+            $this->setAlt($alt);
         return $this;
     }
 
@@ -89,8 +79,10 @@ class AreaTag extends AbstractTag
      */
     public function setAlt(null|string|Stringable $alt): self
     {
-        if (!$alt) $this->unsetAlt();
-        else $this->attributes()['alt'] = $alt;
+        if ($alt === null)
+            $this->unsetAlt();
+        else
+            $this->attributes()['alt'] = $alt;
         return $this;
     }
 
@@ -118,9 +110,9 @@ class AreaTag extends AbstractTag
      */
     public function coords(): null|array
     {
-        // TODO write tests for this
         $coords = $this->attributes()->asString('coords');
-        if (!$coords) return null;
+        if (!$coords)
+            return null;
         $coords = explode(',', $coords);
         $coords = array_map(trim(...), $coords);
         $coords = array_filter($coords, fn($e) => $e !== '');
@@ -138,9 +130,12 @@ class AreaTag extends AbstractTag
      */
     public function setCoords(null|string|Stringable|array $coords): self
     {
-        if (is_array($coords)) $coords = implode(',', $coords);
-        if (!$coords) $this->unsetCoords();
-        else $this->attributes()['coords'] = $coords;
+        if (is_array($coords))
+            $coords = implode(',', $coords);
+        if (!$coords)
+            $this->unsetCoords();
+        else
+            $this->attributes()['coords'] = $coords;
         return $this;
     }
 
@@ -175,8 +170,8 @@ class AreaTag extends AbstractTag
      */
     public function setShape(ShapeValue|null $shape, ...$coords): self
     {
-        // TODO write tests for the various shape setters
-        if (!$shape) return $this->unsetShape();
+        if (!$shape)
+            return $this->unsetShape();
         switch ($shape) {
             case ShapeValue::default:
                 return $this->setShapeDefault();
@@ -266,4 +261,5 @@ class AreaTag extends AbstractTag
         $this->setCoords($coords);
         return $this;
     }
+
 }
