@@ -137,6 +137,18 @@ trait ContainerTrait
     }
 
     /**
+     * Detach all child nodes from this object.
+     */
+    public function clearChildren(): static
+    {
+        foreach ($this->children as $child) {
+            $child->setParent(null);
+        }
+        $this->children = [];
+        return $this;
+    }
+
+    /**
      * Walk the entire tree from this object, yielding all child Nodes recursively. Optionally filtered to only Nodes of a particular class.
      * 
      * @template WalkNodeType of NodeInterface

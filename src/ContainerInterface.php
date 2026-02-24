@@ -44,6 +44,11 @@ interface ContainerInterface extends Stringable
     ): static;
 
     /**
+     * Detach all child nodes from this object.
+     */
+    public function clearChildren(): static;
+
+    /**
      * Walk the entire tree from this object, yielding all child Nodes recursively. Optionally filtered to only Nodes of a particular class.
      * 
      * @template WalkNodeType of NodeInterface

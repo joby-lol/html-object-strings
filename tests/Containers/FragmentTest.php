@@ -167,4 +167,51 @@ class FragmentTest extends TestCase
         $this->assertLessThan($innerIndex, $divIndex);
         $this->assertLessThan($aIndex, $innerIndex);
     }
+
+    public function testClearChildrenRemovesAllChildren(): void
+    {
+        $fragment = new Fragment();
+        $div1 = new DivTag();
+        $div2 = new DivTag();
+        $fragment->addChild($div1);
+        $fragment->addChild($div2);
+        $fragment->clearChildren();
+        $this->assertEmpty($fragment->children());
+    }
+
+    public function testClearChildrenResetsParentOfRemovedChildren(): void
+    {
+        $fragment = new Fragment();
+        $div = new DivTag();
+        $fragment->addChild($div);
+        $fragment->clearChildren();
+        $this->assertNull($div->parentTag());
+        $this->assertNull($div->parentDocument());
+    }
+
+    public function testClearChildrenOnEmptyFragmentDoesNotThrow(): void
+    {
+        $fragment = new Fragment();
+        $fragment->clearChildren();
+        $this->assertEmpty($fragment->children());
+    }
+
+    public function testClearChildrenAllowsAddingChildrenAfterwards(): void
+    {
+        $fragment = new Fragment();
+        $div1 = new DivTag();
+        $div2 = new DivTag();
+        $fragment->addChild($div1);
+        $fragment->clearChildren();
+        $fragment->addChild($div2);
+        $this->assertCount(1, $fragment->children());
+        $this->assertContains($div2, $fragment->children());
+    }
+
+    public function testClearChildrenRendersEmpty(): void
+    {
+        $fragment = new Fragment(['a', 'b']);
+        $fragment->clearChildren();
+        $this->assertEquals('', $fragment->__toString());
+    }
 }
