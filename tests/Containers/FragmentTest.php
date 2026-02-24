@@ -214,4 +214,74 @@ class FragmentTest extends TestCase
         $fragment->clearChildren();
         $this->assertEquals('', $fragment->__toString());
     }
+
+    public function testWalkStopsAtSpecifiedClass(): void
+    {
+        $fragment = new Fragment();
+        $outer = new DivTag();
+        $inner = new DivTag();
+        $a = new ATag();
+        $inner->addChild($a);
+        $outer->addChild($inner);
+        $fragment->addChild($outer);
+        $found = iterator_to_array($fragment->walk(null, [DivTag::class]), false);
+        $this->assertCount(1, $found);
+        // $this->assertContains($outer, $found);
+        // $this->assertNotContains($inner, $found);
+        // $this->assertNotContains($a, $found);
+    }
+
+    public function testWalkStopAtClassIsStillYielded(): void
+    {
+        $fragment = new Fragment();
+        $div = new DivTag();
+        $fragment->addChild($div);
+        $found = iterator_to_array($fragment->walk(null, [DivTag::class]), false);
+        $this->assertContains($div, $found);
+    }
+
+    public function testWalkStopAtClassWithFilter(): void
+    {
+        $fragment = new Fragment();
+        $outer = new DivTag();
+        $inner = new DivTag();
+        $a = new ATag();
+        $inner->addChild($a);
+        $outer->addChild($inner);
+        $fragment->addChild($outer);
+        // looking for ATag but stopping descent at DivTag - should find nothing
+        $found = iterator_to_array($fragment->walk(ATag::class, [DivTag::class]), false);
+        $this->assertEmpty($found);
+    }
+
+    public function testWalkStopAtMultipleClasses(): void
+    {
+        $fragment = new Fragment();
+        $div = new DivTag();
+        $a = new ATag();
+        $inner = new DivTag();
+        $div->addChild($inner);
+        $fragment->addChild($div);
+        $fragment->addChild($a);
+        $found = iterator_to_array($fragment->walk(null, [DivTag::class, ATag::class]), false);
+        $this->assertContains($div, $found);
+        $this->assertContains($a, $found);
+        $this->assertNotContains($inner, $found);
+    }
+
+    public function testWalkStopAtIsRespectedAtMultipleLevels(): void
+    {
+        $fragment = new Fragment();
+        $outer = new DivTag();
+        $middle = new DivTag();
+        $inner = new ATag();
+        $middle->addChild($inner);
+        $outer->addChild($middle);
+        $fragment->addChild($outer);
+        // stopping at DivTag should prevent descent into middle, so ATag should not be found
+        $found = iterator_to_array($fragment->walk(null, [DivTag::class]), false);
+        $this->assertContains($outer, $found);
+        $this->assertNotContains($middle, $found);
+        $this->assertNotContains($inner, $found);
+    }
 }

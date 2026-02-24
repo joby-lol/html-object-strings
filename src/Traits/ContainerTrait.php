@@ -149,20 +149,28 @@ trait ContainerTrait
     }
 
     /**
-     * Walk the entire tree from this object, yielding all child Nodes recursively. Optionally filtered to only Nodes of a particular class.
+     * Walk the entire tree from this object, yielding all child Nodes recursively. Optionally filtered to only Nodes of a particular class, and also optionally stopping traversal into any classes specified in $stop_at.
      * 
      * @template WalkNodeType of NodeInterface
      * @param class-string<WalkNodeType>|null $of_class
+     * @param array<class-string<NodeInterface>> $stop_at
      * @return ($of_class is null ? Generator<NodeInterface> : Generator<WalkNodeType>)
      */
-    public function walk(string|null $of_class = null): Generator
+    public function walk(string|null $of_class = null, array $stop_at = []): Generator
     {
         foreach ($this->children() as $child) {
+            $stop = false;
+            foreach ($stop_at as $stop_at_class) {
+                if ($child instanceof $stop_at_class) {
+                    $stop = true;
+                    break;
+                }
+            }
             if ($of_class === null || $child instanceof $of_class) {
                 yield $child;
             }
-            if ($child instanceof ContainerInterface) {
-                yield from $child->walk($of_class);
+            if (!$stop && $child instanceof ContainerInterface) {
+                yield from $child->walk($of_class, $stop_at);
             }
         }
     }

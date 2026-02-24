@@ -49,11 +49,12 @@ interface ContainerInterface extends Stringable
     public function clearChildren(): static;
 
     /**
-     * Walk the entire tree from this object, yielding all child Nodes recursively. Optionally filtered to only Nodes of a particular class.
+     * Walk the entire tree from this object, yielding all child Nodes recursively. Optionally filtered to only Nodes of a particular class, and also optionally stopping traversal into any classes specified in $stop_at.
      * 
      * @template WalkNodeType of NodeInterface
      * @param class-string<WalkNodeType>|null $of_class
+     * @param array<class-string<NodeInterface>> $stop_at
      * @return ($of_class is null ? Generator<NodeInterface> : Generator<WalkNodeType>)
      */
-    public function walk(string|null $of_class = null): Generator;
+    public function walk(string|null $of_class = null, array $stop_at = []): Generator;
 }
