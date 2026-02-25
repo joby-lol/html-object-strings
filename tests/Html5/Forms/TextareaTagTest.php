@@ -16,6 +16,13 @@ class TextareaTagTest extends TagTestCase
         $this->assertEquals('Hello world', $tag->content());
     }
 
+    public function testContentDoesNotHaveWhitespaceAdded(): void
+    {
+        $tag = new TextareaTag();
+        $tag->setContent('Hello world');
+        $this->assertStringNotContainsString("\n", (string) $tag);
+    }
+
     // --- maxlength ---
 
     public function testMaxlengthNullByDefault(): void

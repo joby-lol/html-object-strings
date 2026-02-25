@@ -29,13 +29,16 @@ class TextareaTag extends AbstractContentTag
 
     const TAG = 'textarea';
 
+    /** @var bool */
+    protected $inline = true;
+
     /**
      * Override default content() implementation to escape HTML special characters.
      * @return string
      */
     protected function contentForRendering(): string
     {
-        return htmlspecialchars($this->content);
+        return htmlspecialchars($this->content());
     }
 
     /**

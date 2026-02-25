@@ -23,7 +23,7 @@ abstract class AbstractContentTag extends AbstractTag implements ContentTagInter
      */
     protected function contentForRendering(): string
     {
-        return (string) $this->content;
+        return (string) $this->content();
     }
 
     public function setContent(string|Stringable $content): static
