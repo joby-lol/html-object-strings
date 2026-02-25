@@ -1,6 +1,6 @@
 # HTML Object Strings
 
-A comprehensive PHP library for programmatically building HTML. Covers essentially all of HTML5, plus SVG and MathML.
+A comprehensive PHP library for programmatically building HTML. Covers essentially all of HTML5.
 
 ## Installation
 ```bash
