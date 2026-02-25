@@ -16,6 +16,16 @@ abstract class AbstractContentTag extends AbstractTag implements ContentTagInter
         return trim($this->content, "\t\n\r\0x0B");
     }
 
+    /**
+     * Implementations should override this method if they need to do any escaping or other processing before rendering content.
+     * 
+     * @return string
+     */
+    protected function contentForRendering(): string
+    {
+        return (string) $this->content;
+    }
+
     public function setContent(string|Stringable $content): static
     {
         $this->content = $content;
@@ -26,7 +36,7 @@ abstract class AbstractContentTag extends AbstractTag implements ContentTagInter
     {
         $openingTag = sprintf('<%s>', implode(' ', $this->openingTagStrings()));
         $closingTag = sprintf('</%s>', $this->tag());
-        $content = $this->content();
+        $content = $this->contentForRendering();
         if (!$content) {
             return $openingTag . $closingTag;
         } elseif ($this->inline) {

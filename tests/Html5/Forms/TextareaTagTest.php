@@ -232,6 +232,26 @@ class TextareaTagTest extends TagTestCase
         $this->assertFalse($tag->required());
     }
 
+    // --- escaping ---
+
+    public function test_html_special_chars_are_escaped_in_rendering(): void
+    {
+        $tag = new TextareaTag();
+        $tag->setContent('<script>alert("xss")</script>');
+        $output = (string) $tag;
+        $this->assertStringNotContainsString('<script>', $output);
+        $this->assertStringContainsString('&lt;script&gt;', $output);
+    }
+
+    public function test_html_special_chars_are_not_escaped_in_content(): void
+    {
+        $tag = new TextareaTag();
+        $tag->setContent('<script>alert("xss")</script>');
+        $output = (string) $tag->content();
+        $this->assertStringContainsString('<script>', $output);
+        $this->assertStringNotContainsString('&lt;script&gt;', $output);
+    }
+
     // --- chaining ---
 
     public function testChaining(): void

@@ -30,6 +30,15 @@ class TextareaTag extends AbstractContentTag
     const TAG = 'textarea';
 
     /**
+     * Override default content() implementation to escape HTML special characters.
+     * @return string
+     */
+    protected function contentForRendering(): string
+    {
+        return htmlspecialchars($this->content);
+    }
+
+    /**
      * The maximum number of characters (UTF-16 code units) that the user can enter. If this value isn't specified, the user can enter an unlimited number of characters.
      *
      * @return null|int
