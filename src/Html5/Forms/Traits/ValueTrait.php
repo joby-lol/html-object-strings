@@ -36,7 +36,7 @@ trait ValueTrait
      */
     public function setValue(null|string|Stringable $value): static
     {
-        if ($value)
+        if ($value !== null && $value !== '')
             $this->attributes()['value'] = $value;
         else
             $this->unsetValue();
